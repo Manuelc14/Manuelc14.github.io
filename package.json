@@ -1,0 +1,15 @@
+{
+  "name": "portafolio---manuel-causil",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "gh-pages -d ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "gh-pages": "^5.0.0"
+  }
+}
