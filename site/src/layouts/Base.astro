@@ -1,0 +1,52 @@
+---
+import "../styles/style.css";
+import "../styles/responsive.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+const { title = "Manuel Causil", description = "Portafolio de Manuel Causil" } =
+    Astro.props;
+---
+
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://manuelc14.github.io" />
+        <meta property="og:image" content="/images/i.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+
+        <link
+            href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <Header />
+        <slot />
+        <Footer />
+        <script src="/js/particles.min.js" is:inline></script>
+        <script src="/js/script.js" type="module" is:inline></script>
+        <script type="module" is:inline>
+            import ScrollReveal from "scrollreveal";
+            ScrollReveal().reveal(".heading", {
+                distance: "40px",
+                duration: 700,
+                origin: "bottom",
+                interval: 80,
+            });
+            ScrollReveal().reveal(".container__pag__portafolio", {
+                distance: "40px",
+                duration: 700,
+                origin: "bottom",
+                interval: 80,
+            });
+        </script>
+    </body>
+</html>

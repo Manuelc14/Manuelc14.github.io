@@ -1,0 +1,35 @@
+---
+const items = [
+    {
+        name: "Erick Velasquez",
+        text: "Manuel me ayudó a crear mi primer sitio web, siempre entendiendo mis necesidades y proponiendo soluciones.",
+        image: "/images/erick.png",
+    },
+    {
+        name: "Germán Cruz",
+        text: "Estoy muy contento con el nuevo sitio, aumentaron las consultas y ventas de mis servicios.",
+        image: "/images/face1.jpg",
+    },
+];
+---
+
+<section class="testimonial-container">
+    <h2 class="heading">Testimonios <span>Valiosos</span></h2>
+    <div class="testimonial-wrapper">
+        <div class="testimonial-box">
+            <div class="testimonial-content">
+                {
+                    items.map((t) => (
+                        <div class="testimonial-slide">
+                            {t.image ? (
+                                <img src={t.image} alt={t.name} />
+                            ) : null}
+                            <h3>{t.name}</h3>
+                            <p>{t.text}</p>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</section>

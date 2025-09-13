@@ -1,0 +1,58 @@
+<section id="contact" class="contact">
+    <h2 class="heading">Contacta <span>Conmigo</span></h2>
+    <div class="container__form">
+        <form
+            action="https://formspree.io/f/XXXXXXXX"
+            method="POST"
+            class="form"
+        >
+            <!-- Honeypot opcional para evitar spam -->
+            <input
+                type="text"
+                name="_gotcha"
+                style="display:none"
+                tabindex="-1"
+                autocomplete="off"
+            />
+
+            <!-- Subject opcional -->
+            <input
+                type="hidden"
+                name="_subject"
+                value="Nuevo mensaje desde el portafolio"
+            />
+
+            <div class="column">
+                <div class="input-box">
+                    <label>Nombre</label>
+                    <input
+                        name="name"
+                        type="text"
+                        placeholder="Tu nombre"
+                        required
+                    />
+                </div>
+                <div class="input-box">
+                    <label>Email</label>
+                    <input
+                        name="email"
+                        type="email"
+                        placeholder="tu@email"
+                        required
+                    />
+                </div>
+            </div>
+
+            <textarea
+                name="message"
+                cols="30"
+                rows="5"
+                placeholder="Tu mensaje"
+                required></textarea>
+
+            <div class="elemento_btn_enviar">
+                <input type="submit" value="Enviar" />
+            </div>
+        </form>
+    </div>
+</section>

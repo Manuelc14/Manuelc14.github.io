@@ -1,0 +1,39 @@
+---
+import { getCollection } from "astro:content";
+const items = (await getCollection("projects")).sort(
+    (a, b) => b.data.year - a.data.year,
+);
+---
+
+<section id="projects" class="portfolio">
+    <h2 class="heading">Últimos <span>Proyectos</span></h2>
+    <div class="container__portafolio__paginas">
+        {
+            items.map(({ data }) => (
+                <div class="container__pag__portafolio">
+                    <div class="box__img__pag">
+                        {data.image ? (
+                            <img src={data.image} alt={data.title} />
+                        ) : null}
+                    </div>
+                    <div class="box__text__pag">
+                        {data.url ? (
+                            <a href={data.url} target="_blank" rel="noopener">
+                                <h2>
+                                    {data.title}{" "}
+                                    <i class="bx bx-link-external" />
+                                </h2>
+                            </a>
+                        ) : (
+                            <h2>{data.title}</h2>
+                        )}
+                    </div>
+                    <p>{data.description}</p>
+                    <small>
+                        {data.year} — {data.stack.join(", ")}
+                    </small>
+                </div>
+            ))
+        }
+    </div>
+</section>

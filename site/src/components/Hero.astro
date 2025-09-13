@@ -1,0 +1,46 @@
+---
+const messages = [
+    "Desarrollador Full-Stack",
+    "React · Vue · Django · Laravel",
+    "Siempre aprendiendo 🚀",
+];
+---
+
+<section id="home" class="home">
+    <div id="particles-js"></div>
+    <div class="home-content">
+        <h3>Hola, soy</h3>
+        <h1>Manuel Causil</h1>
+        <h3><span id="typed"></span></h3>
+
+        <div class="social-media">
+            <!-- ...tus enlaces... -->
+        </div>
+
+        <div class="btn-box box__home">
+            <a download="Manuel-Causil-CV" href="/cv.pdf">Descargar CV</a>
+        </div>
+    </div>
+
+    <div class="home-img">
+        <img class="animacion3" src="/images/i.png" alt="Manuel" />
+    </div>
+
+    <script type="module" is:inline>
+        import Typed from "typed.js";
+        const typed = new Typed("#typed", {
+            strings: [
+                "Desarrollador Full-Stack",
+                "React · Vue · Django · Laravel",
+                "Siempre aprendiendo 🚀",
+            ],
+            typeSpeed: 45,
+            backSpeed: 25,
+            backDelay: 1000,
+            loop: true,
+            smartBackspace: true,
+            showCursor: true,
+            cursorChar: "|",
+        });
+    </script>
+</section>
