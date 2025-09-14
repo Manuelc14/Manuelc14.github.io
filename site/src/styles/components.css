@@ -219,6 +219,7 @@
 /* ====== CONTACTO (mejorado, dark/light con tus variables) ====== */
 .container__form {
     max-width: 1100px;
+    width: 90%;
     margin-inline: auto
 }
 

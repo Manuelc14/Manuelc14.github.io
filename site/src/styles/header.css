@@ -374,6 +374,19 @@
     margin-inline-start: auto;
 }
 
+.mobile-nav li {
+    opacity: 0;
+    transform: translateX(16px);
+    transition: transform .24s ease, opacity .24s ease;
+    transition-delay: calc(var(--i) * 45ms);
+}
+
+.mobile-nav[data-state="open"] li {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+
 
 /* Soporte ancho panel móvil */
 @supports (width: 100svw) {

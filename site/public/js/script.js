@@ -8,20 +8,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if ("IntersectionObserver" in window && sections.length) {
         const active = new Set();
-        const io = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                const id = entry.target.getAttribute("id");
-                if (!id) return;
-                if (entry.isIntersecting) active.add(id);
-                else active.delete(id);
-            });
-            navLinks.forEach((l) => l.classList.remove("active"));
-            const current = [...active].at(-1);
-            if (current) byHref(current).forEach((el) => el.classList.add("active"));
-        }, {
-            rootMargin: "-40% 0px -55% 0px",
-            threshold: 0.01
-        });
+        const io = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    const id = entry.target.getAttribute("id");
+                    if (!id) return;
+                    if (entry.isIntersecting) active.add(id);
+                    else active.delete(id);
+                });
+                navLinks.forEach((l) => l.classList.remove("active"));
+                const current = [...active].at(-1);
+                if (current) byHref(current).forEach((el) => el.classList.add("active"));
+            }, {
+                rootMargin: "-40% 0px -55% 0px",
+                threshold: 0.01
+            }
+        );
         sections.forEach((sec) => io.observe(sec));
     } else {
         const setActiveLink = () => {
@@ -86,17 +88,18 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Swiper (con textos i18n)
     let swiperInstance = null;
 
     function initSwiper() {
+        const motionReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         if (!window.Swiper) return;
-        const root = d.querySelector(".testimonial-swiper");
+        const root = document.querySelector(".testimonial-swiper");
         if (!root) return;
         if (swiperInstance) {
             try {
                 swiperInstance.destroy(true, true);
             } catch (_) {}
+            swiperInstance = null;
         }
         const paginationEl = root.querySelector(".swiper-pagination");
         const nextEl = root.querySelector(".swiper-button-next");
@@ -107,11 +110,19 @@ document.addEventListener("DOMContentLoaded", () => {
             loop: true,
             grabCursor: true,
             watchOverflow: true,
+            speed: 600,
+            autoplay: motionReduced ?
+                false :
+                {
+                    delay: 2500,
+                    disableOnInteraction: false,
+                    pauseOnMouseEnter: true
+                },
             a11y: {
                 enabled: true,
                 prevSlideMessage: t("testimonials.a11y.prev"),
                 nextSlideMessage: t("testimonials.a11y.next"),
-                paginationBulletMessage: t("testimonials.a11y.bullet") // contiene {{index}}
+                paginationBulletMessage: t("testimonials.a11y.bullet")
             },
             pagination: {
                 el: paginationEl,
@@ -133,13 +144,35 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             }
         });
-        d.querySelectorAll(".no-swiper").forEach((el) => {
+        try {
+            const io = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (swiperInstance && swiperInstance.autoplay) {
+                            if (entry.isIntersecting) swiperInstance.autoplay.start();
+                            else swiperInstance.autoplay.stop();
+                        }
+                    });
+                }, {
+                    threshold: 0.2
+                }
+            );
+            io.observe(root);
+        } catch (_) {}
+        document.addEventListener("visibilitychange", () => {
+            if (swiperInstance && swiperInstance.autoplay) {
+                if (document.hidden) swiperInstance.autoplay.stop();
+                else swiperInstance.autoplay.start();
+            }
+        });
+        document.querySelectorAll(".no-swiper").forEach((el) => {
             el.style.display = "none";
         });
     }
-    initSwiper();
 
-    // Typed (frases i18n)
+    initSwiper();
+    if (window.i18next) window.i18next.on("languageChanged", () => initSwiper());
+
     (() => {
         const el = d.getElementById("typed");
         if (!el) return;
@@ -147,7 +180,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         function getPhrases() {
             if (window.i18next && window.i18next.isInitialized) {
-                const arr = window.i18next.t("hero.typed", {
+                const arr =
+                    window.i18next.t("hero.typed", {
                         returnObjects: true
                     }) ||
                     window.i18next.t("typed", {
@@ -163,7 +197,6 @@ document.addEventListener("DOMContentLoaded", () => {
             if (p) p.remove();
             return;
         }
-
         let phrases = getPhrases(),
             i = 0,
             j = 0,
@@ -194,7 +227,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
         tick();
-
         if (window.i18next) {
             window.i18next.on("languageChanged", () => {
                 phrases = getPhrases();
@@ -206,7 +238,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     })();
 
-    // Hover retrato (sin textos)
     (() => {
         const wrap = d.querySelector(".portrait__wrap");
         if (!wrap) return;
@@ -243,27 +274,19 @@ document.addEventListener("DOMContentLoaded", () => {
         wrap.addEventListener("mouseleave", reset);
     })();
 
-    // Form + validaciones i18n
     (() => {
         const form = document.getElementById("contact-form");
         if (!form) return;
-
         const status = document.getElementById("form-status");
         const btn = form.querySelector(".btn-submit");
         const action = form.getAttribute("action") || "";
         if (action.indexOf("https://formsubmit.co/") !== 0) return;
-
         let toast = document.getElementById("toast");
         if (!toast) {
             toast = document.createElement("div");
             toast.id = "toast";
-            toast.style.cssText = `
-        position: fixed; bottom: 2rem; right: 2rem; z-index: 9999;
-        background: var(--card); color: var(--text);
-        border: 1px solid var(--accent); border-radius: 12px;
-        padding: 1rem 1.25rem; box-shadow: 0 8px 20px rgba(0,0,0,.35);
-        opacity: 0; transform: translateY(16px); transition: opacity .25s, transform .25s;
-        pointer-events: none; max-width: 320px; font-size: 1.4rem;`;
+            toast.style.cssText =
+                "position:fixed;bottom:2rem;right:2rem;z-index:9999;background:var(--card);color:var(--text);border:1px solid var(--accent);border-radius:12px;padding:1rem 1.25rem;box-shadow:0 8px 20px rgba(0,0,0,.35);opacity:0;transform:translateY(16px);transition:opacity .25s,transform .25s;pointer-events:none;max-width:320px;font-size:1.4rem;";
             document.body.appendChild(toast);
         }
         const showToast = (msg, ok = true) => {
@@ -278,66 +301,61 @@ document.addEventListener("DOMContentLoaded", () => {
                 toast.style.transform = "translateY(16px)";
             }, 3000);
         };
-
         const normalizePhone = (v) => v.replace(/[^\d]/g, "");
         const isEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
         const isAlpha = (v) => /^[A-Za-zÀ-ÿ\u00f1\u00d1]+(?:[ .,'-][A-Za-zÀ-ÿ\u00f1\u00d1]+)*$/.test(v.trim());
-
         const V = (k) => t(`contact.form.validation.${k}`);
         const BTN = (k) => t(`contact.form.btn.${k}`);
         const TOAST = (k) => t(`contact.form.toast.${k}`);
-
         const fields = {
             name: {
                 el: form.querySelector("#name"),
                 err: document.getElementById("err-name"),
-                validate: (v) => !v.trim() ? V("name_required") : !isAlpha(v) ? V("name_letters") : v.trim().length < 2 ? V("name_short") : ""
+                validate: (v) => (!v.trim() ? V("name_required") : !isAlpha(v) ? V("name_letters") : v.trim().length < 2 ? V("name_short") : "")
             },
             phone: {
                 el: form.querySelector("#phone"),
                 err: document.getElementById("err-phone"),
-                validate: (v) => !v.trim() ? V("phone_required") : ((n) => n.length < 7 || n.length > 15 ? V("phone_invalid") : "")(normalizePhone(v))
+                validate: (v) =>
+                    !v.trim() ? V("phone_required") : ((n) => (n.length < 7 || n.length > 15 ? V("phone_invalid") : ""))(normalizePhone(v))
             },
             email: {
                 el: form.querySelector("#email"),
                 err: document.getElementById("err-email"),
-                validate: (v) => !v.trim() ? V("email_required") : !isEmail(v) ? V("email_invalid") : ""
+                validate: (v) => (!v.trim() ? V("email_required") : !isEmail(v) ? V("email_invalid") : "")
             },
             country: {
                 el: form.querySelector("#country"),
                 err: document.getElementById("err-country"),
-                validate: (v) => !v.trim() ? V("country_required") : !isAlpha(v) ? V("country_letters") : ""
+                validate: (v) => (!v.trim() ? V("country_required") : !isAlpha(v) ? V("country_letters") : "")
             },
             city: {
                 el: form.querySelector("#city"),
                 err: document.getElementById("err-city"),
-                validate: (v) => !v.trim() ? V("city_required") : !isAlpha(v) ? V("city_letters") : ""
+                validate: (v) => (!v.trim() ? V("city_required") : !isAlpha(v) ? V("city_letters") : "")
             },
             subject: {
                 el: form.querySelector("#subject"),
                 err: document.getElementById("err-subject"),
-                validate: (v) => !v.trim() ? V("subject_required") : v.trim().length < 3 ? V("subject_short") : ""
+                validate: (v) => (!v.trim() ? V("subject_required") : v.trim().length < 3 ? V("subject_short") : "")
             },
             message: {
                 el: form.querySelector("#message"),
                 err: document.getElementById("err-message"),
-                validate: (v) => v && v.length > 1000 ? V("message_max") : ""
+                validate: (v) => (v && v.length > 1000 ? V("message_max") : "")
             }
         };
-
         const showError = (field, msg) => {
             field.el.classList.toggle("is-invalid", !!msg);
             field.el.setAttribute("aria-invalid", msg ? "true" : "false");
             if (field.err) field.err.textContent = msg || "";
         };
-
         const validateField = (field) => {
             const val = (field.el.value || "").trim();
             const msg = field.validate(val);
             showError(field, msg);
             return msg;
         };
-
         Object.values(fields).forEach((f) => {
             if (!f.el) return;
             const handler = () => validateField(f);
@@ -346,7 +364,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (f.el.classList.contains("is-invalid")) handler();
             });
         });
-
         form.addEventListener("submit", async (e) => {
             e.preventDefault();
             const errors = Object.values(fields).map(validateField).filter(Boolean);
@@ -356,23 +373,20 @@ document.addEventListener("DOMContentLoaded", () => {
                 showToast(TOAST("review_fields"), false);
                 return;
             }
-
             if (btn) {
                 btn.disabled = true;
                 btn.textContent = BTN("sending");
             }
             if (status) status.textContent = "";
-
             try {
                 const fd = new FormData(form);
                 const res = await fetch(action, {
                     method: "POST",
                     headers: {
-                        "Accept": "application/json"
+                        Accept: "application/json"
                     },
                     body: fd
                 });
-
                 if (res.ok) {
                     showToast(TOAST("sent_ok"));
                     if (btn) btn.textContent = BTN("sent");
@@ -399,7 +413,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 }, 1500);
             }
         });
-
         if (window.i18next) {
             window.i18next.on("languageChanged", () => {
                 if (btn && !btn.disabled) btn.textContent = t("contact.form.submit");
