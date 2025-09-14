@@ -1,35 +1,187 @@
 ---
 const items = [
+    { key: "aquacontrol", logo: "/images/logos/aquacontrol.svg", rating: 5 },
+    { key: "solon-soluciones", logo: "/images/logos/solon.png", rating: 4.5 },
+    { key: "gcltracs", logo: "/images/logos/gcltracs.png", rating: 5 },
+    { key: "nitt", logo: "/images/logos/nitt.png", rating: 4.5 },
+    { key: "iqhome", logo: "/images/logos/iqhome.png", rating: 5 },
+    { key: "cea-dizcar", logo: "/images/logos/ceadizcar.png", rating: 4.5 },
+    { key: "casalup-services", logo: "/images/logos/casalup.png", rating: 5 },
     {
-        name: "Erick Velasquez",
-        text: "Manuel me ayudó a crear mi primer sitio web, siempre entendiendo mis necesidades y proponiendo soluciones.",
-        image: "/images/erick.png",
-    },
-    {
-        name: "Germán Cruz",
-        text: "Estoy muy contento con el nuevo sitio, aumentaron las consultas y ventas de mis servicios.",
-        image: "/images/face1.jpg",
+        key: "innova-energy",
+        logo: "/images/logos/innovaenergy.png",
+        rating: 4.5,
     },
 ];
 ---
 
-<section class="testimonial-container">
-    <h2 class="heading">Testimonios <span>Valiosos</span></h2>
-    <div class="testimonial-wrapper">
-        <div class="testimonial-box">
-            <div class="testimonial-content">
+<section
+    class="testimonials"
+    id="testimonios"
+    aria-labelledby="testimonials-title"
+    role="region"
+>
+    <div class="t-container">
+        <header class="t-head">
+            <h2
+                class="heading"
+                id="testimonials-title"
+                data-i18n="testimonials.title"
+                data-i18n-html
+            >
+            </h2>
+            <p class="t-sub" data-i18n="testimonials.subtitle"></p>
+        </header>
+
+        <div
+            class="mySwiper testimonial-swiper"
+            data-i18n-attr="aria-label:testimonials.a11y.carousel"
+        >
+            <div class="swiper-wrapper">
                 {
-                    items.map((t) => (
-                        <div class="testimonial-slide">
-                            {t.image ? (
-                                <img src={t.image} alt={t.name} />
-                            ) : null}
-                            <h3>{t.name}</h3>
-                            <p>{t.text}</p>
-                        </div>
-                    ))
+                    items.map((t, idx) => {
+                        const paramsFig = JSON.stringify({
+                            index: idx + 1,
+                            total: items.length,
+                        });
+                        const paramsRate = JSON.stringify({ rating: t.rating });
+                        return (
+                            <figure
+                                class="swiper-slide t-card"
+                                data-i18n-attr="aria-label:testimonials.a11y.slide_of"
+                                data-i18n-params={paramsFig}
+                            >
+                                <div class="t-quote" aria-hidden="true">
+                                    “
+                                </div>
+
+                                <header class="t-headline">
+                                    {t.logo ? (
+                                        <img
+                                            class="t-logo"
+                                            src={t.logo}
+                                            loading="lazy"
+                                            decoding="async"
+                                            data-i18n-attr={`alt:testimonials.items.${t.key}.company`}
+                                        />
+                                    ) : (
+                                        <div
+                                            class="t-avatar t-avatar--placeholder"
+                                            aria-hidden="true"
+                                        >
+                                            ?
+                                        </div>
+                                    )}
+
+                                    <div class="t-id">
+                                        <span
+                                            class="t-name"
+                                            data-i18n={`testimonials.items.${t.key}.company`}
+                                        />
+                                        <span class="t-role">
+                                            <span
+                                                data-i18n={`testimonials.items.${t.key}.person`}
+                                            />
+                                            {" · "}
+                                            <span
+                                                data-i18n={`testimonials.items.${t.key}.role`}
+                                            />
+                                        </span>
+                                    </div>
+
+                                    <div
+                                        class="t-rating"
+                                        style={`--rating:${t.rating}`}
+                                        data-i18n-attr="aria-label:testimonials.a11y.rating"
+                                        data-i18n-params={paramsRate}
+                                    >
+                                        <div class="t-rating-mask" />
+                                    </div>
+                                </header>
+
+                                <blockquote class="t-body t-text">
+                                    <p
+                                        data-i18n={`testimonials.items.${t.key}.text`}
+                                    />
+                                </blockquote>
+                            </figure>
+                        );
+                    })
                 }
             </div>
+
+            <div class="t-controls">
+                <button
+                    class="swiper-button-prev"
+                    data-i18n-attr="aria-label:testimonials.a11y.prev"></button>
+                <div
+                    class="swiper-pagination"
+                    data-i18n-attr="aria-label:testimonials.a11y.pagination"
+                >
+                </div>
+                <button
+                    class="swiper-button-next"
+                    data-i18n-attr="aria-label:testimonials.a11y.next"></button>
+            </div>
+        </div>
+
+        <!-- Grid sin swiper (decorativo) -->
+        <div class="t-grid no-swiper" aria-hidden="true">
+            {
+                items.map((t) => (
+                    <figure class="t-card">
+                        <div class="t-quote" aria-hidden="true">
+                            “
+                        </div>
+                        <header class="t-headline">
+                            {t.logo ? (
+                                <img
+                                    class="t-logo"
+                                    src={t.logo}
+                                    loading="lazy"
+                                    decoding="async"
+                                    data-i18n-attr={`alt:testimonials.items.${t.key}.company`}
+                                />
+                            ) : (
+                                <div
+                                    class="t-avatar t-avatar--placeholder"
+                                    aria-hidden="true"
+                                >
+                                    ?
+                                </div>
+                            )}
+                            <div class="t-id">
+                                <span
+                                    class="t-name"
+                                    data-i18n={`testimonials.items.${t.key}.company`}
+                                />
+                                <span class="t-role">
+                                    <span
+                                        data-i18n={`testimonials.items.${t.key}.person`}
+                                    />
+                                    {" · "}
+                                    <span
+                                        data-i18n={`testimonials.items.${t.key}.role`}
+                                    />
+                                </span>
+                            </div>
+                            <div
+                                class="t-rating"
+                                style={`--rating:${t.rating}`}
+                                data-i18n-attr="aria-label:testimonials.a11y.rating"
+                                data-i18n-params={JSON.stringify({
+                                    rating: t.rating,
+                                })}
+                            >
+                                <div class="t-rating-mask" />
+                            </div>
+                        </header>
+                        <blockquote class="t-text">
+                            <p data-i18n={`testimonials.items.${t.key}.text`} />
+                        </blockquote>
+                    </figure>
+                ))
+            }
         </div>
     </div>
 </section>

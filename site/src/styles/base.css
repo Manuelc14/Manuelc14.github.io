@@ -1,0 +1,193 @@
+/* =========================================
+   BASE / RESETEO / TEMAS / TIPOGRAFÍA
+   ========================================= */
+
+/* Fuente */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
+
+/* Reset mínimo */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: 0;
+    outline: 0;
+    scroll-behavior: smooth;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+html {
+    font-size: 62.5%;
+    overflow: auto;
+}
+
+body {
+    font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    line-height: 1.6;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+    /* evita desbordes horizontales */
+}
+
+/* Focus visible accesible */
+:where(a, button, [role="button"]) {
+    outline: none;
+}
+
+:where(a, button, [role="button"]):focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 10px;
+}
+
+/* =========================
+   Variables (dark por defecto)
+   ========================= */
+:root {
+    /* Base */
+    --bg: radial-gradient(50% 50% at 50% 50%, rgba(0, 0, 0, .45) 0%, rgba(0, 0, 0, 0) 70%);
+    --surface: #0f1226;
+    --card: #121737;
+    --text: #e7e8ea;
+    --white: #fff;
+    --muted: #a8afc2;
+    --accent: #19a0b8;
+    --accent-2: #d2ba00;
+    --ring: rgba(25, 160, 184, .35);
+    --shadow: rgba(0, 0, 0, .28);
+    --radius: 16px;
+    --container: 1200px;
+
+    /* Tipografía */
+    --fs-xl: clamp(3.2rem, 5vw, 4.8rem);
+    --fs-lg: clamp(2.4rem, 3.5vw, 3.2rem);
+    --fs-md: 1.8rem;
+    --fs-sm: 1.5rem;
+
+    /* Tokens para Testimonials (fallbacks SRGB) */
+    --t-max: var(--container);
+    --t-gap: 28px;
+    --t-bg: rgba(255, 255, 255, 0.06);
+    --t-fg: var(--text);
+    --t-muted: var(--muted);
+    --t-border: rgba(255, 255, 255, 0.10);
+    --t-shadow: 0 10px 30px rgba(0, 0, 0, .18), 0 2px 10px rgba(0, 0, 0, .12);
+
+    color-scheme: dark light;
+}
+
+/* Mejora progresiva si hay color-mix en SRGB */
+@supports (background: color-mix(in srgb, white 80%, transparent)) {
+    :root {
+        --t-bg: color-mix(in srgb, white 7%, transparent);
+        --t-border: color-mix(in srgb, white 12%, transparent);
+    }
+}
+
+/* Tema claro forzado por clase .light */
+.light {
+    --bg: #d6e0e4;
+    --surface: #f6f7fb;
+    --card: #ffffff;
+    --text: #111827;
+    --muted: #6b7280;
+    --accent: #1368c9;
+    --accent-2: #c69200;
+    --ring: rgba(19, 104, 201, .25);
+    --shadow: rgba(0, 0, 0, .12);
+
+    /* Testimonials en light */
+    --t-bg: rgba(255, 255, 255, 0.7);
+    --t-fg: var(--text);
+    --t-muted: var(--muted);
+    --t-border: color-mix(in srgb, black 10%, transparent);
+    --t-shadow: 0 10px 30px rgba(0, 0, 0, .12), 0 2px 10px rgba(0, 0, 0, .06);
+}
+
+/* Tema oscuro explícito (coincide con :root) */
+.dark-mode {
+    --bg: #0b061f;
+    --surface: #0f1226;
+    --card: #121737;
+    --text: #e7e8ea;
+    --muted: #a8afc2;
+    --accent: #19a0b8;
+    --accent-2: #d2ba00;
+    --ring: rgba(25, 160, 184, .35);
+    --shadow: rgba(0, 0, 0, .28);
+
+    /* Testimonials en dark */
+    --t-bg: rgba(12, 16, 24, 0.6);
+    --t-fg: var(--text);
+    --t-muted: var(--muted);
+    --t-border: rgba(255, 255, 255, 0.10);
+    --t-shadow: 0 10px 30px rgba(0, 0, 0, .35), 0 2px 10px rgba(0, 0, 0, .25);
+}
+
+/* =========================
+   Helpers
+   ========================= */
+.container {
+    width: 100%;
+    max-width: var(--container);
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+}
+
+section {
+    width: 100%;
+    min-height: clamp(72vh, 100svh, 110vh);
+    padding-block: clamp(6rem, 6vw, 10rem) 2rem;
+}
+
+h1 {
+    font-size: var(--fs-xl);
+    letter-spacing: -.02em;
+}
+
+h2.heading {
+    font-size: var(--fs-lg);
+    text-align: center;
+}
+
+p {
+    font-size: var(--fs-md);
+    color: var(--text);
+}
+
+span {
+    color: var(--accent);
+}
+
+/* Accesibilidad / motion-safe */
+:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* Escala contenedor en pantallas grandes */
+@media (min-width:1600px) {
+    :root {
+        --container: 1400px;
+    }
+}
+
+/* Lock de scroll cuando el menú móvil está abierto */
+.body-lock {
+    overflow: hidden;
+}

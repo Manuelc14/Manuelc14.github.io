@@ -1,13 +1,60 @@
 <section id="about" class="about">
-    <h2 class="heading">Sobre <span>Mí</span></h2>
-    <h3>Te ayudo a construir tu próxima <span>solución digital</span></h3>
-    <p>
-        Desarrollador Full-Stack con experiencia en soluciones web y de
-        escritorio. Colaboro en productos con React, Vue, Django y Laravel; y
-        como independiente digitalizo procesos para empresas. Apasionado por la
-        mejora continua y el aprendizaje práctico.
-    </p>
-    <div class="btn-box">
-        <a href="#projects">Ver Proyectos</a>
+    <div class="container">
+        <div class="about-card">
+            <div class="about-kicker" data-i18n="about.kicker"></div>
+
+            <h2 class="about-title" data-i18n="about.title"></h2>
+
+            <p class="about-lead" data-i18n="about.lead"></p>
+
+            <ul class="about-list">
+                <li data-i18n="about.item_1">
+                    <i class="bx bxs-bolt" aria-hidden="true"></i>
+                </li>
+                <li data-i18n="about.item_2">
+                    <i class="bx bxs-check-circle" aria-hidden="true"></i>
+                </li>
+                <li data-i18n="about.item_3">
+                    <i class="bx bxs-package" aria-hidden="true"></i>
+                </li>
+            </ul>
+
+            <div class="about-highlights">
+                <span class="chip" data-i18n="about.pill_years"></span>
+                <span class="chip" data-i18n="about.pill_stack"></span>
+                <span class="chip">React · Vue · Django</span>
+                <span class="chip">Laravel · Java</span>
+            </div>
+
+            <div class="about-cta">
+                <a
+                    class="box__home"
+                    href="/cv.pdf"
+                    download
+                    data-i18n-attr="download:hero.cta.downloadFile"
+                >
+                    <span data-i18n="hero.cta.download"></span>
+                </a>
+                <a class="box__home" href="#portfolio">
+                    <span data-i18n="hero.cta.projects"></span>
+                </a>
+            </div>
+        </div>
+
+        <div class="about-media">
+            <div class="about-portrait">
+                <img
+                    src="/images/meabout.svg"
+                    data-i18n-attr="alt:hero.portraitAlt"
+                    loading="lazy"
+                    decoding="async"
+                />
+                <div class="about-stats">
+                    <span class="stat" data-i18n="about.pill_years"></span>
+                    <span class="stat" data-i18n="about.pill_stack"></span>
+                    <span class="stat">Colombia</span>
+                </div>
+            </div>
+        </div>
     </div>
 </section>

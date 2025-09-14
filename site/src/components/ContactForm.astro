@@ -1,58 +1,219 @@
 <section id="contact" class="contact">
-    <h2 class="heading">Contacta <span>Conmigo</span></h2>
+    <h2 class="heading" data-i18n="contact.title" data-i18n-html></h2>
+
     <div class="container__form">
         <form
-            action="https://formspree.io/f/XXXXXXXX"
+            id="contact-form"
+            action="https://formsubmit.co/b1db0bfe8125cc8c4b0d3be46bb2203a"
             method="POST"
-            class="form"
+            class="form form--pro"
+            novalidate
+            data-i18n-attr="aria-label:contact.title"
         >
-            <!-- Honeypot opcional para evitar spam -->
+            <!-- honeypot -->
             <input
                 type="text"
-                name="_gotcha"
-                style="display:none"
+                name="_honey"
                 tabindex="-1"
                 autocomplete="off"
+                hidden
             />
 
-            <!-- Subject opcional -->
+            <!-- asunto del correo (traducible) -->
             <input
                 type="hidden"
                 name="_subject"
-                value="Nuevo mensaje desde el portafolio"
+                data-i18n-attr="value:contact.form.mail_subject"
             />
 
-            <div class="column">
+            <!-- plantilla, captcha, next -->
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_next" id="form-next" value="" />
+
+            <!-- auto-respuesta (traducible) -->
+            <input
+                type="hidden"
+                name="_autoresponse"
+                data-i18n-attr="value:contact.form.autoresponse"
+            />
+
+            <div class="form-grid">
+                <!-- Name -->
                 <div class="input-box">
-                    <label>Nombre</label>
+                    <label for="name">
+                        <span class="label-ico" aria-hidden="true">👤</span>
+                        <span data-i18n="contact.form.name_label"></span>
+                    </label>
                     <input
+                        id="name"
                         name="name"
                         type="text"
-                        placeholder="Tu nombre"
+                        data-i18n-attr="placeholder:contact.form.name_ph"
+                        autocomplete="name"
                         required
+                        inputmode="text"
+                        aria-describedby="err-name"
+                        pattern="^[A-Za-zÀ-ÿ\u00f1\u00d1]+(?:[ '\-][A-Za-zÀ-ÿ\u00f1\u00d1]+)*$"
                     />
+                    <p
+                        class="field-error"
+                        id="err-name"
+                        role="alert"
+                        aria-live="polite"
+                    >
+                    </p>
                 </div>
+
+                <!-- Phone -->
                 <div class="input-box">
-                    <label>Email</label>
+                    <label for="phone">
+                        <span class="label-ico" aria-hidden="true">📞</span>
+                        <span data-i18n="contact.form.phone_label"></span>
+                    </label>
                     <input
+                        id="phone"
+                        name="phone"
+                        type="tel"
+                        inputmode="tel"
+                        data-i18n-attr="placeholder:contact.form.phone_ph"
+                        autocomplete="tel"
+                        required
+                        aria-describedby="err-phone"
+                        pattern="^[+()\-.\s0-9]{7,20}$"
+                    />
+                    <p
+                        class="field-error"
+                        id="err-phone"
+                        role="alert"
+                        aria-live="polite"
+                    >
+                    </p>
+                </div>
+
+                <!-- Email -->
+                <div class="input-box">
+                    <label for="email">
+                        <span class="label-ico" aria-hidden="true">✉️</span>
+                        <span data-i18n="contact.form.email_label"></span>
+                    </label>
+                    <input
+                        id="email"
                         name="email"
                         type="email"
-                        placeholder="tu@email"
+                        data-i18n-attr="placeholder:contact.form.email_ph"
+                        autocomplete="email"
                         required
+                        aria-describedby="err-email"
                     />
+                    <p
+                        class="field-error"
+                        id="err-email"
+                        role="alert"
+                        aria-live="polite"
+                    >
+                    </p>
+                </div>
+
+                <!-- Country -->
+                <div class="input-box">
+                    <label for="country">
+                        <span class="label-ico" aria-hidden="true">📍</span>
+                        <span data-i18n="contact.form.country_label"></span>
+                    </label>
+                    <input
+                        id="country"
+                        name="country"
+                        type="text"
+                        data-i18n-attr="placeholder:contact.form.country_ph"
+                        autocomplete="country-name"
+                        required
+                        aria-describedby="err-country"
+                        pattern="^[A-Za-zÀ-ÿ\u00f1\u00d1]+(?:[ .,'-][A-Za-zÀ-ÿ\u00f1\u00d1]+)*$"
+                    />
+                    <p
+                        class="field-error"
+                        id="err-country"
+                        role="alert"
+                        aria-live="polite"
+                    >
+                    </p>
+                </div>
+
+                <!-- City -->
+                <div class="input-box">
+                    <label for="city">
+                        <span class="label-ico" aria-hidden="true">📍</span>
+                        <span data-i18n="contact.form.city_label"></span>
+                    </label>
+                    <input
+                        id="city"
+                        name="city"
+                        type="text"
+                        data-i18n-attr="placeholder:contact.form.city_ph"
+                        autocomplete="address-level2"
+                        required
+                        aria-describedby="err-city"
+                        pattern="^[A-Za-zÀ-ÿ\u00f1\u00d1]+(?:[ .,'-][A-Za-zÀ-ÿ\u00f1\u00d1]+)*$"
+                    />
+                    <p
+                        class="field-error"
+                        id="err-city"
+                        role="alert"
+                        aria-live="polite"
+                    >
+                    </p>
+                </div>
+
+                <!-- Subject -->
+                <div class="input-box">
+                    <label for="subject">
+                        <span class="label-ico" aria-hidden="true">✉️</span>
+                        <span data-i18n="contact.form.subject_label"></span>
+                    </label>
+                    <input
+                        id="subject"
+                        name="subject"
+                        type="text"
+                        data-i18n-attr="placeholder:contact.form.subject_ph"
+                        required
+                        aria-describedby="err-subject"
+                        minlength="3"
+                    />
+                    <p
+                        class="field-error"
+                        id="err-subject"
+                        role="alert"
+                        aria-live="polite"
+                    >
+                    </p>
+                </div>
+
+                <!-- Message -->
+                <div class="input-area">
+                    <textarea
+                        id="message"
+                        name="message"
+                        rows="5"
+                        data-i18n-attr="placeholder:contact.form.message_ph"
+                        aria-describedby="err-message"
+                        maxlength="1000"></textarea>
+                    <p
+                        class="field-error"
+                        id="err-message"
+                        role="alert"
+                        aria-live="polite"
+                    >
+                    </p>
                 </div>
             </div>
 
-            <textarea
-                name="message"
-                cols="30"
-                rows="5"
-                placeholder="Tu mensaje"
-                required></textarea>
-
-            <div class="elemento_btn_enviar">
-                <input type="submit" value="Enviar" />
+            <div id="form-status" aria-live="polite" style="min-height:24px;">
             </div>
+
+            <button type="submit" class="btn-submit">
+                <span data-i18n="contact.form.submit"></span>
+            </button>
         </form>
     </div>
 </section>

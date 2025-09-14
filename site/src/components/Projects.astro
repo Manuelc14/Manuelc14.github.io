@@ -1,39 +1,129 @@
 ---
 import { getCollection } from "astro:content";
+
 const items = (await getCollection("projects")).sort(
-    (a, b) => b.data.year - a.data.year,
+    (a, b) => (b.data.year || 0) - (a.data.year || 0),
 );
 ---
 
-<section id="projects" class="portfolio">
-    <h2 class="heading">Últimos <span>Proyectos</span></h2>
-    <div class="container__portafolio__paginas">
-        {
-            items.map(({ data }) => (
-                <div class="container__pag__portafolio">
-                    <div class="box__img__pag">
-                        {data.image ? (
-                            <img src={data.image} alt={data.title} />
-                        ) : null}
-                    </div>
-                    <div class="box__text__pag">
-                        {data.url ? (
-                            <a href={data.url} target="_blank" rel="noopener">
-                                <h2>
-                                    {data.title}{" "}
-                                    <i class="bx bx-link-external" />
-                                </h2>
-                            </a>
-                        ) : (
-                            <h2>{data.title}</h2>
-                        )}
-                    </div>
-                    <p>{data.description}</p>
-                    <small>
-                        {data.year} — {data.stack.join(", ")}
-                    </small>
-                </div>
-            ))
-        }
+<section id="portfolio" class="portfolio">
+    <div class="container">
+        <!-- Título y descripción traducibles -->
+        <h2 class="heading" data-i18n="portfolio.title" data-i18n-html></h2>
+        <h3 class="description" data-i18n="portfolio.desc"></h3>
+
+        <div class="portfolio-grid">
+            {
+                items.map(({ id, data }, idx) => {
+                    const shotStyle = data.image
+                        ? `--shot:url('${data.image}')`
+                        : "";
+                    const slug = id
+                        .replace(/^projects\//, "")
+                        .replace(/\.md$/, "");
+                    const paramsJson = JSON.stringify({ title: data.title });
+                    return (
+                        <article
+                            class="project-card"
+                            style={`--stagger:${idx}`}
+                        >
+                            <div class="project-media">
+                                <div class="project-shot" style={shotStyle} />
+                                {data.url ? (
+                                    <a
+                                        class="project-visit"
+                                        href={data.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        data-i18n-attr="aria-label:portfolio.open_project; title:portfolio.view_project"
+                                        data-i18n-params={paramsJson}
+                                    >
+                                        <i class="bx bx-link-external" />
+                                    </a>
+                                ) : null}
+                            </div>
+
+                            <div class="project-body">
+                                <h3 class="project-title">
+                                    <span data-i18n={`projects.${slug}.title`}>
+                                        {data.title}
+                                    </span>{" "}
+                                    <i
+                                        class="bx bx-link-external"
+                                        aria-hidden="true"
+                                    />
+                                </h3>
+
+                                {data.description ? (
+                                    <p
+                                        class="project-desc"
+                                        data-i18n={`projects.${slug}.description`}
+                                    >
+                                        {data.description}
+                                    </p>
+                                ) : null}
+
+                                {Array.isArray(data.stack) &&
+                                    data.stack.length > 0 && (
+                                        <div class="project-meta">
+                                            {data.stack.map((s) => (
+                                                <span class="badge">{s}</span>
+                                            ))}
+                                        </div>
+                                    )}
+
+                                {(data.repo || data.demo) && (
+                                    <div class="project-actions">
+                                        {data.demo ? (
+                                            <a
+                                                class="btn-ghost"
+                                                href={data.demo}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                data-i18n-attr="aria-label:portfolio.demo_of"
+                                                data-i18n-params={paramsJson}
+                                            >
+                                                <i
+                                                    class="bx bx-play-circle"
+                                                    aria-hidden="true"
+                                                />{" "}
+                                                <span data-i18n="portfolio.demo" />
+                                            </a>
+                                        ) : null}
+                                        {data.repo ? (
+                                            <a
+                                                class="btn-ghost"
+                                                href={data.repo}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                data-i18n-attr="aria-label:portfolio.code_of"
+                                                data-i18n-params={paramsJson}
+                                            >
+                                                <i
+                                                    class="bx bxl-github"
+                                                    aria-hidden="true"
+                                                />{" "}
+                                                <span data-i18n="portfolio.code" />
+                                            </a>
+                                        ) : null}
+                                    </div>
+                                )}
+                            </div>
+
+                            {data.url ? (
+                                <a
+                                    class="project-cover"
+                                    href={data.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    data-i18n-attr="aria-label:portfolio.open_project"
+                                    data-i18n-params={paramsJson}
+                                />
+                            ) : null}
+                        </article>
+                    );
+                })
+            }
+        </div>
     </div>
 </section>

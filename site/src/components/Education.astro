@@ -1,0 +1,44 @@
+---
+const education = [
+    {
+        year: "2017 - 2022",
+        title: "Ingeniería de Sistemas",
+        school: "Corporación Universitaria Remington",
+        type: "Presencial - Yopal / Casanare",
+    },
+    {
+        year: "2017 - Presente",
+        title: "Cursos de Desarrollo de Software",
+        school: "Platzi - Udemy",
+        type: "Formación continua en línea",
+    },
+    {
+        year: "2023",
+        title: "Técnico en Tránsito, Transporte y Seguridad Vial",
+        school: "Intravial S.A.S",
+        type: "Certificación en competencias laborales",
+    },
+];
+---
+
+<section class="education" id="education">
+    <h2 class="heading">Mi <span>Formación</span></h2>
+    <div class="education-row">
+        {
+            education.map((edu) => (
+                <div class="education-content">
+                    <div class="content">
+                        <div class="year">
+                            <i class="bx bxs-calendar" />
+                            {edu.year}
+                        </div>
+                        <h3>{edu.title}</h3>
+                        <p>
+                            <strong>{edu.school}</strong> — {edu.type}
+                        </p>
+                    </div>
+                </div>
+            ))
+        }
+    </div>
+</section>
