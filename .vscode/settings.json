@@ -1,3 +1,9 @@
 {
-    "liveServer.settings.port": 5501
+    "liveServer.settings.port": 5501,
+    "window.titleBarStyle": "custom",
+    "workbench.colorCustomizations": {
+        "window.activeBorder": "#18838f",
+        "window.inactiveBorder": "#198c84",
+        "activityBar.activeBorder": "#ffffff"
+    }
 }
