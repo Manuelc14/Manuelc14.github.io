@@ -1,0 +1,99 @@
+---
+const social = [
+    {
+        href: "https://www.linkedin.com/in/manuel-causil-a48454267/",
+        icon: "bxl-linkedin",
+        label: "LinkedIn",
+    },
+    {
+        href: "https://github.com/Manuelc14",
+        icon: "bxl-github",
+        label: "GitHub",
+    },
+];
+---
+
+<section id="home" class="hero" aria-labelledby="hero-title">
+    <div id="particles-js" aria-hidden="true"></div>
+
+    <div class="container hero__grid">
+        <div class="hero__content">
+            <p class="eyebrow" data-i18n="hero.available"></p>
+
+            <h1 id="hero-title" class="hero__title">
+                <span data-i18n="hero.hi"></span>
+                <span class="accent"> Manuel Causil</span>
+                <span class="nowrap" data-i18n="hero.role"></span>
+            </h1>
+
+            <p class="hero__lead">
+                <span data-i18n="hero.lead"></span>
+                <span data-i18n="hero.stack" data-i18n-html></span>
+            </p>
+
+            <div
+                class="hero__cta"
+                role="group"
+                data-i18n-attr="aria-label:hero.cta.aria"
+            >
+                <a
+                    class="btn btn--primary"
+                    href="#portfolio"
+                    data-i18n="hero.cta.projects"
+                    data-i18n-attr="title;aria-label"></a>
+
+                <a
+                    class="btn btn--ghost"
+                    href="#contact"
+                    data-i18n="hero.cta.contact"
+                    data-i18n-attr="title;aria-label"></a>
+
+                <a
+                    class="btn btn--link"
+                    href="/cv.pdf"
+                    download="Manuel-Causil-CV"
+                    data-i18n="hero.cta.download"
+                    data-i18n-attr="title;aria-label;download:hero.cta.downloadFile"
+                ></a>
+            </div>
+
+            <ul class="social" data-i18n-attr="aria-label:hero.social.aria">
+                {
+                    social.map((s) => (
+                        <li>
+                            <a
+                                href={s.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label={s.label}
+                                title={s.label}
+                            >
+                                <i class={`bx ${s.icon}`} aria-hidden="true" />
+                                <span class="sr-only">{s.label}</span>
+                            </a>
+                        </li>
+                    ))
+                }
+            </ul>
+
+            <div class="typed" data-typed>
+                <span id="typed"></span>
+            </div>
+        </div>
+
+        <div class="hero__media">
+            <div class="portrait__wrap">
+                <img
+                    class="portrait"
+                    src="/images/i.png"
+                    width="480"
+                    height="560"
+                    loading="eager"
+                    decoding="async"
+                    fetchpriority="high"
+                    data-i18n-attr="alt:hero.portraitAlt"
+                />
+            </div>
+        </div>
+    </div>
+</section>

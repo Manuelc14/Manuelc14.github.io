@@ -1,0 +1,176 @@
+---
+import "../styles/base.css";
+import "../styles/header.css";
+import "../styles/home.css";
+import "../styles/sections.css";
+import "../styles/components.css";
+import "../styles/responsive.css";
+
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+const { title = "Manuel Causil", description = "Portafolio de Manuel Causil" } =
+    Astro.props;
+---
+
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://manuelc14.github.io" />
+        <meta property="og:image" content="/images/i.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <!-- Iconos -->
+        <link
+            href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+            rel="stylesheet"
+        />
+        <meta name="color-scheme" content="light dark" />
+        <link
+            rel="preload"
+            as="image"
+            href="/images/i@1x.webp"
+            imagesrcset="/images/i@1x.webp 1x, /images/i@2x.webp 2x"
+            imagesizes="(max-width:768px) 60vw, 480px"
+            fetchpriority="high"
+        />
+        <link
+            rel="stylesheet"
+            href="https://unpkg.com/swiper/swiper-bundle.min.css"
+        />
+        <script>
+            (() => {
+                const stored = localStorage.getItem("theme");
+                const prefersDark = window.matchMedia(
+                    "(prefers-color-scheme: dark)",
+                ).matches;
+                const theme = stored ?? (prefersDark ? "dark" : "light");
+                document.documentElement.classList.toggle(
+                    "light",
+                    theme === "light",
+                );
+                document.documentElement.classList.toggle(
+                    "dark-mode",
+                    theme === "dark",
+                );
+            })();
+        </script>
+    </head>
+
+    <body>
+        <Header />
+        <slot />
+        <Footer />
+        <script src="/js/particles.min.js" is:inline></script>
+        <script is:inline>
+            (function () {
+                const config = {
+                    particles: {
+                        number: {
+                            value: 80,
+                            density: { enable: true, value_area: 800 },
+                        },
+                        color: { value: "#ffffff" },
+                        shape: { type: "circle" },
+                        opacity: {
+                            value: 0.5,
+                            random: false,
+                            anim: {
+                                enable: false,
+                                speed: 1,
+                                opacity_min: 0.1,
+                                sync: false,
+                            },
+                        },
+                        size: { value: 3, random: true },
+                        line_linked: {
+                            enable: true,
+                            distance: 150,
+                            color: "#ffffff",
+                            opacity: 0.4,
+                            width: 1,
+                        },
+                        move: {
+                            enable: true,
+                            speed: 2,
+                            direction: "none",
+                            random: false,
+                            straight: false,
+                            out_mode: "out",
+                            bounce: false,
+                        },
+                    },
+                    interactivity: {
+                        detect_on: "canvas",
+                        events: {
+                            onhover: { enable: true, mode: "repulse" },
+                            onclick: { enable: true, mode: "push" },
+                            resize: true,
+                        },
+                        modes: {
+                            repulse: { distance: 120, duration: 0.4 },
+                            push: { particles_nb: 4 },
+                        },
+                    },
+                    retina_detect: true,
+                };
+
+                const init = () => {
+                    const el = document.getElementById("particles-js");
+                    if (el && window.particlesJS) {
+                        window.particlesJS("particles-js", config);
+                    }
+                };
+
+                document.addEventListener("astro:page-load", init);
+                if (document.readyState !== "loading") init();
+                else document.addEventListener("DOMContentLoaded", init);
+            })();
+        </script>
+
+        <script src="/js/script.js" is:inline></script>
+        <script src="/js/menu.js" defer></script>
+        <!-- ScrollReveal como módulo (CDN) -->
+        <script type="module">
+            import ScrollReveal from "https://esm.sh/scrollreveal@4";
+
+            const run = () => {
+                const sr = ScrollReveal();
+                sr.reveal(".heading", {
+                    distance: "40px",
+                    duration: 700,
+                    origin: "bottom",
+                    interval: 80,
+                    cleanup: true,
+                });
+                sr.reveal(".container__pag__portafolio", {
+                    distance: "40px",
+                    duration: 700,
+                    origin: "bottom",
+                    interval: 80,
+                    cleanup: true,
+                });
+            };
+
+            // Astro SPA-friendly: ejecuta en carga inicial y en navegaciones internas
+            document.addEventListener("astro:page-load", run);
+            if (document.readyState !== "loading") run();
+            else document.addEventListener("DOMContentLoaded", run);
+        </script>
+        <script defer src="https://unpkg.com/swiper/swiper-bundle.min.js"
+        ></script>
+        <script defer src="https://unpkg.com/i18next@23/i18next.min.js"
+        ></script>
+        <script
+            defer
+            src="https://unpkg.com/i18next-http-backend@2/i18nextHttpBackend.min.js"
+        ></script>
+        <script defer src="/js/i18n.js"></script>
+    </body>
+</html>

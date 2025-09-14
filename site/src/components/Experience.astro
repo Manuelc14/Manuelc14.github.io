@@ -1,0 +1,42 @@
+---
+const experiences = [
+    {
+        year: "2022 - Presente",
+        role: "Software Developer - Innovamc",
+        description:
+            "CEO y desarrollador en Innovamc. Soluciones tecnológicas, marketing digital y optimización de procesos empresariales.",
+    },
+    {
+        year: "2024",
+        role: "Instructor - SUEJE",
+        description:
+            "Capacitaciones en seguridad vial a empresas y usuarios, en programa nacional del Ministerio de Transporte y ANSV.",
+    },
+    {
+        year: "2023",
+        role: "Docente de Robótica - Hispanic-English Country School",
+        description:
+            "Diseño de currículo STEAM y proyectos prácticos en robótica y programación para estudiantes de secundaria.",
+    },
+];
+---
+
+<section class="education" id="experience">
+    <h2 class="heading">Mi <span>Experiencia</span></h2>
+    <div class="education-row">
+        {
+            experiences.map((exp) => (
+                <div class="education-content">
+                    <div class="content">
+                        <div class="year">
+                            <i class="bx bxs-calendar" />
+                            {exp.year}
+                        </div>
+                        <h3>{exp.role}</h3>
+                        <p>{exp.description}</p>
+                    </div>
+                </div>
+            ))
+        }
+    </div>
+</section>

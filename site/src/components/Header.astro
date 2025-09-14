@@ -1,0 +1,344 @@
+<header class="header">
+    <a class="logo" href="/" title="Home">
+        <span class="logo-text" data-i18n="header.logo">Portafolio</span>
+        <i class="bx bx-briefcase" aria-hidden="true"></i>
+    </a>
+
+    <nav class="navbar desktop-nav">
+        <a href="#home" data-i18n="header.nav.home">Inicio</a>
+        <a href="#about" data-i18n="header.nav.about">Sobre mí</a>
+        <a href="#skills" data-i18n="header.nav.skills">Habilidades</a>
+        <a href="#portfolio" data-i18n="header.nav.portfolio">Proyectos</a>
+        <a href="#contact" data-i18n="header.nav.contact">Contacto</a>
+    </nav>
+
+    <div class="header-actions">
+        <div
+            class="bx bxs-moon"
+            id="darkMode-icon"
+            aria-label="Cambiar tema"
+            title="Cambiar modo claro/oscuro"
+        >
+        </div>
+
+        <div class="lang-menu" data-lang-menu>
+            <button
+                class="lang-trigger"
+                aria-haspopup="menu"
+                aria-expanded="false"
+                aria-label="Cambiar idioma"
+                title="Cambiar idioma"
+            >
+                <span class="flag-emoji" aria-hidden="true">🇪🇸</span>
+                <span class="lang-code">ES</span>
+                <i class="bx bx-chevron-down" aria-hidden="true"></i>
+            </button>
+            <div
+                class="lang-dropdown"
+                role="menu"
+                aria-label="Seleccionar idioma"
+                hidden
+            >
+                <button class="lang-option" data-lang="es" role="menuitem">
+                    <span class="flag-emoji">🇪🇸</span><span>Español</span>
+                </button>
+                <button class="lang-option" data-lang="en" role="menuitem">
+                    <span class="flag-emoji">🇺🇸</span><span>English</span>
+                </button>
+            </div>
+        </div>
+
+        <button
+            class="menu-toggle"
+            id="menu-toggle"
+            aria-label="Abrir menú"
+            aria-controls="mobile-nav"
+            aria-expanded="false"
+        >
+            <span class="burger" aria-hidden="true"
+                ><span></span><span></span><span></span></span
+            >
+        </button>
+    </div>
+</header>
+
+<div class="nav-overlay" id="nav-overlay" hidden></div>
+
+<nav
+    class="mobile-nav"
+    id="mobile-nav"
+    data-state="closed"
+    hidden
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="mobile-nav-title"
+>
+    <h2 id="mobile-nav-title" class="sr-only">Navegación principal</h2>
+    <ul>
+        <li style="--i:1">
+            <a href="#home" data-i18n="header.nav.home">Inicio</a>
+        </li>
+        <li style="--i:2">
+            <a href="#about" data-i18n="header.nav.about">Sobre mí</a>
+        </li>
+        <li style="--i:3">
+            <a href="#skills" data-i18n="header.nav.skills">Habilidades</a>
+        </li>
+        <li style="--i:4">
+            <a href="#portfolio" data-i18n="header.nav.portfolio">Proyectos</a>
+        </li>
+        <li style="--i:5">
+            <a href="#contact" data-i18n="header.nav.contact">Contacto</a>
+        </li>
+    </ul>
+    <div class="mobile-topbar">
+        <div class="lang-menu" data-lang-menu>
+            <button
+                class="lang-trigger"
+                aria-haspopup="menu"
+                aria-expanded="false"
+                aria-label="Cambiar idioma"
+                title="Cambiar idioma"
+            >
+                <span class="flag-emoji" aria-hidden="true">🇪🇸</span>
+                <span class="lang-code">ES</span>
+                <i class="bx bx-chevron-down" aria-hidden="true"></i>
+            </button>
+            <div
+                class="lang-dropdown"
+                role="menu"
+                aria-label="Seleccionar idioma"
+                hidden
+            >
+                <button class="lang-option" data-lang="es" role="menuitem">
+                    <span class="flag-emoji">🇪🇸</span><span>Español</span>
+                </button>
+                <button class="lang-option" data-lang="en" role="menuitem">
+                    <span class="flag-emoji">🇺🇸</span><span>English</span>
+                </button>
+            </div>
+        </div>
+        <button
+            class="mobile-close"
+            id="mobile-close"
+            aria-label="Cerrar menú"
+            title="Cerrar"
+        >
+            <i class="bx bx-x" aria-hidden="true"></i>
+        </button>
+    </div>
+</nav>
+
+<script is:inline>
+    (function () {
+        const LANG_EMOJI = { es: "🇪🇸", en: "🇺🇸" };
+        const FALLBACK = "es";
+        const qAll = (s, p = document) => Array.from(p.querySelectorAll(s));
+
+        const normalize = (lng) => {
+            if (!lng) return FALLBACK;
+            lng = String(lng).toLowerCase();
+            if (lng.startsWith("es")) return "es";
+            if (lng.startsWith("en")) return "en";
+            return FALLBACK;
+        };
+        const getStored = () => {
+            try {
+                return localStorage.getItem("i18nextLng");
+            } catch (e) {
+                return null;
+            }
+        };
+        const curLang = () =>
+            normalize(
+                getStored() ||
+                    document.documentElement.lang ||
+                    navigator.language,
+            );
+
+        function updateTrigger(root, lng) {
+            const flag = root.querySelector(".flag-emoji");
+            const code = root.querySelector(".lang-code");
+            if (flag)
+                flag.textContent = LANG_EMOJI[lng] || LANG_EMOJI[FALLBACK];
+            if (code) code.textContent = lng.toUpperCase();
+            document.documentElement.setAttribute("lang", lng);
+        }
+
+        function openMenu(root, open) {
+            const btn = root.querySelector(".lang-trigger");
+            const dd = root.querySelector(".lang-dropdown");
+            if (!btn || !dd) return;
+            btn.setAttribute("aria-expanded", String(open));
+            dd.hidden = !open;
+            if (open) {
+                const cur = curLang();
+                (
+                    dd.querySelector('.lang-option[data-lang="' + cur + '"]') ||
+                    dd.querySelector(".lang-option")
+                )?.focus({ preventScroll: true });
+            }
+        }
+
+        function setup(root) {
+            const btn = root.querySelector(".lang-trigger");
+            const dd = root.querySelector(".lang-dropdown");
+            if (!btn || !dd) return;
+            updateTrigger(root, curLang());
+            btn.addEventListener("click", (e) => {
+                e.stopPropagation();
+                openMenu(root, btn.getAttribute("aria-expanded") !== "true");
+            });
+            qAll(".lang-option", dd).forEach((opt) => {
+                opt.addEventListener("click", () => {
+                    const lng = opt.getAttribute("data-lang");
+                    try {
+                        localStorage.setItem("i18nextLng", lng);
+                    } catch (e) {}
+                    if (
+                        window.i18next &&
+                        typeof window.i18next.changeLanguage === "function"
+                    ) {
+                        window.i18next.changeLanguage(lng).then(() => {
+                            qAll("[data-lang-menu]").forEach((m) =>
+                                updateTrigger(m, normalize(lng)),
+                            );
+                            setTimeout(
+                                () =>
+                                    document.dispatchEvent(
+                                        new Event("i18n:render"),
+                                    ),
+                                0,
+                            );
+                        });
+                    } else {
+                        qAll("[data-lang-menu]").forEach((m) =>
+                            updateTrigger(m, normalize(lng)),
+                        );
+                    }
+                    qAll("[data-lang-menu]").forEach((m) => openMenu(m, false));
+                });
+            });
+        }
+
+        document.addEventListener("click", (e) => {
+            qAll("[data-lang-menu]").forEach((root) => {
+                const dd = root.querySelector(".lang-dropdown");
+                const btn = root.querySelector(".lang-trigger");
+                if (!dd || !btn) return;
+                const open = btn.getAttribute("aria-expanded") === "true";
+                if (open && !root.contains(e.target)) openMenu(root, false);
+            });
+        });
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape")
+                qAll("[data-lang-menu]").forEach((root) =>
+                    openMenu(root, false),
+                );
+        });
+        qAll("[data-lang-menu]").forEach(setup);
+        window.addEventListener("storage", (e) => {
+            if (e.key === "i18nextLng")
+                qAll("[data-lang-menu]").forEach((m) =>
+                    updateTrigger(m, curLang()),
+                );
+        });
+    })();
+</script>
+
+<script is:inline>
+    (function () {
+        const body = document.body;
+        const overlay = document.getElementById("nav-overlay");
+        const panel = document.getElementById("mobile-nav");
+        const openBtn = document.getElementById("menu-toggle");
+        const closeBtn = document.getElementById("mobile-close");
+
+        const focusable = () =>
+            panel.querySelectorAll(
+                'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+            );
+
+        let lastFocused = null;
+
+        function setInert(isOpen) {
+            const keep = new Set([
+                panel,
+                overlay,
+                document.querySelector(".header"),
+            ]);
+            [...document.body.children].forEach((el) => {
+                if (!keep.has(el)) {
+                    if (isOpen) {
+                        el.setAttribute("inert", "");
+                        el.setAttribute("aria-hidden", "true");
+                    } else {
+                        el.removeAttribute("inert");
+                        el.removeAttribute("aria-hidden");
+                    }
+                }
+            });
+        }
+
+        function trapFocus(e) {
+            if (e.key !== "Tab") return;
+            const nodes = Array.from(focusable());
+            if (!nodes.length) return;
+            const first = nodes[0],
+                last = nodes[nodes.length - 1];
+            if (e.shiftKey && document.activeElement === first) {
+                e.preventDefault();
+                last.focus();
+            } else if (!e.shiftKey && document.activeElement === last) {
+                e.preventDefault();
+                first.focus();
+            }
+        }
+
+        function openPanel() {
+            lastFocused = document.activeElement;
+            panel.hidden = false;
+            panel.dataset.state = "open";
+            overlay.hidden = false;
+            overlay.setAttribute("data-open", "true");
+            openBtn.setAttribute("aria-expanded", "true");
+            body.classList.add("body-lock");
+            setInert(true);
+            panel.setAttribute("aria-modal", "true");
+            setTimeout(() => {
+                (focusable()[0] || closeBtn || panel).focus({
+                    preventScroll: true,
+                });
+            }, 0);
+            document.addEventListener("keydown", onKeyDown);
+            panel.addEventListener("keydown", trapFocus);
+        }
+
+        function closePanel() {
+            panel.dataset.state = "closed";
+            overlay.removeAttribute("data-open");
+            openBtn.setAttribute("aria-expanded", "false");
+            body.classList.remove("body-lock");
+            setInert(false);
+            panel.removeAttribute("aria-modal");
+            document.removeEventListener("keydown", onKeyDown);
+            panel.removeEventListener("keydown", trapFocus);
+            setTimeout(() => {
+                panel.hidden = true;
+                overlay.hidden = true;
+            }, 280);
+            if (lastFocused && lastFocused.focus)
+                lastFocused.focus({ preventScroll: true });
+        }
+
+        function onKeyDown(e) {
+            if (e.key === "Escape") closePanel();
+        }
+
+        openBtn?.addEventListener("click", () =>
+            panel.dataset.state !== "open" ? openPanel() : closePanel(),
+        );
+        closeBtn?.addEventListener("click", closePanel);
+        overlay?.addEventListener("click", closePanel);
+    })();
+</script>
