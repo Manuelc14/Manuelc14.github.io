@@ -1,6 +1,3 @@
-¡claro! te dejo un **README.md** listo para copiar, con una **estructura de carpetas súper detallada** (basada en tu screenshot), más guía de i18n, ejecución y despliegue.
-
-```md
 # 🌐 Portafolio — Manuel Causil
 
 Sitio personal para presentar perfil, habilidades y proyectos. Enfocado en **performance**, **accesibilidad** y **UX**, con diseño **dark/light**, animaciones suaves, contenido desde `astro:content` y sistema de **traducciones (ES/EN)** con i18next.
