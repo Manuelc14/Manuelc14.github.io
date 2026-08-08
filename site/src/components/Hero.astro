@@ -6,9 +6,12 @@ import { getCollection } from "astro:content";
 
 const projects = await getCollection("projects");
 
-// Cifras derivadas de datos reales del repo, no inventadas.
+// Cifras derivadas de la colección, no escritas a mano: si se añade un
+// proyecto, se actualizan solas y siguen siendo ciertas.
 const projectCount = projects.length;
-const years = new Set(projects.map((p) => p.data.year)).size;
+const liveCount = projects.filter((p) => Boolean(p.data.url)).length;
+const years = projects.map((p) => p.data.year);
+const yearSpan = Math.max(...years) - Math.min(...years) + 1;
 
 const social = [
   {
@@ -104,19 +107,19 @@ const social = [
     <div class="hero__stats">
       <div class="hero__stat">
         <strong>{projectCount}</strong>
-        <span>Proyectos en producción</span>
+        <span>Proyectos entregados</span>
       </div>
       <div class="hero__stat">
-        <strong>{years}</strong>
+        <strong>{liveCount}</strong>
+        <span>En producción</span>
+      </div>
+      <div class="hero__stat">
+        <strong>{yearSpan}</strong>
         <span>Años entregando</span>
       </div>
       <div class="hero__stat">
         <strong>2</strong>
         <span>Idiomas del sitio</span>
-      </div>
-      <div class="hero__stat">
-        <strong>100%</strong>
-        <span>Proyectos en vivo</span>
       </div>
     </div>
   </div>

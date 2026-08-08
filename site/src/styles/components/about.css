@@ -44,5 +44,6 @@
 
   .about__media {
     max-width: 26rem;
+    justify-self: center; /* en móvil la foto va centrada, no pegada al borde */
   }
 }
