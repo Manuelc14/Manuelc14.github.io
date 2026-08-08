@@ -2,6 +2,13 @@
 import Icon from "./Icon.astro";
 
 const year = new Date().getFullYear();
+
+// wa.me exige el número en formato internacional, sin + ni espacios.
+const WHATSAPP = "573134096201";
+const waText = encodeURIComponent(
+  "Hola Manuel, vi tu portafolio y quiero consultarte un proyecto."
+);
+const waHref = `https://wa.me/${WHATSAPP}?text=${waText}`;
 ---
 
 <footer class="footer">
@@ -36,6 +43,18 @@ const year = new Date().getFullYear();
     </ul>
   </div>
 </footer>
+
+<a
+  class="btn-icon wa-fab"
+  href={waHref}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Escribir por WhatsApp"
+  title="Escribir por WhatsApp"
+  data-i18n-attr="aria-label:footer.whatsapp; title:footer.whatsapp"
+>
+  <Icon name="whatsapp" />
+</a>
 
 <button
   type="button"

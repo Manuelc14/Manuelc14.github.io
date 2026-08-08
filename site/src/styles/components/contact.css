@@ -31,6 +31,14 @@
   background: var(--accent-wash);
 }
 
+/* El de WhatsApp lleva su verde de marca: es el canal que más se usa y
+   conviene que se reconozca de un vistazo. */
+.contact__method--wa {
+  background: color-mix(in srgb, var(--whatsapp) 16%, transparent);
+  color: var(--whatsapp);
+  border-color: color-mix(in srgb, var(--whatsapp) 34%, transparent);
+}
+
 .contact__method strong {
   display: block;
   font-size: var(--fs-sm);
@@ -142,10 +150,11 @@
   min-height: 1.6rem;
 }
 
-/* Aviso flotante de envío. */
+/* Aviso flotante de envío. Va a la izquierda para no chocar con los botones
+   flotantes de WhatsApp y "volver arriba", que ocupan la esquina derecha. */
 .toast {
   position: fixed;
-  right: var(--space-5);
+  left: var(--space-5);
   bottom: var(--space-5);
   z-index: 300;
   max-width: 32rem;
@@ -190,7 +199,7 @@
   .toast {
     right: var(--space-3);
     left: var(--space-3);
-    bottom: var(--space-3);
+    bottom: calc(var(--space-3) + 6.4rem);
     max-width: none;
   }
 }

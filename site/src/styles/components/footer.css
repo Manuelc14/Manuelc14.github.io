@@ -24,11 +24,36 @@
   gap: var(--space-2);
 }
 
-/* Volver arriba: aparece al bajar. */
-.to-top {
+/* --------------------------- acciones flotantes ---------------------------
+   Dos botones apilados en la esquina inferior derecha: WhatsApp abajo (es la
+   acción principal, la más a mano del pulgar) y "volver arriba" encima. */
+
+.wa-fab {
   position: fixed;
   right: var(--space-5);
   bottom: var(--space-5);
+  z-index: 90;
+  width: 5.2rem;
+  height: 5.2rem;
+  font-size: 2.6rem;
+  background: var(--whatsapp);
+  color: var(--whatsapp-ink);
+  border-color: transparent;
+  box-shadow: var(--elev-lg);
+}
+
+.wa-fab:hover {
+  background: var(--whatsapp);
+  color: var(--whatsapp-ink);
+  border-color: transparent;
+  filter: brightness(1.08);
+}
+
+/* Volver arriba: aparece al bajar, apilado sobre el de WhatsApp. */
+.to-top {
+  position: fixed;
+  right: var(--space-5);
+  bottom: calc(var(--space-5) + 6.4rem);
   z-index: 90;
   background: var(--accent);
   color: var(--accent-ink);
@@ -61,8 +86,16 @@
     text-align: center;
   }
 
-  .to-top {
+  .wa-fab {
     right: var(--space-3);
     bottom: var(--space-3);
+    width: 4.8rem;
+    height: 4.8rem;
+    font-size: 2.4rem;
+  }
+
+  .to-top {
+    right: var(--space-3);
+    bottom: calc(var(--space-3) + 5.8rem);
   }
 }

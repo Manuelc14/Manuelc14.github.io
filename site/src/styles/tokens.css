@@ -132,6 +132,9 @@
   --danger: #ff8a80;
   --danger-wash: #2c1614;
 
+  --whatsapp: #25d366;
+  --whatsapp-ink: #04241a;
+
   --ring: rgba(59, 123, 224, 0.4);
   --scrim: rgba(3, 7, 15, 0.66);
 
@@ -170,6 +173,9 @@
 
   --danger: #ff8a80;
   --danger-wash: #2c1614;
+
+  --whatsapp: #25d366;
+  --whatsapp-ink: #04241a;
 
   --ring: rgba(59, 123, 224, 0.4);
   --scrim: rgba(3, 7, 15, 0.66);
@@ -212,6 +218,9 @@
 
   --danger: #c0392b;
   --danger-wash: #fdecea;
+
+  --whatsapp: #1da851;
+  --whatsapp-ink: #ffffff;
 
   --ring: rgba(29, 95, 204, 0.28);
   --scrim: rgba(14, 26, 43, 0.45);
