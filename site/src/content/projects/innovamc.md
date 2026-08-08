@@ -1,6 +1,7 @@
 ---
 title: "Innovamc"
 year: 2024
+order: 1
 stack: ["Astro", "TailwindCSS", "Optimización SEO"]
 url: "https://innovamc.com"
 image: "/images/innovamc.jpg" # pon aquí tu screenshot

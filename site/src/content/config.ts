@@ -20,6 +20,10 @@ const projects = defineCollection({
     status: z.string().optional(),
     highlights: z.array(z.string()).optional(),
     serviceUrl: z.string().url().optional(),
+    // Orden manual en la rejilla: menor va primero. Los proyectos sin
+    // `order` van después, ordenados por año descendente. Con 7 proyectos
+    // del mismo año, el desempate alfabético decidía cuál abría la sección.
+    order: z.number().optional(),
   }),
 });
 

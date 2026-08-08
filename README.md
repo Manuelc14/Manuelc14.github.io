@@ -74,11 +74,15 @@ stack: ["Astro", "SEO"]
 url: "https://ejemplo.com" # opcional
 sector: "Sector · Enfoque" # opcional
 status: "Activo" # opcional
+order: 3 # opcional: posición fija en la rejilla
 description: "Qué resuelve, en una frase."
 highlights: # opcional
   - "Capacidad principal"
 ---
 ```
+
+Sobre el orden: los proyectos con `order` van primero, del menor al mayor —
+es el escaparate—. Los que no lo tienen van detrás, por año descendente.
 
 Después:
 

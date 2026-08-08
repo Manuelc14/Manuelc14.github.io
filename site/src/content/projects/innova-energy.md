@@ -1,6 +1,7 @@
 ---
 title: "Innova Energy"
 year: 2026
+order: 6
 stack: ["HTML", "CSS", "JS", "PHP", "Optimización SEO"]
 url: "https://innova-energy.com.co"
 image: "/images/Screenshot_Innova-Energy.png"

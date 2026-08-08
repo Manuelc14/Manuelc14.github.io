@@ -1,6 +1,7 @@
 ---
 title: "PROGESST"
 year: 2026
+order: 5
 stack: ["Web", "Panel administrativo", "Cursos virtuales", "Certificados"]
 url: "https://progesst.com.co/"
 serviceUrl: "https://innovamc.com/servicios/software"

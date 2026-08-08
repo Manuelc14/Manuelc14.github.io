@@ -1,6 +1,7 @@
 ---
 title: "INTECOR"
 year: 2026
+order: 4
 stack: ["Web institucional", "SEO", "Formularios", "Blog"]
 url: "https://intecor.edu.co/"
 serviceUrl: "https://innovamc.com/servicios/webdevelopment"

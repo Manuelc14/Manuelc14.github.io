@@ -1,6 +1,7 @@
 ---
 title: "Casa Tsíntani"
 year: 2026
+order: 3
 stack: ["Web institucional", "Chatbot", "Automatización de leads", "Email marketing", "SEO"]
 url: "https://casatsintani.com/"
 serviceUrl: "https://innovamc.com/servicios/webdevelopment"

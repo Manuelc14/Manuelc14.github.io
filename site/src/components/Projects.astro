@@ -24,9 +24,14 @@ const meta: Record<string, { icon: string; sector?: string }> = {
   "innovamc-panel": { icon: "workflow" },
 };
 
-const items = (await getCollection("projects")).sort(
-  (a, b) => (b.data.year || 0) - (a.data.year || 0)
-);
+// Primero los que tienen `order` (el escaparate, en el orden elegido);
+// el resto detrás, por año descendente.
+const items = (await getCollection("projects")).sort((a, b) => {
+  const orderA = a.data.order ?? Number.POSITIVE_INFINITY;
+  const orderB = b.data.order ?? Number.POSITIVE_INFINITY;
+  if (orderA !== orderB) return orderA - orderB;
+  return (b.data.year || 0) - (a.data.year || 0);
+});
 ---
 
 <section id="portfolio" class="section section--alt">
