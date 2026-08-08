@@ -168,6 +168,48 @@
     "logic_4": "Diseño de APIs claras",
     "logic_5": "Automatización de tareas repetitivas"
   },
+  "experience": {
+    "kicker": "Trayectoria",
+    "title": "Mi <span>Experiencia</span>",
+    "items": {
+      "innovamc": {
+        "year": "2022 — Presente",
+        "role": "CEO y Desarrollador · InnovaMC",
+        "description": "Soluciones tecnológicas a medida, marketing digital y optimización de procesos empresariales para clientes de Colombia y Guatemala."
+      },
+      "sueje": {
+        "year": "2024",
+        "role": "Instructor · SUEJE",
+        "description": "Capacitaciones en seguridad vial a empresas y usuarios, dentro del programa nacional del Ministerio de Transporte y la ANSV."
+      },
+      "robotica": {
+        "year": "2023",
+        "role": "Docente de Robótica · Hispanic-English Country School",
+        "description": "Diseño de currículo STEAM y proyectos prácticos de robótica y programación para estudiantes de secundaria."
+      }
+    }
+  },
+  "education": {
+    "kicker": "Formación",
+    "title": "Mi <span>Formación</span>",
+    "items": {
+      "ingenieria": {
+        "year": "2017 — 2022",
+        "title": "Ingeniería de Sistemas",
+        "detail": "<strong>Corporación Universitaria Remington</strong> — Presencial · Yopal, Casanare"
+      },
+      "cursos": {
+        "year": "2017 — Presente",
+        "title": "Cursos de Desarrollo de Software",
+        "detail": "<strong>Platzi · Udemy</strong> — Formación continua en línea"
+      },
+      "tecnico": {
+        "year": "2023",
+        "title": "Técnico en Tránsito, Transporte y Seguridad Vial",
+        "detail": "<strong>Intravial S.A.S</strong> — Certificación en competencias laborales"
+      }
+    }
+  },
   "portfolio": {
     "title": "Últimos <span>Proyectos</span>",
     "desc": "A continuación puede ver o visitar cualquiera de los proyectos realizados",
@@ -286,6 +328,7 @@
   },
   "footer": {
     "copy": "© {{year}} Manuel Causil | Todos los derechos reservados",
-    "to_top": "Volver arriba"
+    "to_top": "Volver arriba",
+    "whatsapp": "Escribir por WhatsApp"
   }
 }

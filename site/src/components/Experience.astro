@@ -1,20 +1,26 @@
 ---
 import Icon from "./Icon.astro";
 
+// El texto va en el marcado (existe para Google y sin JS) y `data-i18n`
+// lo reemplaza al pasar a inglés. Las claves viven en
+// public/locales/{es,en}/common.json bajo `experience.items.<slug>`.
 const experiences = [
   {
+    slug: "innovamc",
     year: "2022 — Presente",
     role: "CEO y Desarrollador · InnovaMC",
     description:
       "Soluciones tecnológicas a medida, marketing digital y optimización de procesos empresariales para clientes de Colombia y Guatemala.",
   },
   {
+    slug: "sueje",
     year: "2024",
     role: "Instructor · SUEJE",
     description:
       "Capacitaciones en seguridad vial a empresas y usuarios, dentro del programa nacional del Ministerio de Transporte y la ANSV.",
   },
   {
+    slug: "robotica",
     year: "2023",
     role: "Docente de Robótica · Hispanic-English Country School",
     description:
@@ -28,8 +34,10 @@ const experiences = [
     <div class="timeline-pair">
       <div>
         <div class="section__head">
-          <p class="section__kicker">Trayectoria</p>
-          <h2 class="section__title">Mi <span>Experiencia</span></h2>
+          <p class="section__kicker" data-i18n="experience.kicker">Trayectoria</p>
+          <h2 class="section__title" data-i18n="experience.title" data-i18n-html>
+            Mi <span>Experiencia</span>
+          </h2>
         </div>
 
         <ol class="timeline">
@@ -44,10 +52,14 @@ const experiences = [
                 <div class="timeline__body">
                   <p class="timeline__year">
                     <Icon name="calendar" />
-                    {exp.year}
+                    <span data-i18n={`experience.items.${exp.slug}.year`}>{exp.year}</span>
                   </p>
-                  <h3 class="timeline__role">{exp.role}</h3>
-                  <p class="timeline__desc">{exp.description}</p>
+                  <h3 class="timeline__role" data-i18n={`experience.items.${exp.slug}.role`}>
+                    {exp.role}
+                  </h3>
+                  <p class="timeline__desc" data-i18n={`experience.items.${exp.slug}.description`}>
+                    {exp.description}
+                  </p>
                 </div>
               </li>
             ))

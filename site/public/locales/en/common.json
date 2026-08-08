@@ -164,6 +164,48 @@
     "logic_4": "Clear API design",
     "logic_5": "Automation of repetitive tasks"
   },
+  "experience": {
+    "kicker": "Track record",
+    "title": "My <span>Experience</span>",
+    "items": {
+      "innovamc": {
+        "year": "2022 — Present",
+        "role": "CEO and Developer · InnovaMC",
+        "description": "Custom software, digital marketing and business process optimization for clients in Colombia and Guatemala."
+      },
+      "sueje": {
+        "year": "2024",
+        "role": "Instructor · SUEJE",
+        "description": "Road safety training for companies and individuals, within the national program of Colombia's Ministry of Transport and the ANSV."
+      },
+      "robotica": {
+        "year": "2023",
+        "role": "Robotics Teacher · Hispanic-English Country School",
+        "description": "STEAM curriculum design and hands-on robotics and programming projects for secondary school students."
+      }
+    }
+  },
+  "education": {
+    "kicker": "Education",
+    "title": "My <span>Education</span>",
+    "items": {
+      "ingenieria": {
+        "year": "2017 — 2022",
+        "title": "Systems Engineering",
+        "detail": "<strong>Corporación Universitaria Remington</strong> — On campus · Yopal, Casanare"
+      },
+      "cursos": {
+        "year": "2017 — Present",
+        "title": "Software Development Courses",
+        "detail": "<strong>Platzi · Udemy</strong> — Continuous online learning"
+      },
+      "tecnico": {
+        "year": "2023",
+        "title": "Technician in Traffic, Transport and Road Safety",
+        "detail": "<strong>Intravial S.A.S</strong> — Occupational competency certification"
+      }
+    }
+  },
   "portfolio": {
     "title": "Latest <span>Projects</span>",
     "desc": "Below you can visit any of the projects I've built",
@@ -282,6 +324,7 @@
   },
   "footer": {
     "copy": "© {{year}} Manuel Causil | All Rights Reserved",
-    "to_top": "Back to top"
+    "to_top": "Back to top",
+    "whatsapp": "Message on WhatsApp"
   }
 }

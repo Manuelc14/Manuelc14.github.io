@@ -3,18 +3,21 @@ import Icon from "./Icon.astro";
 
 const education = [
   {
+    slug: "ingenieria",
     year: "2017 — 2022",
     title: "Ingeniería de Sistemas",
     school: "Corporación Universitaria Remington",
     type: "Presencial · Yopal, Casanare",
   },
   {
+    slug: "cursos",
     year: "2017 — Presente",
     title: "Cursos de Desarrollo de Software",
     school: "Platzi · Udemy",
     type: "Formación continua en línea",
   },
   {
+    slug: "tecnico",
     year: "2023",
     title: "Técnico en Tránsito, Transporte y Seguridad Vial",
     school: "Intravial S.A.S",
@@ -25,8 +28,10 @@ const education = [
 
 <div id="education">
   <div class="section__head">
-    <p class="section__kicker">Formación</p>
-    <h2 class="section__title">Mi <span>Formación</span></h2>
+    <p class="section__kicker" data-i18n="education.kicker">Formación</p>
+    <h2 class="section__title" data-i18n="education.title" data-i18n-html>
+      Mi <span>Formación</span>
+    </h2>
   </div>
 
   <ol class="timeline">
@@ -41,10 +46,16 @@ const education = [
           <div class="timeline__body">
             <p class="timeline__year">
               <Icon name="calendar" />
-              {edu.year}
+              <span data-i18n={`education.items.${edu.slug}.year`}>{edu.year}</span>
             </p>
-            <h3 class="timeline__role">{edu.title}</h3>
-            <p class="timeline__desc">
+            <h3 class="timeline__role" data-i18n={`education.items.${edu.slug}.title`}>
+              {edu.title}
+            </h3>
+            <p
+              class="timeline__desc"
+              data-i18n={`education.items.${edu.slug}.detail`}
+              data-i18n-html
+            >
               <strong>{edu.school}</strong> — {edu.type}
             </p>
           </div>
