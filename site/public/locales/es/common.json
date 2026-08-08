@@ -181,7 +181,7 @@
   "projects": {
     "aquacontrol": {
       "title": "AquaControl",
-      "description": "SPA de gestión de clientes y pedidos. Frontend Vue 3 + TS, backend Django REST. Empaquetada para Windows."
+      "description": "Aplicación de gestión con frontend en Vue 3 y TypeScript, backend Django REST y empaquetado para Windows."
     },
     "casalup-services": {
       "title": "Casalup Services",
@@ -193,7 +193,27 @@
     },
     "gcltracs": {
       "title": "GCLTracs",
-      "description": "Plataforma de rastreo satelital con gestión de clientes, control de pólizas y pagos, panel administrativo e integración con la app de monitoreo de vehículos."
+      "description": "Plataforma de rastreo satelital con gestión de clientes, control de pólizas y pagos, panel administrativo e integración con app de monitoreo vehicular."
+    },
+    "prosvial": {
+      "title": "ProSVial",
+      "description": "Sitio web institucional para empresa especializada en formación, evaluación y reentrenamiento de conductores, con metodología alineada al Plan Estratégico de Seguridad Vial (PESV) y enfoque comercial por servicio."
+    },
+    "intecor": {
+      "title": "INTECOR",
+      "description": "Sitio web institucional para el Instituto Técnico de la Orinoquía, con presentación de programas técnicos, calendario académico, blog y formularios de matrícula."
+    },
+    "progesst": {
+      "title": "PROGESST",
+      "description": "Plataforma web para empresa de Seguridad y Salud en el Trabajo, con servicios, validación de certificados, panel administrativo, cursos virtuales y campus."
+    },
+    "casa-tsintani": {
+      "title": "Casa Tsíntani",
+      "description": "Proyecto web institucional para centro de rehabilitación integral, con enfoque humano, presentación de programas, contacto, chatbot de respuesta automática y automatización de leads para fortalecer su estrategia comercial."
+    },
+    "innovamc-panel": {
+      "title": "InnovaMc Panel",
+      "description": "Panel interno para InnovaMC con CRM de clientes y proyectos, catálogo de servicios, alertas de vencimiento de servicios recurrentes y dashboard de KPIs, más un portal donde cada cliente consulta el estado de su proyecto sin depender de WhatsApp o correo."
     },
     "innova-energy": {
       "title": "Innova Energy",

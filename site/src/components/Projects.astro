@@ -5,7 +5,7 @@ import { getCollection } from "astro:content";
 // Icono y sector por proyecto: un dato más que la tarjeta puede mostrar
 // sin exigir una captura de 9 MB. Cada icono alude a lo que hace el
 // proyecto, no a la tecnología.
-const meta: Record<string, { icon: string; sector: string }> = {
+const meta: Record<string, { icon: string; sector?: string }> = {
   aquacontrol: { icon: "droplet", sector: "Gestión de pedidos" },
   "casalup-services": { icon: "utensils", sector: "Catering" },
   "cea-dizcar": { icon: "car", sector: "Enseñanza automovilística" },
@@ -15,6 +15,13 @@ const meta: Record<string, { icon: string; sector: string }> = {
   iqhome: { icon: "home", sector: "Domótica" },
   nitt: { icon: "sparkle", sector: "Servicios de limpieza" },
   "solon-soluciones": { icon: "building", sector: "Construcción" },
+  // Proyectos nuevos: el sector real vive en el frontmatter (data.sector);
+  // acá solo hace falta el icono.
+  prosvial: { icon: "check" },
+  intecor: { icon: "graduation" },
+  progesst: { icon: "briefcase" },
+  "casa-tsintani": { icon: "brain" },
+  "innovamc-panel": { icon: "workflow" },
 };
 
 const items = (await getCollection("projects")).sort(
@@ -38,7 +45,8 @@ const items = (await getCollection("projects")).sort(
       {
         items.map(({ id, data }, idx) => {
           const slug = id.replace(/^projects\//, "").replace(/\.md$/, "");
-          const m = meta[slug] ?? { icon: "layers", sector: "Proyecto web" };
+          const m = meta[slug] ?? { icon: "layers" };
+          const sector = data.sector ?? m.sector ?? "Proyecto web";
           return (
             <article class="card card--hover project reveal" style={`--stagger:${idx % 3}`}>
               <div class="project__head">
@@ -50,7 +58,7 @@ const items = (await getCollection("projects")).sort(
                     {data.title}
                   </h3>
                   <p class="project__meta">
-                    {data.year} · {m.sector}
+                    {data.year} · {sector}
                   </p>
                 </div>
                 {data.url && (
@@ -60,15 +68,40 @@ const items = (await getCollection("projects")).sort(
                 )}
               </div>
 
+              {data.status && <span class="pill-status">{data.status}</span>}
+
               <p class="project__desc" data-i18n={`projects.${slug}.description`}>
                 {data.description}
               </p>
+
+              {data.highlights && data.highlights.length > 0 && (
+                <ul class="project__facts">
+                  {data.highlights.map((h) => (
+                    <li class="project__fact">
+                      <Icon name="check" />
+                      {h}
+                    </li>
+                  ))}
+                </ul>
+              )}
 
               <div class="chip-row">
                 {data.stack.map((s) => (
                   <span class="chip">{s}</span>
                 ))}
               </div>
+
+              {data.serviceUrl && (
+                <a
+                  class="project__service"
+                  href={data.serviceUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Ver servicio
+                  <Icon name="arrow-right" />
+                </a>
+              )}
 
               {data.url && (
                 <a class="project__cover" href={data.url} target="_blank" rel="noopener noreferrer">

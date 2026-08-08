@@ -1,8 +1,15 @@
 ---
 title: "GCLTracs"
-year: 2022
-stack: ["HTML", "CSS", "JS", "PHP", "SQL", "API REST", "Optimización SEO"]
+year: 2025
+stack: ["HTML", "CSS", "JS", "PHP", "SQL", "API REST", "SEO"]
 url: "https://gcltracs.com"
+serviceUrl: "https://innovamc.com/servicios/software"
 image: "/images/Screenshot_GCLTracs.png"
-description: "Plataforma de rastreo satelital con sistema de gestión de clientes, control de pólizas y pagos, panel administrativo y conexión con la app de monitoreo de vehículos."
+sector: "Rastreo · Admin"
+status: "Desarrollado"
+description: "Plataforma de rastreo satelital con gestión de clientes, control de pólizas y pagos, panel administrativo e integración con app de monitoreo vehicular."
+highlights:
+  - "Gestión de clientes"
+  - "Panel administrativo"
+  - "Integración con monitoreo vehicular"
 ---

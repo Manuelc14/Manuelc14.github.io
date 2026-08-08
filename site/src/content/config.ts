@@ -14,6 +14,12 @@ const projects = defineCollection({
     // descartaba y el bloque nunca se mostraba.
     repo: z.string().url().optional(),
     demo: z.string().url().optional(),
+    // Campos opcionales nuevos: la tarjeta solo los renderiza si existen,
+    // así los 9 proyectos que no los definen quedan exactamente igual.
+    sector: z.string().optional(),
+    status: z.string().optional(),
+    highlights: z.array(z.string()).optional(),
+    serviceUrl: z.string().url().optional(),
   }),
 });
 

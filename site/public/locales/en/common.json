@@ -177,7 +177,7 @@
   "projects": {
     "aquacontrol": {
       "title": "AquaControl",
-      "description": "Customer and order management SPA. Vue 3 + TS frontend, Django REST backend. Packaged for Windows."
+      "description": "Management application with a Vue 3 and TypeScript frontend, a Django REST backend, and packaged for Windows."
     },
     "casalup-services": {
       "title": "Casalup Services",
@@ -189,7 +189,27 @@
     },
     "gcltracs": {
       "title": "GCLTracs",
-      "description": "Satellite tracking platform with client management, policy and payment control, admin panel, and integration with the vehicle monitoring app."
+      "description": "Satellite tracking platform with client management, policy and payment control, an admin panel, and integration with the vehicle monitoring app."
+    },
+    "prosvial": {
+      "title": "ProSVial",
+      "description": "Institutional website for a company specialized in training, evaluation, and retraining of drivers, with a methodology aligned to Colombia's Road Safety Strategic Plan (PESV) and a service-oriented commercial approach."
+    },
+    "intecor": {
+      "title": "INTECOR",
+      "description": "Institutional website for the Orinoquía Technical Institute, featuring technical programs, an academic calendar, a blog, and enrollment forms."
+    },
+    "progesst": {
+      "title": "PROGESST",
+      "description": "Web platform for an Occupational Health and Safety company, with services, certificate validation, an admin panel, online courses, and a virtual campus."
+    },
+    "casa-tsintani": {
+      "title": "Casa Tsíntani",
+      "description": "Institutional website for a comprehensive rehabilitation center, with a human-centered approach, program pages, contact, an automated response chatbot, and lead automation to strengthen its commercial strategy."
+    },
+    "innovamc-panel": {
+      "title": "InnovaMc Panel",
+      "description": "Internal InnovaMC panel with a client and project CRM, service catalog, recurring-service expiration alerts, and a KPI dashboard, plus a client portal to check project status without relying on WhatsApp or email."
     },
     "innova-energy": {
       "title": "Innova Energy",
