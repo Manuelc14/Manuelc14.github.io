@@ -1,0 +1,18 @@
+# Finales de línea unificados en LF, también en el working tree de Windows.
+#
+# Sin esto, `core.autocrlf=true` deja los archivos en CRLF al hacer checkout,
+# y `prettier --check` (que espera LF) falla en local aunque pase en el CI,
+# que corre en Linux. Local y CI tienen que ver lo mismo.
+* text=auto eol=lf
+
+# Binarios: que git no intente normalizarlos nunca.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary
