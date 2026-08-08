@@ -1,6 +1,6 @@
 ---
 title: "AquaControl"
-year: 2025
+year: 2026
 stack: ["Vue 3", "TypeScript", "Django REST", "Windows"]
 image: "/images/Screenshot_AquaControl.svg"
 serviceUrl: "https://innovamc.com/servicios/software"

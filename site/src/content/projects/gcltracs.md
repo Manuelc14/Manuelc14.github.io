@@ -1,6 +1,6 @@
 ---
 title: "GCLTracs"
-year: 2025
+year: 2026
 stack: ["HTML", "CSS", "JS", "PHP", "SQL", "API REST", "SEO"]
 url: "https://gcltracs.com"
 serviceUrl: "https://innovamc.com/servicios/software"
