@@ -81,6 +81,30 @@
   gap: var(--space-8);
 }
 
+/* Experiencia: solo los últimos 4 hitos se ven al cargar — el resto queda
+   en el DOM (SEO, sin JS siguen ahí) hasta pulsar "Ver más". */
+.timeline__item--extra {
+  display: none;
+}
+
+.timeline.is-expanded .timeline__item--extra {
+  display: grid;
+}
+
+.timeline__more-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-5);
+}
+
+.timeline__more-btn .icon-more {
+  transition: transform var(--dur) var(--ease);
+}
+
+.timeline__more-btn[aria-expanded="true"] .icon-more {
+  transform: rotate(90deg);
+}
+
 @media (max-width: 480px) {
   .timeline__item {
     gap: var(--space-3);

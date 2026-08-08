@@ -36,42 +36,44 @@ const groups = [
     ],
   },
   {
-    icon: "database",
-    titleKey: "skills.db_title",
-    title: "Bases de datos & Data",
-    prefix: "skills.db_",
+    icon: "briefcase",
+    titleKey: "skills.backend_title",
+    title: "Backend & Paneles Admin",
+    prefix: "skills.backend_",
     items: [
-      "Modelado relacional, normalización",
-      "Índices, EXPLAIN, tuning de queries",
-      "Migraciones y ORM (Eloquent, Django ORM)",
-      "Backups, seeds y data fixtures",
-      "Diseño de esquemas para reporting",
+      "Laravel + Livewire + Alpine.js",
+      "Filament (paneles admin) + Spatie Permission (roles y permisos)",
+      "Autenticación reforzada: Breeze, Fortify (2FA)",
+      "Generación de PDF y certificados (DomPDF)",
+      "Inertia.js + React + TypeScript (SPA sin API separada)",
     ],
   },
   {
-    icon: "workflow",
-    titleKey: "skills.methods_title",
-    title: "Metodologías & Prácticas",
-    prefix: "skills.methods_",
+    icon: "database",
+    titleKey: "skills.db_title",
+    title: "Bases de Datos & Automatización",
+    prefix: "skills.db_",
     items: [
-      "Scrum / Kanban · GitFlow",
-      "Code Reviews y Pull Requests",
-      "CI/CD (GitHub Actions)",
-      "Patrones, SOLID, Clean Code",
-      "TDD / pruebas automatizadas",
+      "Modelado relacional, normalización e índices",
+      "Migraciones y ORM (Eloquent, Django ORM)",
+      "Apps de escritorio con datos (Electron + PyInstaller)",
+      "Python para datos: pandas, Altair, dashboards",
+      "Automatización con OCR (Tesseract, Poppler)",
+      "Backups, seeds y diseño de esquemas para reporting",
     ],
   },
   {
     icon: "tools",
     titleKey: "skills.tools_title",
-    title: "Herramientas & DevOps",
+    title: "Metodologías & DevOps",
     prefix: "skills.tools_",
     items: [
-      "Git, GitHub · Convenciones y branching",
-      "Docker · contenedores para dev/prod",
-      "Node.js · Vite · Astro",
-      "Nginx, Linux básico (deploy)",
-      "Monitoreo/logs básicos (debug)",
+      "Scrum / Kanban · GitFlow · Code Reviews",
+      "CI/CD (GitHub Actions) · Docker",
+      "Patrones, SOLID, Clean Code, TDD",
+      "Git, GitHub · Node.js · Vite · Astro",
+      "Despliegue: Nginx, hosting compartido (SSH, cPanel), PowerShell",
+      "Desarrollo asistido por IA (Claude Code, contexto de proyecto estructurado)",
     ],
   },
   {
@@ -92,7 +94,7 @@ const groups = [
 
 <section id="skills" class="section">
   <div class="container">
-    <div class="section__head section__head--center">
+    <div class="section__head section__head--center reveal">
       <p class="section__kicker">Stack</p>
       <h2 class="section__title" data-i18n="skills.title" data-i18n-html>
         Mis <span>Habilidades</span>

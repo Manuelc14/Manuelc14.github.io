@@ -11,7 +11,7 @@ interface Props {
 
 const {
   title = "Manuel Causil — Desarrollador Full Stack",
-  description = "Ingeniero de Sistemas y desarrollador full stack. Nueve plataformas en producción para clientes reales: rastreo satelital, domótica, gestión de pedidos y sitios corporativos.",
+  description = "Ingeniero de Sistemas y desarrollador full stack. Catorce plataformas en producción para clientes reales: rastreo satelital, domótica, gestión de pedidos y sitios corporativos.",
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site ?? "https://manuelc14.github.io/");
@@ -63,7 +63,9 @@ const personSchema = {
     <link rel="canonical" href={canonical.href} />
 
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
     <meta property="og:type" content="profile" />
     <meta property="og:title" content={title} />

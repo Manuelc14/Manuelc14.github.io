@@ -112,7 +112,11 @@
     "item_2": "Buenas prácticas: a11y, SEO técnico, performance.",
     "item_3": "Entrega continua y documentación clara.",
     "pill_years": "+5 años",
-    "pill_stack": "Full-Stack"
+    "pill_stack": "Full-Stack",
+    "pill_eng": "Ingeniero de Sistemas",
+    "pill_powerbi": "Power BI",
+    "pill_data": "Datos",
+    "pill_integrations": "Integraciones"
   },
   "skills": {
     "title": "Mis <span>Habilidades</span>",
@@ -143,72 +147,87 @@
     "pro_tip_3": "Unitario / Integración / E2E",
     "pro_tip_4": "Colaboración efectiva",
     "pro_tip_5": "Descubrimiento y roadmap",
-    "db_title": "Bases de datos & Data",
-    "db_1": "Modelado relacional, normalización",
-    "db_2": "Índices, EXPLAIN, tuning de queries",
-    "db_3": "Migraciones y ORM (Eloquent, Django ORM)",
-    "db_4": "Backups, seeds y data fixtures",
-    "db_5": "Diseño de esquemas para reporting",
+    "db_title": "Bases de Datos & Automatización",
+    "db_1": "Modelado relacional, normalización e índices",
+    "db_2": "Migraciones y ORM (Eloquent, Django ORM)",
+    "db_3": "Apps de escritorio con datos (Electron + PyInstaller)",
+    "db_4": "Python para datos: pandas, Altair, dashboards",
+    "db_5": "Automatización con OCR (Tesseract, Poppler)",
     "methods_title": "Metodologías & Prácticas",
     "methods_1": "Scrum / Kanban · GitFlow",
     "methods_2": "Code Reviews y Pull Requests",
     "methods_3": "CI/CD (GitHub Actions)",
     "methods_4": "Patrones, SOLID, Clean Code",
     "methods_5": "TDD / pruebas automatizadas",
-    "tools_title": "Herramientas & DevOps",
-    "tools_1": "Git, GitHub · Convenciones y branching",
-    "tools_2": "Docker · contenedores para dev/prod",
-    "tools_3": "Node.js · Vite · Astro",
-    "tools_4": "Nginx, Linux básico (deploy)",
-    "tools_5": "Monitoreo/logs básicos (debug)",
+    "backend_title": "Backend & Paneles Admin",
+    "backend_1": "Laravel + Livewire + Alpine.js",
+    "backend_2": "Filament (paneles admin) + Spatie Permission (roles y permisos)",
+    "backend_3": "Autenticación reforzada: Breeze, Fortify (2FA)",
+    "backend_4": "Generación de PDF y certificados (DomPDF)",
+    "backend_5": "Inertia.js + React + TypeScript (SPA sin API separada)",
+    "tools_title": "Metodologías & DevOps",
+    "tools_1": "Scrum / Kanban · GitFlow · Code Reviews",
+    "tools_2": "CI/CD (GitHub Actions) · Docker",
+    "tools_3": "Patrones, SOLID, Clean Code, TDD",
+    "tools_4": "Git, GitHub · Node.js · Vite · Astro",
+    "tools_5": "Despliegue: Nginx, hosting compartido (SSH, cPanel), PowerShell",
+    "tools_6": "Desarrollo asistido por IA (Claude Code, contexto de proyecto estructurado)",
+    "data_title": "Apps de Escritorio & Datos",
+    "data_1": "Apps de escritorio (Electron + PyInstaller)",
+    "data_2": "Python para datos: pandas, Altair, dashboards",
+    "data_3": "Automatización con OCR (Tesseract, Poppler)",
+    "data_4": "Internacionalización (i18next, sitios ES/EN)",
+    "data_5": "Despliegue en hosting compartido (SSH, cPanel) + PowerShell",
     "logic_title": "Lógica & Resolución de Problemas",
     "logic_1": "Descomposición y diseño incremental",
     "logic_2": "Debugging sistemático",
     "logic_3": "Optimización de performance",
     "logic_4": "Diseño de APIs claras",
-    "logic_5": "Automatización de tareas repetitivas"
+    "logic_5": "Automatización de tareas repetitivas",
+    "db_6": "Backups, seeds y diseño de esquemas para reporting"
   },
   "experience": {
     "kicker": "Trayectoria",
     "title": "Mi <span>Experiencia</span>",
     "items": {
+      "icbf": {
+        "year": "oct. 2025 — Presente",
+        "role": "Administrador de Sistemas de Información · ICBF (\"Cuéntame\")",
+        "description": "Automatización de reportes y tableros con Power BI, análisis de indicadores y soporte técnico a equipos territoriales; 50–100 tickets mensuales atendidos."
+      },
       "innovamc": {
-        "year": "2022 — Presente",
-        "role": "CEO y Desarrollador · InnovaMC",
-        "description": "Soluciones tecnológicas a medida, marketing digital y optimización de procesos empresariales para clientes de Colombia y Guatemala."
+        "year": "2019 — Presente",
+        "role": "Desarrollador de Software · InnovaMC",
+        "description": "Diseño y desarrollo de soluciones web a medida para pymes y empresas de ingeniería: SPAs y backends escalables con Vue 3, Django REST y Laravel. +8 proyectos en producción, con incrementos de 20–30% en consultas para clientes como GCLTracs e Innova Energy."
+      },
+      "magma": {
+        "year": "may. 2025 — nov. 2025",
+        "role": "Software Developer · Magma Ventures S.A.S",
+        "description": "Desarrollo Full Stack remoto con Laravel, React, FastAPI y MySQL, aplicando Clean Code y principios SOLID en proyectos de software para clientes internacionales."
+      },
+      "esap": {
+        "year": "may. 2025 — dic. 2025",
+        "role": "Soporte IT · Escuela Superior de Administración Pública",
+        "description": "Gestión de incidentes con el sistema Aranda, monitoreo de infraestructura tecnológica en entornos académicos y soporte a usuarios finales."
       },
       "sueje": {
-        "year": "2024",
-        "role": "Instructor · SUEJE",
+        "year": "mar. 2024 — may. 2025",
+        "role": "Instructor de Seguridad Vial · Unión Temporal SUEJE–INESUR",
         "description": "Capacitaciones en seguridad vial a empresas y usuarios, dentro del programa nacional del Ministerio de Transporte y la ANSV."
       },
       "robotica": {
         "year": "2023",
         "role": "Docente de Robótica · Hispanic-English Country School",
-        "description": "Diseño de currículo STEAM y proyectos prácticos de robótica y programación para estudiantes de secundaria."
-      }
-    }
-  },
-  "education": {
-    "kicker": "Formación",
-    "title": "Mi <span>Formación</span>",
-    "items": {
-      "ingenieria": {
-        "year": "2017 — 2022",
-        "title": "Ingeniería de Sistemas",
-        "detail": "<strong>Corporación Universitaria Remington</strong> — Presencial · Yopal, Casanare"
+        "description": "Diseño de currículo STEAM y proyectos prácticos de robótica y programación (Arduino, Scratch) para estudiantes de secundaria."
       },
-      "cursos": {
-        "year": "2017 — Presente",
-        "title": "Cursos de Desarrollo de Software",
-        "detail": "<strong>Platzi · Udemy</strong> — Formación continua en línea"
-      },
-      "tecnico": {
-        "year": "2023",
-        "title": "Técnico en Tránsito, Transporte y Seguridad Vial",
-        "detail": "<strong>Intravial S.A.S</strong> — Certificación en competencias laborales"
+      "dizcar": {
+        "year": "2017 — 2023",
+        "role": "Instructor de Conducción · CEA Dizcar",
+        "description": "Formación teórica y práctica en conducción, seguridad vial y normativa de tránsito, con seguimiento de progreso de estudiantes."
       }
-    }
+    },
+    "show_more": "Ver más experiencia",
+    "show_less": "Ver menos experiencia"
   },
   "portfolio": {
     "title": "Últimos <span>Proyectos</span>",
@@ -218,7 +237,9 @@
     "demo": "Demo",
     "code": "Código",
     "demo_of": "Demo de {{title}}",
-    "code_of": "Repositorio de {{title}}"
+    "code_of": "Repositorio de {{title}}",
+    "show_more": "Ver más proyectos",
+    "show_less": "Ver menos proyectos"
   },
   "projects": {
     "aquacontrol": {
@@ -235,7 +256,7 @@
     },
     "gcltracs": {
       "title": "GCLTracs",
-      "description": "Plataforma de rastreo satelital con gestión de clientes, control de pólizas y pagos, panel administrativo e integración con app de monitoreo vehicular."
+      "description": "Plataforma de rastreo satelital: gestión de clientes, pólizas y pagos, panel administrativo e integración con monitoreo vehicular."
     },
     "prosvial": {
       "title": "ProSVial",
@@ -243,19 +264,19 @@
     },
     "intecor": {
       "title": "INTECOR",
-      "description": "Sitio web institucional para el Instituto Técnico de la Orinoquía, con presentación de programas técnicos, calendario académico, blog y formularios de matrícula."
+      "description": "Sitio institucional para el Instituto Técnico de la Orinoquía: panel admin y Campus Virtual en Laravel + Inertia + React, con matrículas, calificaciones y certificados."
     },
     "progesst": {
       "title": "PROGESST",
-      "description": "Plataforma web para empresa de Seguridad y Salud en el Trabajo, con servicios, validación de certificados, panel administrativo, cursos virtuales y campus."
+      "description": "Plataforma para empresa de Seguridad y Salud en el Trabajo: validación de certificados, panel administrativo y campus de cursos virtuales."
     },
     "casa-tsintani": {
       "title": "Casa Tsíntani",
-      "description": "Proyecto web institucional para centro de rehabilitación integral, con enfoque humano, presentación de programas, contacto, chatbot de respuesta automática y automatización de leads para fortalecer su estrategia comercial."
+      "description": "Sitio institucional para centro de rehabilitación integral, con chatbot de respuesta automática y automatización de leads para su estrategia comercial."
     },
     "innovamc-panel": {
       "title": "InnovaMc Panel",
-      "description": "Panel interno para InnovaMC con CRM de clientes y proyectos, catálogo de servicios, alertas de vencimiento de servicios recurrentes y dashboard de KPIs, más un portal donde cada cliente consulta el estado de su proyecto sin depender de WhatsApp o correo."
+      "description": "Panel interno para InnovaMC: CRM de clientes y proyectos, alertas de servicios por vencer, dashboard de KPIs y portal de clientes propio."
     },
     "innova-energy": {
       "title": "Innova Energy",
@@ -330,5 +351,26 @@
     "copy": "© {{year}} Manuel Causil | Todos los derechos reservados",
     "to_top": "Volver arriba",
     "whatsapp": "Escribir por WhatsApp"
+  },
+  "education": {
+    "kicker": "Formación",
+    "title": "Mi <span>Formación</span>",
+    "items": {
+      "ingenieria": {
+        "year": "2017 — 2022",
+        "title": "Ingeniería de Sistemas",
+        "detail": "<strong>Corporación Universitaria Remington</strong> — Presencial · Yopal, Casanare"
+      },
+      "cursos": {
+        "year": "2017 — Presente",
+        "title": "Cursos de Desarrollo de Software",
+        "detail": "<strong>Platzi · Udemy</strong> — Formación continua en línea"
+      },
+      "tecnico": {
+        "year": "2023",
+        "title": "Técnico en Tránsito, Transporte y Seguridad Vial",
+        "detail": "<strong>Intravial S.A.S</strong> — Certificación en competencias laborales"
+      }
+    }
   }
 }

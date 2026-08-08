@@ -24,19 +24,36 @@ const meta: Record<string, { icon: string; sector?: string }> = {
   "innovamc-panel": { icon: "workflow" },
 };
 
-// Primero los que tienen `order` (el escaparate, en el orden elegido);
-// el resto detrás, por año descendente.
-const items = (await getCollection("projects")).sort((a, b) => {
-  const orderA = a.data.order ?? Number.POSITIVE_INFINITY;
-  const orderB = b.data.order ?? Number.POSITIVE_INFINITY;
-  if (orderA !== orderB) return orderA - orderB;
-  return (b.data.year || 0) - (a.data.year || 0);
-});
+// Orden editorial: los proyectos con backend propio, roles/autenticación o
+// lógica de negocio real primero (los que mejor argumentan nivel técnico),
+// el resto queda detrás del botón "Ver más" — sin ocultarlos, solo un clic
+// más lejos. Ver plan-portafolio-manuel-causil.md para el criterio completo.
+const FEATURED_ORDER = [
+  "aquacontrol",
+  "intecor",
+  "progesst",
+  "gcltracs",
+  "innovamc-panel",
+  "casa-tsintani",
+];
+
+const bySlug = (entry: { id: string }) => entry.id.replace(/^projects\//, "").replace(/\.md$/, "");
+
+const allItems = await getCollection("projects");
+const featured = FEATURED_ORDER.map((slug) => allItems.find((it) => bySlug(it) === slug)).filter(
+  (it): it is NonNullable<typeof it> => Boolean(it)
+);
+const rest = allItems
+  .filter((it) => !FEATURED_ORDER.includes(bySlug(it)))
+  .sort((a, b) => (b.data.year || 0) - (a.data.year || 0));
+
+const items = [...featured, ...rest];
+const featuredCount = featured.length;
 ---
 
 <section id="portfolio" class="section section--alt">
   <div class="container">
-    <div class="section__head section__head--center">
+    <div class="section__head section__head--center reveal">
       <p class="section__kicker">Portafolio</p>
       <h2 class="section__title" data-i18n="portfolio.title" data-i18n-html>
         Últimos <span>Proyectos</span>
@@ -46,14 +63,18 @@ const items = (await getCollection("projects")).sort((a, b) => {
       </p>
     </div>
 
-    <div class="projects__grid">
+    <div class="projects__grid" data-projects-grid>
       {
         items.map(({ id, data }, idx) => {
           const slug = id.replace(/^projects\//, "").replace(/\.md$/, "");
           const m = meta[slug] ?? { icon: "layers" };
           const sector = data.sector ?? m.sector ?? "Proyecto web";
+          const isExtra = idx >= featuredCount;
           return (
-            <article class="card card--hover project reveal" style={`--stagger:${idx % 3}`}>
+            <article
+              class={`card card--hover project reveal${isExtra ? " project--extra" : ""}`}
+              style={`--stagger:${idx % 3}`}
+            >
               <div class="project__head">
                 <span class="icon-badge">
                   <Icon name={m.icon} />
@@ -118,5 +139,21 @@ const items = (await getCollection("projects")).sort((a, b) => {
         })
       }
     </div>
+
+    {
+      rest.length > 0 && (
+        <div class="projects__more-wrap">
+          <button
+            type="button"
+            class="btn btn--ghost projects__more-btn"
+            data-projects-toggle
+            aria-expanded="false"
+          >
+            <span data-i18n="portfolio.show_more">Ver más proyectos</span>
+            <Icon name="chevron-right" class="icon-more" />
+          </button>
+        </div>
+      )
+    }
   </div>
 </section>

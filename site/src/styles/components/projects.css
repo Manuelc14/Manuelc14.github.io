@@ -59,10 +59,18 @@
   background: var(--accent-wash);
 }
 
+/* Alto fijo a 4 líneas: así todas las tarjetas quedan simétricas sin
+   importar cuánto texto traiga cada proyecto (algunas descripciones son
+   más largas que otras). */
 .project__desc {
   font-size: var(--fs-sm);
   color: var(--text-2);
   line-height: var(--lh-snug);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+  min-height: calc(var(--fs-sm) * var(--lh-snug) * 4);
 }
 
 .project__facts {
@@ -118,4 +126,29 @@
 
 .project__service:hover {
   text-decoration: underline;
+}
+
+/* Destacados + "Ver más": las tarjetas extra quedan en el DOM (SEO, sin JS
+   siguen ahí) pero ocultas hasta que se expanda la grilla — nada se pierde,
+   solo un clic más lejos. */
+.project--extra {
+  display: none;
+}
+
+.projects__grid.is-expanded .project--extra {
+  display: flex;
+}
+
+.projects__more-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-6);
+}
+
+.projects__more-btn .icon-more {
+  transition: transform var(--dur) var(--ease);
+}
+
+.projects__more-btn[aria-expanded="true"] .icon-more {
+  transform: rotate(90deg);
 }

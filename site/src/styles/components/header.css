@@ -4,12 +4,27 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  background: color-mix(in srgb, var(--bg) 82%, transparent);
-  backdrop-filter: blur(12px) saturate(1.4);
   border-bottom: var(--border) solid transparent;
   transition:
     border-color var(--dur) var(--ease),
     box-shadow var(--dur) var(--ease);
+}
+
+/* El fondo translúcido va en un pseudo-elemento, no en `.header` directamente:
+   `backdrop-filter` (igual que `filter`/`transform`) crea un nuevo "containing
+   block" para cualquier descendiente `position: fixed` — y `.nav` (el cajón
+   de navegación en móvil) es hijo de `.header`. Si el blur vive en `.header`,
+   el cajón deja de posicionarse contra toda la pantalla y se posiciona contra
+   la cabecera (7rem de alto), aplastándose arriba y tapando el botón de
+   menú con el backdrop. Con el blur en `::before` (que no tiene hijos
+   `position: fixed`), `.header` ya no crea ese containing block. */
+.header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: blur(12px) saturate(1.4);
 }
 
 .header.is-stuck {
@@ -36,14 +51,22 @@
 }
 
 .brand__mark {
-  width: 3.4rem;
-  height: 3.4rem;
+  width: 3.6rem;
+  height: 3.6rem;
+  flex: none;
   display: grid;
   place-items: center;
-  border-radius: var(--radius-sm);
-  background: var(--accent);
-  color: var(--accent-ink);
-  font-size: 1.8rem;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--surface-2);
+  border: var(--border) solid color-mix(in srgb, var(--gold) 35%, var(--line));
+}
+
+.brand__mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .brand__text small {
@@ -91,6 +114,12 @@
   align-items: center;
   gap: var(--space-2);
   margin-left: var(--space-3);
+  /* Por encima del cajón (z-index: 99) dentro del stacking context
+     de `.header`: sin esto, al abrir el menú en móvil el propio botón de
+     hamburguesa queda tapado por el backdrop y un segundo toque no lo
+     cierra (solo Escape o tocar fuera). */
+  position: relative;
+  z-index: 100;
 }
 
 .lang-btn {
@@ -130,8 +159,15 @@
     order: 2;
   }
 
+  /* Tres capas dentro del stacking context de `.header`, y el orden importa:
+       98  velo       — cubre la página
+       99  cajón      — encima del velo, si no sus enlaces quedan tapados
+      100  controles  — encima del cajón, para poder cerrarlo
+     Sin `z-index` propio, el cajón se pinta por debajo del velo y tocar un
+     enlace cierra el menú en vez de navegar. */
   .nav {
     position: fixed;
+    z-index: 99;
     inset: 0 0 0 auto;
     width: min(32rem, 84vw);
     margin: 0;
@@ -174,7 +210,7 @@
     transition:
       opacity var(--dur) var(--ease),
       visibility var(--dur) var(--ease);
-    z-index: 99;
+    z-index: 98;
   }
 
   .nav__backdrop.is-open {

@@ -35,7 +35,7 @@
     ),
     radial-gradient(
       50rem 35rem at 95% 15%,
-      color-mix(in srgb, var(--gold) 8%, transparent),
+      color-mix(in srgb, var(--gold) 15%, transparent),
       transparent 65%
     );
   pointer-events: none;

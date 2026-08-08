@@ -26,6 +26,13 @@
     background var(--dur) var(--ease);
 }
 
+/* Iconos de contacto más grandes que el tamaño por defecto del badge:
+   son solo cinco y son la primera cosa que se lee en la sección. */
+.contact__method .icon-badge {
+  --size: 5.4rem;
+  font-size: 2.4rem;
+}
+
 .contact__method:hover {
   border-color: var(--accent);
   background: var(--accent-wash);
@@ -45,7 +52,10 @@
   line-height: 1.3;
 }
 
-.contact__method span {
+/* Solo la etiqueta (dentro del <div>), no el icono: si el selector fuera
+   `.contact__method span` a secas, ganaría por especificidad sobre
+   `.contact__method--wa` y apagaría el verde de marca del icono. */
+.contact__method div span {
   font-family: var(--font-mono);
   font-size: var(--fs-2xs);
   letter-spacing: var(--tracking-label);

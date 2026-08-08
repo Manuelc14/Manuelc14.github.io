@@ -37,7 +37,7 @@
 .icon-badge--gold {
   background: var(--gold-wash);
   color: var(--gold);
-  border-color: color-mix(in srgb, var(--gold) 30%, transparent);
+  border-color: color-mix(in srgb, var(--gold) 40%, transparent);
 }
 
 /* ============================ BOTONES ============================ */
@@ -153,6 +153,13 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-2);
+}
+
+/* El icono dentro de un chip lleva el acento dorado: un toque cálido en
+   una pieza pequeña y puntual, no en todo el bloque. */
+.chip .icon {
+  font-size: 1.3em;
+  color: var(--gold);
 }
 
 /* Píldora de estado con punto latiendo. */

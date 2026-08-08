@@ -129,27 +129,40 @@ function initCarousel() {
   if (!slides.length) return;
 
   const step = () => slides[0].getBoundingClientRect().width + 16;
+  let current = 0;
 
-  prev?.addEventListener("click", () => track.scrollBy({ left: -step(), behavior: "smooth" }));
-  next?.addEventListener("click", () => track.scrollBy({ left: step(), behavior: "smooth" }));
+  const goTo = (i) => {
+    const idx = ((i % slides.length) + slides.length) % slides.length;
+    track.scrollTo({ left: slides[idx].offsetLeft - track.offsetLeft, behavior: "smooth" });
+  };
 
-  if (!dotsBox) return;
-
-  const dots = slides.map((_, i) => {
-    const dot = document.createElement("button");
-    dot.type = "button";
-    dot.className = "testimonials__dot";
-    dot.setAttribute("role", "tab");
-    dot.setAttribute(
-      "aria-label",
-      t("testimonials.a11y.bullet", `Ir al testimonio ${i + 1}`, { index: i + 1 })
-    );
-    dot.addEventListener("click", () => {
-      track.scrollTo({ left: slides[i].offsetLeft - track.offsetLeft, behavior: "smooth" });
-    });
-    dotsBox.appendChild(dot);
-    return dot;
+  prev?.addEventListener("click", () => {
+    track.scrollBy({ left: -step(), behavior: "smooth" });
+    restartAutoplay();
   });
+  next?.addEventListener("click", () => {
+    track.scrollBy({ left: step(), behavior: "smooth" });
+    restartAutoplay();
+  });
+
+  const dots = dotsBox
+    ? slides.map((_, i) => {
+        const dot = document.createElement("button");
+        dot.type = "button";
+        dot.className = "testimonials__dot";
+        dot.setAttribute("role", "tab");
+        dot.setAttribute(
+          "aria-label",
+          t("testimonials.a11y.bullet", `Ir al testimonio ${i + 1}`, { index: i + 1 })
+        );
+        dot.addEventListener("click", () => {
+          goTo(i);
+          restartAutoplay();
+        });
+        dotsBox.appendChild(dot);
+        return dot;
+      })
+    : [];
 
   const sync = () => {
     const center = track.scrollLeft + track.clientWidth / 2;
@@ -163,6 +176,7 @@ function initCarousel() {
         best = i;
       }
     });
+    current = best;
     dots.forEach((d, i) => {
       d.classList.toggle("is-active", i === best);
       d.setAttribute("aria-selected", String(i === best));
@@ -184,6 +198,42 @@ function initCarousel() {
   );
   window.addEventListener("resize", sync, { passive: true });
   sync();
+
+  /* -------------------------------------------- autoplay */
+  const AUTOPLAY_MS = 4500;
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let autoplayTimer = null;
+
+  const stopAutoplay = () => {
+    if (autoplayTimer) {
+      clearInterval(autoplayTimer);
+      autoplayTimer = null;
+    }
+  };
+
+  const startAutoplay = () => {
+    if (reducedMotion || autoplayTimer || slides.length < 2) return;
+    autoplayTimer = setInterval(() => goTo(current + 1), AUTOPLAY_MS);
+  };
+
+  const restartAutoplay = () => {
+    stopAutoplay();
+    startAutoplay();
+  };
+
+  if (!reducedMotion) {
+    track.addEventListener("mouseenter", stopAutoplay);
+    track.addEventListener("mouseleave", startAutoplay);
+    track.addEventListener("touchstart", stopAutoplay, { passive: true });
+    track.addEventListener("touchend", startAutoplay, { passive: true });
+    track.addEventListener("focusin", stopAutoplay);
+    track.addEventListener("focusout", startAutoplay);
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) stopAutoplay();
+      else startAutoplay();
+    });
+    startAutoplay();
+  }
 }
 
 /* ------------------------------------------------------- volver arriba */
@@ -201,6 +251,50 @@ function initToTop() {
   );
   const hero = document.getElementById("home");
   if (hero) observer.observe(hero);
+}
+
+/* ------------------------------------------------------- proyectos: "ver más" */
+function initProjectsToggle() {
+  const btn = document.querySelector("[data-projects-toggle]");
+  const grid = document.querySelector("[data-projects-grid]");
+  if (!btn || !grid) return;
+
+  const label = btn.querySelector("span");
+
+  btn.addEventListener("click", () => {
+    const expanded = grid.classList.toggle("is-expanded");
+    btn.setAttribute("aria-expanded", String(expanded));
+    if (label) {
+      label.textContent = expanded
+        ? t("portfolio.show_less", "Ver menos proyectos")
+        : t("portfolio.show_more", "Ver más proyectos");
+    }
+    if (!expanded) {
+      grid.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+  });
+}
+
+/* ------------------------------------------------------ experiencia: "ver más" */
+function initExperienceToggle() {
+  const btn = document.querySelector("[data-experience-toggle]");
+  const list = document.querySelector("[data-experience-list]");
+  if (!btn || !list) return;
+
+  const label = btn.querySelector("span");
+
+  btn.addEventListener("click", () => {
+    const expanded = list.classList.toggle("is-expanded");
+    btn.setAttribute("aria-expanded", String(expanded));
+    if (label) {
+      label.textContent = expanded
+        ? t("experience.show_less", "Ver menos experiencia")
+        : t("experience.show_more", "Ver más experiencia");
+    }
+    if (!expanded) {
+      list.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+  });
 }
 
 /* ------------------------------------------------------------ formulario */
@@ -335,6 +429,8 @@ function init() {
   initReveal();
   initCarousel();
   initToTop();
+  initProjectsToggle();
+  initExperienceToggle();
   initForm();
 }
 

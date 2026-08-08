@@ -132,8 +132,10 @@
   --danger: #ff8a80;
   --danger-wash: #2c1614;
 
+  /* Verde de marca de WhatsApp: fijo en ambos temas, es reconocible por
+     sí mismo y no debe adaptarse al acento del sitio. */
   --whatsapp: #25d366;
-  --whatsapp-ink: #04241a;
+  --whatsapp-ink: #ffffff;
 
   --ring: rgba(59, 123, 224, 0.4);
   --scrim: rgba(3, 7, 15, 0.66);
@@ -174,8 +176,10 @@
   --danger: #ff8a80;
   --danger-wash: #2c1614;
 
+  /* Verde de marca de WhatsApp: fijo en ambos temas, es reconocible por
+     sí mismo y no debe adaptarse al acento del sitio. */
   --whatsapp: #25d366;
-  --whatsapp-ink: #04241a;
+  --whatsapp-ink: #ffffff;
 
   --ring: rgba(59, 123, 224, 0.4);
   --scrim: rgba(3, 7, 15, 0.66);
@@ -219,7 +223,7 @@
   --danger: #c0392b;
   --danger-wash: #fdecea;
 
-  --whatsapp: #1da851;
+  --whatsapp: #25d366;
   --whatsapp-ink: #ffffff;
 
   --ring: rgba(29, 95, 204, 0.28);

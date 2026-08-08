@@ -33,18 +33,18 @@
   right: var(--space-5);
   bottom: var(--space-5);
   z-index: 90;
-  width: 5.2rem;
-  height: 5.2rem;
-  font-size: 2.6rem;
+  width: 6rem;
+  height: 6rem;
+  font-size: 3.2rem;
   background: var(--whatsapp);
-  color: var(--whatsapp-ink);
+  color: #ffffff;
   border-color: transparent;
   box-shadow: var(--elev-lg);
 }
 
 .wa-fab:hover {
   background: var(--whatsapp);
-  color: var(--whatsapp-ink);
+  color: #ffffff;
   border-color: transparent;
   filter: brightness(1.08);
 }
@@ -89,9 +89,9 @@
   .wa-fab {
     right: var(--space-3);
     bottom: var(--space-3);
-    width: 4.8rem;
-    height: 4.8rem;
-    font-size: 2.4rem;
+    width: 5.4rem;
+    height: 5.4rem;
+    font-size: 2.8rem;
   }
 
   .to-top {

@@ -1,15 +1,14 @@
 ---
 title: "INTECOR"
 year: 2026
-order: 4
-stack: ["Web institucional", "SEO", "Formularios", "Blog"]
+stack: ["Laravel", "Inertia.js", "React", "TypeScript", "TailwindCSS"]
 url: "https://intecor.edu.co/"
-serviceUrl: "https://innovamc.com/servicios/webdevelopment"
-sector: "Educación · Matrículas"
+serviceUrl: "https://innovamc.com/servicios/software"
+sector: "Educación · Campus Virtual"
 status: "Activo"
-description: "Sitio web institucional para el Instituto Técnico de la Orinoquía, con presentación de programas técnicos, calendario académico, blog y formularios de matrícula."
+description: "Sitio institucional para el Instituto Técnico de la Orinoquía: panel admin y Campus Virtual en Laravel + Inertia + React, con matrículas, calificaciones y certificados."
 highlights:
-  - "Programas técnicos con información de matrícula"
-  - "Calendario académico y formularios de contacto"
-  - "Blog institucional y presentación de equipo"
+  - "Campus Virtual con matrículas, calificaciones y certificados"
+  - "Panel de administración de contenido y normativa"
+  - "Autenticación reforzada con verificación en dos pasos"
 ---

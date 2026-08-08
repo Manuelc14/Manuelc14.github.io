@@ -4,18 +4,43 @@ import Icon from "./Icon.astro";
 // El texto va en el marcado (existe para Google y sin JS) y `data-i18n`
 // lo reemplaza al pasar a inglés. Las claves viven en
 // public/locales/{es,en}/common.json bajo `experience.items.<slug>`.
+//
+// Sincronizado con linkedin.com/in/ingmanuelcausil (2026-08-08). Orden:
+// roles activos primero, luego el resto por fecha de inicio descendente —
+// igual que los muestra LinkedIn.
 const experiences = [
   {
-    slug: "innovamc",
-    year: "2022 — Presente",
-    role: "CEO y Desarrollador · InnovaMC",
+    slug: "icbf",
+    year: "oct. 2025 — Presente",
+    role: 'Administrador de Sistemas de Información · ICBF ("Cuéntame")',
     description:
-      "Soluciones tecnológicas a medida, marketing digital y optimización de procesos empresariales para clientes de Colombia y Guatemala.",
+      "Automatización de reportes y tableros con Power BI, análisis de indicadores y soporte técnico a equipos territoriales; 50–100 tickets mensuales atendidos.",
+  },
+  {
+    slug: "innovamc",
+    year: "2019 — Presente",
+    role: "Desarrollador de Software · InnovaMC",
+    description:
+      "Diseño y desarrollo de soluciones web a medida para pymes y empresas de ingeniería: SPAs y backends escalables con Vue 3, Django REST y Laravel. +8 proyectos en producción, con incrementos de 20–30% en consultas para clientes como GCLTracs e Innova Energy.",
+  },
+  {
+    slug: "magma",
+    year: "may. 2025 — nov. 2025",
+    role: "Software Developer · Magma Ventures S.A.S",
+    description:
+      "Desarrollo Full Stack remoto con Laravel, React, FastAPI y MySQL, aplicando Clean Code y principios SOLID en proyectos de software para clientes internacionales.",
+  },
+  {
+    slug: "esap",
+    year: "may. 2025 — dic. 2025",
+    role: "Soporte IT · Escuela Superior de Administración Pública",
+    description:
+      "Gestión de incidentes con el sistema Aranda, monitoreo de infraestructura tecnológica en entornos académicos y soporte a usuarios finales.",
   },
   {
     slug: "sueje",
-    year: "2024",
-    role: "Instructor · SUEJE",
+    year: "mar. 2024 — may. 2025",
+    role: "Instructor de Seguridad Vial · Unión Temporal SUEJE–INESUR",
     description:
       "Capacitaciones en seguridad vial a empresas y usuarios, dentro del programa nacional del Ministerio de Transporte y la ANSV.",
   },
@@ -24,7 +49,14 @@ const experiences = [
     year: "2023",
     role: "Docente de Robótica · Hispanic-English Country School",
     description:
-      "Diseño de currículo STEAM y proyectos prácticos de robótica y programación para estudiantes de secundaria.",
+      "Diseño de currículo STEAM y proyectos prácticos de robótica y programación (Arduino, Scratch) para estudiantes de secundaria.",
+  },
+  {
+    slug: "dizcar",
+    year: "2017 — 2023",
+    role: "Instructor de Conducción · CEA Dizcar",
+    description:
+      "Formación teórica y práctica en conducción, seguridad vial y normativa de tránsito, con seguimiento de progreso de estudiantes.",
   },
 ];
 ---
@@ -33,19 +65,22 @@ const experiences = [
   <div class="container">
     <div class="timeline-pair">
       <div>
-        <div class="section__head">
+        <div class="section__head reveal">
           <p class="section__kicker" data-i18n="experience.kicker">Trayectoria</p>
           <h2 class="section__title" data-i18n="experience.title" data-i18n-html>
             Mi <span>Experiencia</span>
           </h2>
         </div>
 
-        <ol class="timeline">
+        <ol class="timeline" data-experience-list>
           {
             experiences.map((exp, i) => (
-              <li class="timeline__item reveal" style={`--stagger:${i}`}>
+              <li
+                class={`timeline__item reveal${i >= 4 ? " timeline__item--extra" : ""}`}
+                style={`--stagger:${i}`}
+              >
                 <div class="timeline__rail">
-                  <span class="icon-badge icon-badge--sm">
+                  <span class="icon-badge icon-badge--sm icon-badge--gold">
                     <Icon name="briefcase" />
                   </span>
                 </div>
@@ -65,6 +100,22 @@ const experiences = [
             ))
           }
         </ol>
+
+        {
+          experiences.length > 4 && (
+            <div class="timeline__more-wrap">
+              <button
+                type="button"
+                class="btn btn--ghost timeline__more-btn"
+                data-experience-toggle
+                aria-expanded="false"
+              >
+                <span data-i18n="experience.show_more">Ver más experiencia</span>
+                <Icon name="chevron-right" class="icon-more" />
+              </button>
+            </div>
+          )
+        }
       </div>
 
       <slot />
