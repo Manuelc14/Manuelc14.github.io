@@ -4,15 +4,24 @@ import Hero from "../components/Hero.astro";
 import About from "../components/About.astro";
 import Skills from "../components/Skills.astro";
 import Projects from "../components/Projects.astro";
+import Experience from "../components/Experience.astro";
+import Education from "../components/Education.astro";
 import Testimonials from "../components/Testimonials.astro";
 import ContactForm from "../components/ContactForm.astro";
 ---
 
-<Base title="Manuel Causil — Portafolio">
-	<Hero />
-	<About />
-	<Skills />
-	<Projects />
-	<Testimonials />
-	<ContactForm />
+<Base>
+  <Hero />
+  <About />
+  <Skills />
+  <Projects />
+  {
+    /* Formación se rinde dentro de Experiencia: comparten la misma
+      sección a dos columnas y la misma línea de tiempo. */
+  }
+  <Experience>
+    <Education />
+  </Experience>
+  <Testimonials />
+  <ContactForm />
 </Base>

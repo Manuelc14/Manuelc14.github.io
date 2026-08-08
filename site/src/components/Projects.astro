@@ -1,129 +1,84 @@
 ---
+import Icon from "./Icon.astro";
 import { getCollection } from "astro:content";
 
+// Icono y sector por proyecto: un dato más que la tarjeta puede mostrar
+// sin exigir una captura de 9 MB. Cada icono alude a lo que hace el
+// proyecto, no a la tecnología.
+const meta: Record<string, { icon: string; sector: string }> = {
+  aquacontrol: { icon: "droplet", sector: "Gestión de pedidos" },
+  "casalup-services": { icon: "utensils", sector: "Catering" },
+  "cea-dizcar": { icon: "car", sector: "Enseñanza automovilística" },
+  gcltracs: { icon: "satellite", sector: "Rastreo satelital" },
+  "innova-energy": { icon: "bolt", sector: "Ingeniería" },
+  innovamc: { icon: "layers", sector: "Tecnología" },
+  iqhome: { icon: "home", sector: "Domótica" },
+  nitt: { icon: "sparkle", sector: "Servicios de limpieza" },
+  "solon-soluciones": { icon: "building", sector: "Construcción" },
+};
+
 const items = (await getCollection("projects")).sort(
-    (a, b) => (b.data.year || 0) - (a.data.year || 0),
+  (a, b) => (b.data.year || 0) - (a.data.year || 0)
 );
 ---
 
-<section id="portfolio" class="portfolio">
-    <div class="container">
-        <!-- Título y descripción traducibles -->
-        <h2 class="heading" data-i18n="portfolio.title" data-i18n-html></h2>
-        <h3 class="description" data-i18n="portfolio.desc"></h3>
-
-        <div class="portfolio-grid">
-            {
-                items.map(({ id, data }, idx) => {
-                    const shotStyle = data.image
-                        ? `--shot:url('${data.image}')`
-                        : "";
-                    const slug = id
-                        .replace(/^projects\//, "")
-                        .replace(/\.md$/, "");
-                    const paramsJson = JSON.stringify({ title: data.title });
-                    return (
-                        <article
-                            class="project-card"
-                            style={`--stagger:${idx}`}
-                        >
-                            <div class="project-media">
-                                <div class="project-shot" style={shotStyle} />
-                                {data.url ? (
-                                    <a
-                                        class="project-visit"
-                                        href={data.url}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        data-i18n-attr="aria-label:portfolio.open_project; title:portfolio.view_project"
-                                        data-i18n-params={paramsJson}
-                                    >
-                                        <i class="bx bx-link-external" />
-                                    </a>
-                                ) : null}
-                            </div>
-
-                            <div class="project-body">
-                                <h3 class="project-title">
-                                    <span data-i18n={`projects.${slug}.title`}>
-                                        {data.title}
-                                    </span>{" "}
-                                    <i
-                                        class="bx bx-link-external"
-                                        aria-hidden="true"
-                                    />
-                                </h3>
-
-                                {data.description ? (
-                                    <p
-                                        class="project-desc"
-                                        data-i18n={`projects.${slug}.description`}
-                                    >
-                                        {data.description}
-                                    </p>
-                                ) : null}
-
-                                {Array.isArray(data.stack) &&
-                                    data.stack.length > 0 && (
-                                        <div class="project-meta">
-                                            {data.stack.map((s) => (
-                                                <span class="badge">{s}</span>
-                                            ))}
-                                        </div>
-                                    )}
-
-                                {(data.repo || data.demo) && (
-                                    <div class="project-actions">
-                                        {data.demo ? (
-                                            <a
-                                                class="btn-ghost"
-                                                href={data.demo}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                data-i18n-attr="aria-label:portfolio.demo_of"
-                                                data-i18n-params={paramsJson}
-                                            >
-                                                <i
-                                                    class="bx bx-play-circle"
-                                                    aria-hidden="true"
-                                                />{" "}
-                                                <span data-i18n="portfolio.demo" />
-                                            </a>
-                                        ) : null}
-                                        {data.repo ? (
-                                            <a
-                                                class="btn-ghost"
-                                                href={data.repo}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                data-i18n-attr="aria-label:portfolio.code_of"
-                                                data-i18n-params={paramsJson}
-                                            >
-                                                <i
-                                                    class="bx bxl-github"
-                                                    aria-hidden="true"
-                                                />{" "}
-                                                <span data-i18n="portfolio.code" />
-                                            </a>
-                                        ) : null}
-                                    </div>
-                                )}
-                            </div>
-
-                            {data.url ? (
-                                <a
-                                    class="project-cover"
-                                    href={data.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    data-i18n-attr="aria-label:portfolio.open_project"
-                                    data-i18n-params={paramsJson}
-                                />
-                            ) : null}
-                        </article>
-                    );
-                })
-            }
-        </div>
+<section id="portfolio" class="section section--alt">
+  <div class="container">
+    <div class="section__head section__head--center">
+      <p class="section__kicker">Portafolio</p>
+      <h2 class="section__title" data-i18n="portfolio.title" data-i18n-html>
+        Últimos <span>Proyectos</span>
+      </h2>
+      <p class="section__lead" data-i18n="portfolio.desc">
+        A continuación puede ver o visitar cualquiera de los proyectos realizados
+      </p>
     </div>
+
+    <div class="projects__grid">
+      {
+        items.map(({ id, data }, idx) => {
+          const slug = id.replace(/^projects\//, "").replace(/\.md$/, "");
+          const m = meta[slug] ?? { icon: "layers", sector: "Proyecto web" };
+          return (
+            <article class="card card--hover project reveal" style={`--stagger:${idx % 3}`}>
+              <div class="project__head">
+                <span class="icon-badge">
+                  <Icon name={m.icon} />
+                </span>
+                <div>
+                  <h3 class="project__name" data-i18n={`projects.${slug}.title`}>
+                    {data.title}
+                  </h3>
+                  <p class="project__meta">
+                    {data.year} · {m.sector}
+                  </p>
+                </div>
+                {data.url && (
+                  <span class="project__link" aria-hidden="true">
+                    <Icon name="external" />
+                  </span>
+                )}
+              </div>
+
+              <p class="project__desc" data-i18n={`projects.${slug}.description`}>
+                {data.description}
+              </p>
+
+              <div class="chip-row">
+                {data.stack.map((s) => (
+                  <span class="chip">{s}</span>
+                ))}
+              </div>
+
+              {data.url && (
+                <a class="project__cover" href={data.url} target="_blank" rel="noopener noreferrer">
+                  <span class="sr-only">Abrir {data.title} en una pestaña nueva</span>
+                </a>
+              )}
+            </article>
+          );
+        })
+      }
+    </div>
+  </div>
 </section>

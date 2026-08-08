@@ -1,0 +1,225 @@
+/* =========================================================================
+   TOKENS — fuente única de verdad del sistema de diseño
+   =========================================================================
+
+   ¡OJO CON LAS UNIDADES!
+   `html { font-size: 62.5% }` (en reset.css) hace que 1rem = 10px, NO 16px.
+   Toda medida en rem de este archivo vive en ese mundo: 1.6rem = 16px.
+   Si escribes rem pensando en 16px, el sitio se rompe de tamaño.
+
+   TEMAS — el sitio arranca OSCURO:
+     :root       paleta oscura. Es el punto de partida, y lo que se ve si
+                 el JS no llega a ejecutarse.
+     .dark-mode  la misma oscura, explícita, que pone el interruptor.
+     .light      paleta clara, solo si el visitante la elige.
+   Las clases las pone el script anti-FOUC del <head> en Base.astro.
+
+   REGLA: ningún componente escribe un color literal. Todo sale de aquí.
+   Si un color no existe como token, se añade aquí primero.
+   ========================================================================= */
+
+:root {
+  /* ---------------------------------------------------------------
+     TIPOGRAFÍA
+       sans → texto corriente y titulares.
+       mono → etiquetas, años, badges de stack y datos. Es lo que da
+              la lectura "técnica" sin recurrir a adornos.
+     --------------------------------------------------------------- */
+  --font-sans: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Mono", Consolas, "SF Mono", "Roboto Mono", monospace;
+
+  --fs-display: clamp(4rem, 7vw, 6.4rem); /* 40 → 64px */
+  --fs-xl: clamp(3.2rem, 5vw, 4.8rem); /* 32 → 48px */
+  --fs-lg: clamp(2.4rem, 3.5vw, 3.2rem); /* 24 → 32px */
+  --fs-mdl: clamp(1.9rem, 2.2vw, 2.2rem); /* 19 → 22px */
+  --fs-md: 1.7rem; /* 17px — texto base */
+  --fs-sm: 1.5rem; /* 15px */
+  --fs-xs: 1.3rem; /* 13px */
+  --fs-2xs: 1.1rem; /* 11px — etiquetas mono */
+
+  --lh-tight: 1.15;
+  --lh-snug: 1.35;
+  --lh-normal: 1.6;
+
+  --tracking-tight: -0.025em;
+  --tracking-wide: 0.08em;
+  --tracking-label: 0.16em;
+
+  --fw-normal: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  /* ---------------------------------------------------------------
+     ESPACIADO — escala única. Nada de valores sueltos.
+     --------------------------------------------------------------- */
+  --space-1: 0.4rem;
+  --space-2: 0.8rem;
+  --space-3: 1.2rem;
+  --space-4: 1.6rem;
+  --space-5: 2.4rem;
+  --space-6: 3.2rem;
+  --space-7: 4.8rem;
+  --space-8: 6.4rem;
+  --space-9: 9.6rem;
+
+  --section-y: clamp(6.4rem, 8vw, 11.2rem);
+
+  /* ---------------------------------------------------------------
+     FORMA
+     --------------------------------------------------------------- */
+  --radius-sm: 6px;
+  --radius: 12px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+
+  --border: 1px;
+  --container: 1200px;
+  --measure: 65ch;
+
+  /* ---------------------------------------------------------------
+     BREAKPOINTS — escala única (reemplaza a los 11 anteriores)
+     Las media queries NO pueden leer variables CSS: estos valores
+     existen para JS y como referencia. La regla se cumple a mano.
+
+       480px  móvil grande · 768px  tablet
+      1024px  escritorio   · 1280px escritorio amplio
+
+     Cada componente lleva SUS media queries en SU archivo.
+     No se crean breakpoints nuevos sin añadirlos aquí primero.
+     --------------------------------------------------------------- */
+  --bp-sm: 480px;
+  --bp-md: 768px;
+  --bp-lg: 1024px;
+  --bp-xl: 1280px;
+
+  /* ---------------------------------------------------------------
+     MOVIMIENTO
+     --------------------------------------------------------------- */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 0.15s;
+  --dur: 0.25s;
+  --dur-slow: 0.45s;
+
+  /* =================================================================
+     PALETA OSCURA — la que ve el visitante primero.
+     Azul acero como terreno, plateado como texto secundario, blanco
+     reservado para lo que importa. Aquí el dorado sí puede ser dorado.
+     ================================================================= */
+  --bg: #0b1220;
+  --surface: #111c2e;
+  --surface-2: #16233a;
+  --card: #16233a;
+  --line: #24344f;
+  --line-strong: #33486a;
+
+  --text: #e9eef6;
+  --text-2: #c2cee0;
+  --muted: #93a5be; /* plateado */
+
+  --accent: #3b7be0;
+  --accent-hover: #5490ea;
+  --accent-soft: #8fb2e8; /* enlaces e iconos sobre el fondo */
+  --accent-wash: #16294a;
+  --accent-ink: #ffffff;
+
+  --gold: #c6a664;
+  --gold-hover: #d5b87e;
+  --gold-wash: #2a2417;
+  --gold-ink: #10192a; /* texto oscuro sobre relleno dorado */
+
+  --danger: #ff8a80;
+  --danger-wash: #2c1614;
+
+  --ring: rgba(59, 123, 224, 0.4);
+  --scrim: rgba(3, 7, 15, 0.66);
+
+  --shadow: rgba(0, 0, 0, 0.65);
+  --elev-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --elev: 0 2px 6px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.4);
+  --elev-lg: 0 12px 28px rgba(0, 0, 0, 0.55), 0 4px 10px rgba(0, 0, 0, 0.45);
+
+  color-scheme: dark;
+}
+
+/* Tema oscuro elegido a propósito: idéntico a :root, pero explícito para
+   que gane si ambas clases llegaran a coexistir. */
+.dark-mode {
+  --bg: #0b1220;
+  --surface: #111c2e;
+  --surface-2: #16233a;
+  --card: #16233a;
+  --line: #24344f;
+  --line-strong: #33486a;
+
+  --text: #e9eef6;
+  --text-2: #c2cee0;
+  --muted: #93a5be;
+
+  --accent: #3b7be0;
+  --accent-hover: #5490ea;
+  --accent-soft: #8fb2e8;
+  --accent-wash: #16294a;
+  --accent-ink: #ffffff;
+
+  --gold: #c6a664;
+  --gold-hover: #d5b87e;
+  --gold-wash: #2a2417;
+  --gold-ink: #10192a;
+
+  --danger: #ff8a80;
+  --danger-wash: #2c1614;
+
+  --ring: rgba(59, 123, 224, 0.4);
+  --scrim: rgba(3, 7, 15, 0.66);
+
+  --shadow: rgba(0, 0, 0, 0.65);
+  --elev-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --elev: 0 2px 6px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.4);
+  --elev-lg: 0 12px 28px rgba(0, 0, 0, 0.55), 0 4px 10px rgba(0, 0, 0, 0.45);
+
+  color-scheme: dark;
+}
+
+/* =================================================================
+   PALETA CLARA — blanco y plata. Diseñada, no invertida.
+   El dorado baja a bronce porque #C6A664 sobre blanco da ~2:1 y
+   sería ilegible; #9C7526 llega a ~5:1.
+   ================================================================= */
+.light {
+  --bg: #f4f7fb; /* blanco con sesgo frío, no blanco puro */
+  --surface: #ffffff;
+  --surface-2: #eef3f9;
+  --card: #ffffff;
+  --line: #dce4ef;
+  --line-strong: #c3d0e2;
+
+  --text: #0e1a2b;
+  --text-2: #33455c;
+  --muted: #5c6e86; /* plateado */
+
+  --accent: #1d5fcc;
+  --accent-hover: #1750ad;
+  --accent-soft: #1d5fcc;
+  --accent-wash: #e8f0fd;
+  --accent-ink: #ffffff;
+
+  --gold: #9c7526;
+  --gold-hover: #855f1a;
+  --gold-wash: #f7efdd;
+  --gold-ink: #ffffff;
+
+  --danger: #c0392b;
+  --danger-wash: #fdecea;
+
+  --ring: rgba(29, 95, 204, 0.28);
+  --scrim: rgba(14, 26, 43, 0.45);
+
+  --shadow: rgba(14, 26, 43, 0.45);
+  --elev-sm: 0 1px 2px rgba(14, 26, 43, 0.07);
+  --elev: 0 2px 6px rgba(14, 26, 43, 0.08), 0 1px 2px rgba(14, 26, 43, 0.06);
+  --elev-lg: 0 12px 28px rgba(14, 26, 43, 0.12), 0 4px 10px rgba(14, 26, 43, 0.08);
+
+  color-scheme: light;
+}

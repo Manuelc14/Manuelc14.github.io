@@ -1,99 +1,123 @@
 ---
+import { Image } from "astro:assets";
+import Icon from "./Icon.astro";
+import portrait from "../assets/img/i.png";
+import { getCollection } from "astro:content";
+
+const projects = await getCollection("projects");
+
+// Cifras derivadas de datos reales del repo, no inventadas.
+const projectCount = projects.length;
+const years = new Set(projects.map((p) => p.data.year)).size;
+
 const social = [
-    {
-        href: "https://www.linkedin.com/in/manuel-causil-a48454267/",
-        icon: "bxl-linkedin",
-        label: "LinkedIn",
-    },
-    {
-        href: "https://github.com/Manuelc14",
-        icon: "bxl-github",
-        label: "GitHub",
-    },
+  {
+    href: "https://www.linkedin.com/in/manuel-causil-a48454267/",
+    icon: "linkedin",
+    label: "LinkedIn",
+  },
+  { href: "https://github.com/Manuelc14", icon: "github", label: "GitHub" },
 ];
 ---
 
 <section id="home" class="hero" aria-labelledby="hero-title">
-    <div id="particles-js" aria-hidden="true"></div>
+  <div class="container">
+    <div class="hero__grid">
+      <div class="hero__content">
+        <p class="pill-status" data-i18n="hero.available">Disponible para nuevos proyectos</p>
 
-    <div class="container hero__grid">
-        <div class="hero__content">
-            <p class="eyebrow" data-i18n="hero.available"></p>
+        <h1 id="hero-title" class="hero__title">
+          <span data-i18n="hero.hi">Hola, soy</span>
+          <span class="accent">Manuel Causil</span>
+        </h1>
 
-            <h1 id="hero-title" class="hero__title">
-                <span data-i18n="hero.hi"></span>
-                <span class="accent"> Manuel Causil</span>
-                <span class="nowrap" data-i18n="hero.role"></span>
-            </h1>
+        <p class="hero__role" data-i18n="hero.role">Ingeniero de Sistemas</p>
 
-            <p class="hero__lead">
-                <span data-i18n="hero.lead"></span>
-                <span data-i18n="hero.stack" data-i18n-html></span>
-            </p>
+        <p class="hero__lead" data-i18n="hero.lead">
+          Diseño y desarrollo productos rápidos, accesibles y mantenibles.
+        </p>
 
-            <div
-                class="hero__cta"
-                role="group"
-                data-i18n-attr="aria-label:hero.cta.aria"
-            >
-                <a
-                    class="btn btn--primary"
-                    href="#portfolio"
-                    data-i18n="hero.cta.projects"
-                    data-i18n-attr="title;aria-label"></a>
+        <p class="hero__stack" data-i18n="hero.stack" data-i18n-html>
+          Stack favorito: <strong>React</strong>, <strong>Vue</strong>,
+          <strong>Django</strong>, <strong>Laravel</strong>.
+        </p>
 
-                <a
-                    class="btn btn--ghost"
-                    href="#contact"
-                    data-i18n="hero.cta.contact"
-                    data-i18n-attr="title;aria-label"></a>
-
-                <a
-                    class="btn btn--link"
-                    href="/cv.pdf"
-                    download="Manuel-Causil-CV"
-                    data-i18n="hero.cta.download"
-                    data-i18n-attr="title;aria-label;download:hero.cta.downloadFile"
-                ></a>
-            </div>
-
-            <ul class="social" data-i18n-attr="aria-label:hero.social.aria">
-                {
-                    social.map((s) => (
-                        <li>
-                            <a
-                                href={s.href}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label={s.label}
-                                title={s.label}
-                            >
-                                <i class={`bx ${s.icon}`} aria-hidden="true" />
-                                <span class="sr-only">{s.label}</span>
-                            </a>
-                        </li>
-                    ))
-                }
-            </ul>
-
-            <div class="typed" data-typed>
-                <span id="typed"></span>
-            </div>
+        <div class="hero__cta" role="group" aria-label="Acciones principales">
+          <a class="btn btn--primary" href="#portfolio">
+            <Icon name="layers" />
+            <span data-i18n="hero.cta.projects">Ver proyectos</span>
+          </a>
+          <a class="btn btn--gold" href="/cv.pdf" download="Manuel-Causil-CV">
+            <Icon name="download" />
+            <span data-i18n="hero.cta.download">Descargar CV</span>
+          </a>
+          <a class="btn btn--ghost" href="#contact">
+            <Icon name="mail" />
+            <span data-i18n="hero.cta.contact">Contactar</span>
+          </a>
         </div>
 
-        <div class="hero__media">
-            <div class="portrait__wrap">
-                <img
-                    class="portrait"
-                    src="/images/i.png"
-                    width="480"
-                    height="560"
-                    loading="eager"
-                    decoding="async"
-                    fetchpriority="high"
-                    data-i18n-attr="alt:hero.portraitAlt"
-                />
-            </div>
+        <ul class="hero__social" aria-label="Redes sociales">
+          {
+            social.map((s) => (
+              <li>
+                <a
+                  class="btn-icon"
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={s.label}
+                  title={s.label}
+                >
+                  <Icon name={s.icon} />
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="hero__media">
+        <Image
+          class="portrait"
+          src={portrait}
+          widths={[360, 480, 720]}
+          sizes="(max-width: 768px) 1px, (max-width: 1024px) 60vw, 40vw"
+          format="webp"
+          quality={78}
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
+          alt="Foto de Manuel Causil"
+          data-i18n-attr="alt:hero.portraitAlt"
+        />
+        <div class="hero__badge">
+          <span class="icon-badge icon-badge--gold"><Icon name="briefcase" /></span>
+          <div>
+            <strong>{projectCount}</strong>
+            <span>Proyectos</span>
+          </div>
         </div>
+      </div>
     </div>
+
+    <div class="hero__stats">
+      <div class="hero__stat">
+        <strong>{projectCount}</strong>
+        <span>Proyectos en producción</span>
+      </div>
+      <div class="hero__stat">
+        <strong>{years}</strong>
+        <span>Años entregando</span>
+      </div>
+      <div class="hero__stat">
+        <strong>2</strong>
+        <span>Idiomas del sitio</span>
+      </div>
+      <div class="hero__stat">
+        <strong>100%</strong>
+        <span>Proyectos en vivo</span>
+      </div>
+    </div>
+  </div>
 </section>

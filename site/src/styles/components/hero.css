@@ -1,0 +1,238 @@
+/* Héroe: la tesis del sitio. Dos columnas en escritorio, una en móvil. */
+
+.hero {
+  position: relative;
+  padding-block: clamp(4.8rem, 7vw, 9.6rem) var(--section-y);
+  overflow: clip;
+}
+
+/* Retícula técnica de fondo: sustituye a las partículas. Es estática,
+   no cuesta JS y lee mejor como "producto" que como adorno. */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(var(--line) var(--border), transparent var(--border)),
+    linear-gradient(90deg, var(--line) var(--border), transparent var(--border));
+  background-size: 6.4rem 6.4rem;
+  mask-image: radial-gradient(90% 60% at 50% 0%, #000 0%, transparent 75%);
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(
+      70rem 40rem at 15% -10%,
+      color-mix(in srgb, var(--accent) 12%, transparent),
+      transparent 65%
+    ),
+    radial-gradient(
+      50rem 35rem at 95% 15%,
+      color-mix(in srgb, var(--gold) 8%, transparent),
+      transparent 65%
+    );
+  pointer-events: none;
+}
+
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-5);
+}
+
+.hero__title {
+  font-size: var(--fs-display);
+  margin: 0;
+}
+
+.hero__title .accent {
+  color: var(--accent);
+  display: block;
+}
+
+.hero__role {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.hero__role::before {
+  content: "";
+  width: 2.4rem;
+  height: 1px;
+  background: var(--gold);
+}
+
+.hero__lead {
+  font-size: var(--fs-mdl);
+  color: var(--text-2);
+  max-width: 52ch;
+  line-height: var(--lh-snug);
+}
+
+.hero__stack {
+  font-size: var(--fs-sm);
+  color: var(--muted);
+}
+
+.hero__stack strong {
+  color: var(--accent);
+  font-weight: var(--fw-semibold);
+}
+
+.hero__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.hero__social {
+  display: flex;
+  gap: var(--space-2);
+}
+
+/* --------------------------- retrato --------------------------- */
+.hero__media {
+  position: relative;
+  justify-self: center;
+  width: 100%;
+  max-width: 42rem;
+}
+
+.portrait {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 6 / 7;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: var(--radius-lg);
+  background: var(--surface-2);
+  border: var(--border) solid var(--line);
+  box-shadow: var(--elev-lg);
+}
+
+/* Tarjeta flotante de datos sobre el retrato. */
+.hero__badge {
+  position: absolute;
+  left: calc(var(--space-5) * -1);
+  bottom: var(--space-6);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--card);
+  border: var(--border) solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--elev-lg);
+}
+
+.hero__badge strong {
+  display: block;
+  font-size: var(--fs-mdl);
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.hero__badge span {
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* --------------------------- cifras --------------------------- */
+.hero__stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(14rem, 100%), 1fr));
+  gap: var(--space-1);
+  margin-top: var(--space-8);
+  background: var(--line);
+  border: var(--border) solid var(--line);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.hero__stat {
+  background: var(--card);
+  padding: var(--space-5);
+}
+
+.hero__stat strong {
+  display: block;
+  font-size: var(--fs-lg);
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: var(--tracking-tight);
+}
+
+.hero__stat span {
+  display: block;
+  margin-top: var(--space-1);
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* --------------------------- adaptación --------------------------- */
+@media (max-width: 1024px) {
+  .hero__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-7);
+  }
+
+  .hero__media {
+    order: -1;
+    max-width: 30rem;
+  }
+
+  .hero__badge {
+    left: auto;
+    right: calc(var(--space-4) * -1);
+  }
+}
+
+/* En móvil el retrato no aporta: empuja el mensaje y las acciones por
+   debajo del pliegue. Fuera. El elemento LCP pasa a ser el titular, que
+   además es texto y pinta de inmediato. */
+@media (max-width: 768px) {
+  .hero__media {
+    display: none;
+  }
+
+  .hero {
+    padding-top: var(--space-7);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero__cta {
+    width: 100%;
+  }
+
+  .hero__cta .btn {
+    flex: 1 1 100%;
+  }
+}

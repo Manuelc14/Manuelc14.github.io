@@ -1,60 +1,58 @@
-<section id="about" class="about">
-    <div class="container">
-        <div class="about-card">
-            <div class="about-kicker" data-i18n="about.kicker"></div>
+---
+import { Image } from "astro:assets";
+import Icon from "./Icon.astro";
+import meAbout from "../assets/img/meabout.png";
 
-            <h2 class="about-title" data-i18n="about.title"></h2>
+const points = [
+  { key: "about.item_1", text: "Arquitecturas simples y mantenibles." },
+  { key: "about.item_2", text: "Buenas prácticas: a11y, SEO técnico, performance." },
+  { key: "about.item_3", text: "Entrega continua y documentación clara." },
+];
+---
 
-            <p class="about-lead" data-i18n="about.lead"></p>
+<section id="about" class="section section--alt">
+  <div class="container">
+    <div class="about__grid">
+      <div class="about__media reveal">
+        <Image
+          src={meAbout}
+          widths={[420, 640, 900]}
+          sizes="(max-width: 768px) 90vw, 34vw"
+          format="webp"
+          quality={72}
+          loading="lazy"
+          decoding="async"
+          alt="Manuel Causil trabajando"
+        />
+      </div>
 
-            <ul class="about-list">
-                <li data-i18n="about.item_1">
-                    <i class="bx bxs-bolt" aria-hidden="true"></i>
-                </li>
-                <li data-i18n="about.item_2">
-                    <i class="bx bxs-check-circle" aria-hidden="true"></i>
-                </li>
-                <li data-i18n="about.item_3">
-                    <i class="bx bxs-package" aria-hidden="true"></i>
-                </li>
-            </ul>
+      <div class="about__body reveal" style="--stagger:1">
+        <p class="section__kicker" data-i18n="about.kicker">Sobre mí</p>
 
-            <div class="about-highlights">
-                <span class="chip" data-i18n="about.pill_years"></span>
-                <span class="chip" data-i18n="about.pill_stack"></span>
-                <span class="chip">React · Vue · Django</span>
-                <span class="chip">Laravel · Java</span>
-            </div>
+        <h2 class="about__title" data-i18n="about.title">
+          Full-Stack Developer enfocado en producto, performance y UX
+        </h2>
 
-            <div class="about-cta">
-                <a
-                    class="box__home"
-                    href="/cv.pdf"
-                    download
-                    data-i18n-attr="download:hero.cta.downloadFile"
-                >
-                    <span data-i18n="hero.cta.download"></span>
-                </a>
-                <a class="box__home" href="#portfolio">
-                    <span data-i18n="hero.cta.projects"></span>
-                </a>
-            </div>
+        <p class="about__lead" data-i18n="about.lead">
+          Diseñador y desarrollador de soluciones web y escritorio.
+        </p>
+
+        <ul class="list-check">
+          {
+            points.map((p) => (
+              <li>
+                <Icon name="check" />
+                <span data-i18n={p.key}>{p.text}</span>
+              </li>
+            ))
+          }
+        </ul>
+
+        <div class="chip-row">
+          <span class="chip" data-i18n="about.pill_years">+5 años</span>
+          <span class="chip" data-i18n="about.pill_stack">Full-Stack</span>
         </div>
-
-        <div class="about-media">
-            <div class="about-portrait">
-                <img
-                    src="/images/meabout.svg"
-                    data-i18n-attr="alt:hero.portraitAlt"
-                    loading="lazy"
-                    decoding="async"
-                />
-                <div class="about-stats">
-                    <span class="stat" data-i18n="about.pill_years"></span>
-                    <span class="stat" data-i18n="about.pill_stack"></span>
-                    <span class="stat">Colombia</span>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+  </div>
 </section>

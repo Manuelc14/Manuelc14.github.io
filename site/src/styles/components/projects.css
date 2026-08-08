@@ -1,0 +1,99 @@
+/* Proyectos: tarjeta tipo app. Icono + qué resuelve + hechos + stack.
+   Sin captura de fondo: las capturas pesaban megas y no explicaban nada. */
+
+.projects__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(30rem, 100%), 1fr));
+  gap: var(--space-4);
+}
+
+.project {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  position: relative;
+}
+
+.project__head {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.project__name {
+  font-size: var(--fs-md);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--lh-tight);
+}
+
+.project__meta {
+  margin-top: 0.3rem;
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.project__link {
+  margin-left: auto;
+  width: 3.2rem;
+  height: 3.2rem;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-sm);
+  border: var(--border) solid var(--line);
+  color: var(--muted);
+  font-size: 1.5rem;
+  transition:
+    color var(--dur) var(--ease),
+    border-color var(--dur) var(--ease),
+    background var(--dur) var(--ease);
+}
+
+.project:hover .project__link {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-wash);
+}
+
+.project__desc {
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+  line-height: var(--lh-snug);
+}
+
+.project__facts {
+  display: grid;
+  gap: var(--space-2);
+  margin-top: auto;
+}
+
+.project__fact {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-xs);
+  color: var(--text-2);
+}
+
+.project__fact .icon {
+  font-size: 1.6rem;
+  color: var(--accent-soft);
+}
+
+/* Enlace que cubre la tarjeta entera: toda la tarjeta es pulsable,
+   pero el nombre accesible lo da un solo elemento. */
+.project__cover {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  z-index: 1;
+}
+
+.project__link {
+  position: relative;
+  z-index: 2;
+}

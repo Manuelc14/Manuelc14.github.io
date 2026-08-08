@@ -1,24 +1,48 @@
 ---
+import Icon from "./Icon.astro";
+
 const year = new Date().getFullYear();
-const yearParams = JSON.stringify({ year });
 ---
 
-<footer class="footer" role="contentinfo">
-    <div class="footer__inner container">
-        <p
-            class="footer__copy"
-            data-i18n="footer.copy"
-            data-i18n-params={yearParams}
-        >
-        </p>
+<footer class="footer">
+  <div class="container footer__inner">
+    <p class="footer__copy" data-i18n="footer.copy" data-i18n-params={JSON.stringify({ year })}>
+      © {year} Manuel Causil | Todos los derechos reservados
+    </p>
 
+    <ul class="footer__social">
+      <li>
         <a
-            class="footer__top"
-            href="#home"
-            data-i18n-attr="title:footer.to_top; aria-label:footer.to_top"
+          class="btn-icon"
+          href="https://www.linkedin.com/in/manuel-causil-a48454267/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="LinkedIn"
         >
-            <i class="bx bxs-up-arrow-square" aria-hidden="true"></i>
-            <span class="sr-only" data-i18n="footer.to_top"></span>
+          <Icon name="linkedin" />
         </a>
-    </div>
+      </li>
+      <li>
+        <a
+          class="btn-icon"
+          href="https://github.com/Manuelc14"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="GitHub"
+        >
+          <Icon name="github" />
+        </a>
+      </li>
+    </ul>
+  </div>
 </footer>
+
+<button
+  type="button"
+  class="btn-icon to-top"
+  data-to-top
+  aria-label="Volver arriba"
+  data-i18n-attr="aria-label:footer.to_top"
+>
+  <Icon name="arrow-up" />
+</button>

@@ -1,0 +1,127 @@
+/* Testimonios: carrusel con scroll-snap nativo. Sustituye a Swiper —
+   sin JS el usuario ya puede desplazarse; el JS solo añade los puntos. */
+
+/* Flexbox y no grid a propósito: `grid-auto-columns` dimensiona las pistas
+   según el contenido dentro del rango dado, así que las tarjetas salían de
+   anchos distintos —y con un mínimo de 0, colapsaban—. Con `flex: 0 0 <base>`
+   el ancho es el que decimos, sin depender del texto de cada testimonio. */
+.testimonials__viewport {
+  display: flex;
+  align-items: stretch;
+  gap: var(--space-4);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding-block: var(--space-2);
+  padding-inline: 0.2rem;
+  scrollbar-width: none;
+}
+
+.testimonials__viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.testimonial {
+  flex: 0 0 min(100%, 32rem);
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* Dos tarjetas a la vez en tablet, tres en escritorio. Se descuentan los
+   huecos: con N visibles hay N-1 huecos dentro del ancho del contenedor. */
+@media (min-width: 768px) {
+  .testimonial {
+    flex-basis: calc((100% - var(--space-4)) / 2);
+  }
+}
+
+@media (min-width: 1024px) {
+  .testimonial {
+    flex-basis: calc((100% - var(--space-4) * 2) / 3);
+  }
+}
+
+.testimonial__quote {
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+  line-height: var(--lh-normal);
+  flex: 1;
+}
+
+.testimonial__quote::before {
+  content: "";
+  display: block;
+  width: 2.8rem;
+  height: 0.3rem;
+  border-radius: var(--radius-pill);
+  background: var(--gold);
+  margin-bottom: var(--space-3);
+}
+
+.testimonial__author {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding-top: var(--space-4);
+  border-top: var(--border) solid var(--line);
+}
+
+.testimonial__avatar {
+  width: 4rem;
+  height: 4rem;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--accent-wash);
+  color: var(--accent-soft);
+  border: var(--border) solid color-mix(in srgb, var(--accent) 22%, transparent);
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+}
+
+.testimonial__name {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  line-height: 1.3;
+}
+
+.testimonial__role {
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+/* --------------------------- controles --------------------------- */
+.testimonials__controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+}
+
+.testimonials__dots {
+  display: flex;
+  gap: var(--space-2);
+  margin-right: auto;
+}
+
+.testimonials__dot {
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+  background: var(--line-strong);
+  transition:
+    background var(--dur) var(--ease),
+    width var(--dur) var(--ease);
+}
+
+.testimonials__dot.is-active {
+  width: 2.4rem;
+  border-radius: var(--radius-pill);
+  background: var(--accent);
+}

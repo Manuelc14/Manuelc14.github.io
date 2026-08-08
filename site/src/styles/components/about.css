@@ -1,0 +1,48 @@
+/* Sobre mí: retrato + argumento en dos columnas. */
+
+.about__grid {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: var(--space-8);
+  align-items: center;
+}
+
+.about__media img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  border: var(--border) solid var(--line);
+  background: var(--surface-2);
+  box-shadow: var(--elev);
+}
+
+.about__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  align-items: flex-start;
+}
+
+.about__title {
+  font-size: var(--fs-lg);
+  max-width: 20ch;
+}
+
+.about__lead {
+  font-size: var(--fs-mdl);
+  color: var(--text-2);
+  max-width: var(--measure);
+}
+
+@media (max-width: 768px) {
+  .about__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .about__media {
+    max-width: 26rem;
+  }
+}

@@ -1,42 +1,61 @@
 ---
+import Icon from "./Icon.astro";
+
 const experiences = [
-    {
-        year: "2022 - Presente",
-        role: "Software Developer - Innovamc",
-        description:
-            "CEO y desarrollador en Innovamc. Soluciones tecnológicas, marketing digital y optimización de procesos empresariales.",
-    },
-    {
-        year: "2024",
-        role: "Instructor - SUEJE",
-        description:
-            "Capacitaciones en seguridad vial a empresas y usuarios, en programa nacional del Ministerio de Transporte y ANSV.",
-    },
-    {
-        year: "2023",
-        role: "Docente de Robótica - Hispanic-English Country School",
-        description:
-            "Diseño de currículo STEAM y proyectos prácticos en robótica y programación para estudiantes de secundaria.",
-    },
+  {
+    year: "2022 — Presente",
+    role: "CEO y Desarrollador · InnovaMC",
+    description:
+      "Soluciones tecnológicas a medida, marketing digital y optimización de procesos empresariales para clientes de Colombia y Guatemala.",
+  },
+  {
+    year: "2024",
+    role: "Instructor · SUEJE",
+    description:
+      "Capacitaciones en seguridad vial a empresas y usuarios, dentro del programa nacional del Ministerio de Transporte y la ANSV.",
+  },
+  {
+    year: "2023",
+    role: "Docente de Robótica · Hispanic-English Country School",
+    description:
+      "Diseño de currículo STEAM y proyectos prácticos de robótica y programación para estudiantes de secundaria.",
+  },
 ];
 ---
 
-<section class="education" id="experience">
-    <h2 class="heading">Mi <span>Experiencia</span></h2>
-    <div class="education-row">
-        {
-            experiences.map((exp) => (
-                <div class="education-content">
-                    <div class="content">
-                        <div class="year">
-                            <i class="bx bxs-calendar" />
-                            {exp.year}
-                        </div>
-                        <h3>{exp.role}</h3>
-                        <p>{exp.description}</p>
-                    </div>
+<section id="experience" class="section">
+  <div class="container">
+    <div class="timeline-pair">
+      <div>
+        <div class="section__head">
+          <p class="section__kicker">Trayectoria</p>
+          <h2 class="section__title">Mi <span>Experiencia</span></h2>
+        </div>
+
+        <ol class="timeline">
+          {
+            experiences.map((exp, i) => (
+              <li class="timeline__item reveal" style={`--stagger:${i}`}>
+                <div class="timeline__rail">
+                  <span class="icon-badge icon-badge--sm">
+                    <Icon name="briefcase" />
+                  </span>
                 </div>
+                <div class="timeline__body">
+                  <p class="timeline__year">
+                    <Icon name="calendar" />
+                    {exp.year}
+                  </p>
+                  <h3 class="timeline__role">{exp.role}</h3>
+                  <p class="timeline__desc">{exp.description}</p>
+                </div>
+              </li>
             ))
-        }
+          }
+        </ol>
+      </div>
+
+      <slot />
     </div>
+  </div>
 </section>

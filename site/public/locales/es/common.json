@@ -1,278 +1,271 @@
 {
-    "header": {
-        "logo": "Portafolio",
-        "nav": {
-            "home": "Inicio",
-            "about": "Sobre mí",
-            "skills": "Habilidades",
-            "portfolio": "Proyectos",
-            "contact": "Contacto"
-        },
-        "theme": "Cambiar tema",
-        "lang": {
-            "button": "ES",
-            "aria": "Cambiar idioma",
-            "title_to_en": "Cambiar a inglés",
-            "title_to_es": "Cambiar a español"
-        }
+  "header": {
+    "logo": "Portafolio",
+    "nav": {
+      "home": "Inicio",
+      "about": "Sobre mí",
+      "skills": "Habilidades",
+      "portfolio": "Proyectos",
+      "experience": "Experiencia",
+      "education": "Formación",
+      "contact": "Contacto"
     },
-    "testimonials": {
-        "title": "Testimonios <span>Valiosos</span>",
-        "subtitle": "Lo que opinan mis clientes después de trabajar juntos",
-        "a11y": {
-            "carousel": "Carrusel de testimonios",
-            "pagination": "Paginación de testimonios",
-            "slide_of": "Testimonio {{index}} de {{total}}",
-            "rating": "Valoración {{rating}} de 5",
-            "prev": "Testimonio anterior",
-            "next": "Siguiente testimonio",
-            "bullet": "Ir al testimonio {{index}}"
-        },
-        "items": {
-            "aquacontrol": {
-                "company": "AquaControl",
-                "person": "Yury Amaya",
-                "role": "Administradora",
-                "text": "La plataforma nos permitió organizar pedidos y clientes en un solo lugar. La carga es rápida, el panel es claro y el soporte ha sido oportuno en cada ajuste."
-            },
-            "solon-soluciones": {
-                "company": "Solon Soluciones",
-                "person": "Carlos Ortiz",
-                "role": "CEO",
-                "text": "El sitio con Astro quedó veloz y ligero. Mejoró la visibilidad del portafolio y recibimos más contactos de obra. Excelente criterio técnico y de SEO."
-            },
-            "gcltracs": {
-                "company": "GCLTracs",
-                "person": "Germán Cruz",
-                "role": "Director",
-                "text": "Solo quería decir que estoy feliz con mi nuevo sitio web. Fueron rápidos en actuar y, como resultado, aumentaron las consultas y las ventas de mis servicios."
-            },
-            "nitt": {
-                "company": "Nitt",
-                "person": "Erick Velásquez",
-                "role": "Gerente",
-                "text": "Lanzamos una web clara y fácil de navegar. En poco tiempo empezamos a recibir más cotizaciones y ahora el mantenimiento es mucho más simple."
-            },
-            "iqhome": {
-                "company": "iQHome",
-                "person": "Edwin Hernández",
-                "role": "Director",
-                "text": "Tradujeron exactamente lo que necesitábamos: un sitio moderno para domótica, con enfoque en innovación y resultados. Comunicación fluida y entregas a tiempo."
-            },
-            "cea-dizcar": {
-                "company": "CEA Dizcar",
-                "person": "José Díaz Barrera",
-                "role": "Dueño",
-                "text": "La web explica mejor nuestros cursos y facilita la inscripción. Se nota el enfoque en SEO: más visitas y más llamadas desde el sitio."
-            },
-            "casalup-services": {
-                "company": "Casalup Services",
-                "person": "Carlos Gutierrez",
-                "role": "Gerente",
-                "text": "Quedó un sitio limpio y orientado a conversión. El formulario de contacto y el posicionamiento nos trajeron más eventos y cotizaciones."
-            },
-            "innova-energy": {
-                "company": "Innova-energy",
-                "person": "Óscar Iván Carrero",
-                "role": "Director",
-                "text": "El diseño a medida refleja mejor nuestros servicios de ingeniería. Mejoraron tiempos de carga y estamos recibiendo más consultas orgánicas."
-            }
-        }
-    },
-    "hero": {
-        "available": "Disponible para nuevos proyectos",
-        "hi": "Hola, soy",
-        "role": "Ingeniero de Sistemas",
-        "lead": "Diseño y desarrollo productos rápidos, accesibles y mantenibles.",
-        "stack": "Stack favorito: <strong>React</strong>, <strong>Vue</strong>, <strong>Django</strong>, <strong>Laravel</strong>.",
-        "cta": {
-            "aria": "Acciones principales",
-            "projects": "Ver proyectos",
-            "contact": "Contactar",
-            "download": "Descargar CV",
-            "downloadFile": "Manuel-Causil-CV"
-        },
-        "social": {
-            "aria": "Redes sociales"
-        },
-        "portraitAlt": "Foto de Manuel Causil",
-        "typed": [
-            "Desarrollador Full-Stack",
-            "React · Vue · Django · Laravel",
-            "Siempre aprendiendo 🚀"
-        ]
-    },
-    "about": {
-        "kicker": "Sobre mí",
-        "title": "Full-Stack Developer enfocado en producto, performance y UX",
-        "lead": "Diseñador y desarrollador de soluciones web y escritorio.",
-        "item_1": "Arquitecturas simples y mantenibles.",
-        "item_2": "Buenas prácticas: a11y, SEO técnico, performance.",
-        "item_3": "Entrega continua y documentación clara.",
-        "pill_years": "+5 años",
-        "pill_stack": "Full-Stack"
-    },
-    "skills": {
-        "title": "Mis <span>Habilidades</span>",
-        "tech": "Tecnologías",
-        "pro": "Profesionales",
-
-        "highlight_js": "JavaScript / TypeScript",
-        "highlight_py": "Python / Django",
-        "highlight_php": "PHP / Laravel",
-        "highlight_sql": "SQL y Optimización",
-        "gauge_aria": "Nivel {{percent}}%",
-
-        "tech_1": "JavaScript / TypeScript (Angular, Vue, React)",
-        "tech_2": "PHP (Laravel)",
-        "tech_3": "Python (Django, DRF)",
-        "tech_4": "HTML, CSS, Responsive",
-        "tech_5": "SQL (MySQL / PostgreSQL)",
-
-        "tech_tip_1": "JS/TS y ecosistema SPA",
-        "tech_tip_2": "Backend productivo",
-        "tech_tip_3": "APIs con DRF",
-        "tech_tip_4": "Semántica y responsive",
-        "tech_tip_5": "Consultas, índices, modelos",
-
-        "pro_1": "Diseño UI/UX",
-        "pro_2": "Desarrollo de Software",
-        "pro_3": "Testing",
-        "pro_4": "Comunicación y trabajo en equipo",
-        "pro_5": "Consultoría y digitalización",
-
-        "pro_tip_1": "Wireframes, prototipado, heurísticas",
-        "pro_tip_2": "Arquitectura y entrega",
-        "pro_tip_3": "Unitario / Integración / E2E",
-        "pro_tip_4": "Colaboración efectiva",
-        "pro_tip_5": "Descubrimiento y roadmap",
-
-        "db_title": "Bases de datos & Data",
-        "db_1": "Modelado relacional, normalización",
-        "db_2": "Índices, EXPLAIN, tuning de queries",
-        "db_3": "Migraciones y ORM (Eloquent, Django ORM)",
-        "db_4": "Backups, seeds y data fixtures",
-        "db_5": "Diseño de esquemas para reporting",
-
-        "methods_title": "Metodologías & Prácticas",
-        "methods_1": "Scrum / Kanban · GitFlow",
-        "methods_2": "Code Reviews y Pull Requests",
-        "methods_3": "CI/CD (GitHub Actions)",
-        "methods_4": "Patrones, SOLID, Clean Code",
-        "methods_5": "TDD / pruebas automatizadas",
-
-        "tools_title": "Herramientas & DevOps",
-        "tools_1": "Git, GitHub · Convenciones y branching",
-        "tools_2": "Docker · contenedores para dev/prod",
-        "tools_3": "Node.js · Vite · Astro",
-        "tools_4": "Nginx, Linux básico (deploy)",
-        "tools_5": "Monitoreo/logs básicos (debug)",
-
-        "logic_title": "Lógica & Resolución de Problemas",
-        "logic_1": "Descomposición y diseño incremental",
-        "logic_2": "Debugging sistemático",
-        "logic_3": "Optimización de performance",
-        "logic_4": "Diseño de APIs claras",
-        "logic_5": "Automatización de tareas repetitivas"
-    },
-    "portfolio": {
-        "title": "Últimos <span>Proyectos</span>",
-        "desc": "A continuación puede ver o visitar cualquiera de los proyectos realizados",
-        "view_project": "Ver proyecto",
-        "open_project": "Abrir {{title}}",
-        "demo": "Demo",
-        "code": "Código",
-        "demo_of": "Demo de {{title}}",
-        "code_of": "Repositorio de {{title}}"
-    },
-    "projects": {
-        "aquacontrol": {
-            "title": "AquaControl",
-            "description": "SPA de gestión de clientes y pedidos. Frontend Vue 3 + TS, backend Django REST. Empaquetada para Windows."
-        },
-        "casalup-services": {
-            "title": "Casalup Services",
-            "description": "Web corporativa para empresa de catering. Diseño limpio, enfoque en conversión y contacto."
-        },
-        "cea-dizcar": {
-            "title": "CEA Dizcar",
-            "description": "Web para centro de enseñanza automovilística, con info de cursos, requisitos e inscripción."
-        },
-        "gcltracs": {
-            "title": "GCLTracs",
-            "description": "Plataforma de rastreo satelital con gestión de clientes, control de pólizas y pagos, panel administrativo e integración con la app de monitoreo de vehículos."
-        },
-        "innova-energy": {
-            "title": "Innova Energy",
-            "description": "Diseño y desarrollo a medida de sitio web para empresa de servicios de ingeniería en Bogotá."
-        },
-        "innovamc": {
-            "title": "Innovamc",
-            "description": "Web corporativa para empresa de innovación y tecnología. Diseño limpio, carga rápida y buenas prácticas de accesibilidad."
-        },
-        "iqhome": {
-            "title": "IQHome",
-            "description": "Sitio web para empresa de domótica, con enfoque en innovación y portafolio de soluciones."
-        },
-        "nitt": {
-            "title": "Nitt",
-            "description": "Web corporativa para servicios de limpieza en Guatemala. Información de servicios y cotización."
-        },
-        "solon-soluciones": {
-            "title": "Solon Soluciones",
-            "description": "Sitio estático rápido con Astro para empresa del sector construcción. Contenido informativo y galería."
-        }
-    },
-    "contact": {
-        "title": "Contacta <span>Conmigo</span>",
-        "form": {
-            "name_label": "Nombre completo",
-            "name_ph": "Nombre",
-            "phone_label": "Celular",
-            "phone_ph": "313 409 6201",
-            "email_label": "Correo electrónico",
-            "email_ph": "example@gmail.com",
-            "mail_subject": "Nuevo mensaje desde el portafolio",
-            "autoresponse": "¡Hola! Gracias por escribirme. He recibido tu mensaje y te responderé pronto.",
-            "country_label": "País",
-            "country_ph": "Tu país",
-            "city_label": "Ciudad",
-            "city_ph": "Tu ciudad",
-            "subject_label": "Asunto",
-            "subject_ph": "Asunto",
-            "message_ph": "Tu mensaje (opcional)",
-            "submit": "Enviar",
-            "validation": {
-                "name_required": "Nombre es obligatorio.",
-                "name_letters": "Usa solo letras y espacios.",
-                "name_short": "Muy corto.",
-                "phone_required": "Teléfono es obligatorio.",
-                "phone_invalid": "Teléfono inválido (7-15 dígitos).",
-                "email_required": "Email es obligatorio.",
-                "email_invalid": "Email inválido.",
-                "country_required": "País es obligatorio.",
-                "country_letters": "Usa solo letras y espacios.",
-                "city_required": "Ciudad es obligatoria.",
-                "city_letters": "Usa solo letras y espacios.",
-                "subject_required": "Asunto es obligatorio.",
-                "subject_short": "Asunto muy corto.",
-                "message_max": "Máximo 1000 caracteres."
-            },
-            "toast": {
-                "review_fields": "⚠️ Revisa los campos marcados.",
-                "sent_ok": "✅ ¡Mensaje enviado correctamente!",
-                "send_error_generic": "No se pudo enviar. Inténtalo nuevamente.",
-                "send_error_network": "⚠️ Error de red. Revisa tu conexión."
-            },
-            "btn": {
-                "sending": "Enviando…",
-                "sent": "¡Enviado!",
-                "retry": "Reintentar"
-            }
-        }
-    },
-    "footer": {
-        "copy": "© {{year}} Manuel Causil | Todos los derechos reservados",
-        "to_top": "Volver arriba"
+    "theme": "Cambiar tema",
+    "lang": {
+      "button": "ES",
+      "aria": "Cambiar idioma",
+      "title_to_en": "Cambiar a inglés",
+      "title_to_es": "Cambiar a español"
     }
+  },
+  "testimonials": {
+    "title": "Testimonios <span>Valiosos</span>",
+    "subtitle": "Lo que opinan mis clientes después de trabajar juntos",
+    "a11y": {
+      "carousel": "Carrusel de testimonios",
+      "pagination": "Paginación de testimonios",
+      "slide_of": "Testimonio {{index}} de {{total}}",
+      "rating": "Valoración {{rating}} de 5",
+      "prev": "Testimonio anterior",
+      "next": "Siguiente testimonio",
+      "bullet": "Ir al testimonio {{index}}"
+    },
+    "items": {
+      "aquacontrol": {
+        "company": "AquaControl",
+        "person": "Yury Amaya",
+        "role": "Administradora",
+        "text": "La plataforma nos permitió organizar pedidos y clientes en un solo lugar. La carga es rápida, el panel es claro y el soporte ha sido oportuno en cada ajuste."
+      },
+      "solon-soluciones": {
+        "company": "Solon Soluciones",
+        "person": "Carlos Ortiz",
+        "role": "CEO",
+        "text": "El sitio con Astro quedó veloz y ligero. Mejoró la visibilidad del portafolio y recibimos más contactos de obra. Excelente criterio técnico y de SEO."
+      },
+      "gcltracs": {
+        "company": "GCLTracs",
+        "person": "Germán Cruz",
+        "role": "Director",
+        "text": "Solo quería decir que estoy feliz con mi nuevo sitio web. Fueron rápidos en actuar y, como resultado, aumentaron las consultas y las ventas de mis servicios."
+      },
+      "nitt": {
+        "company": "Nitt",
+        "person": "Erick Velásquez",
+        "role": "Gerente",
+        "text": "Lanzamos una web clara y fácil de navegar. En poco tiempo empezamos a recibir más cotizaciones y ahora el mantenimiento es mucho más simple."
+      },
+      "iqhome": {
+        "company": "iQHome",
+        "person": "Edwin Hernández",
+        "role": "Director",
+        "text": "Tradujeron exactamente lo que necesitábamos: un sitio moderno para domótica, con enfoque en innovación y resultados. Comunicación fluida y entregas a tiempo."
+      },
+      "cea-dizcar": {
+        "company": "CEA Dizcar",
+        "person": "José Díaz Barrera",
+        "role": "Dueño",
+        "text": "La web explica mejor nuestros cursos y facilita la inscripción. Se nota el enfoque en SEO: más visitas y más llamadas desde el sitio."
+      },
+      "casalup-services": {
+        "company": "Casalup Services",
+        "person": "Carlos Gutierrez",
+        "role": "Gerente",
+        "text": "Quedó un sitio limpio y orientado a conversión. El formulario de contacto y el posicionamiento nos trajeron más eventos y cotizaciones."
+      },
+      "innova-energy": {
+        "company": "Innova-energy",
+        "person": "Óscar Iván Carrero",
+        "role": "Director",
+        "text": "El diseño a medida refleja mejor nuestros servicios de ingeniería. Mejoraron tiempos de carga y estamos recibiendo más consultas orgánicas."
+      }
+    }
+  },
+  "hero": {
+    "available": "Disponible para nuevos proyectos",
+    "hi": "Hola, soy",
+    "role": "Ingeniero de Sistemas",
+    "lead": "Diseño y desarrollo productos rápidos, accesibles y mantenibles.",
+    "stack": "Stack favorito: <strong>React</strong>, <strong>Vue</strong>, <strong>Django</strong>, <strong>Laravel</strong>.",
+    "cta": {
+      "aria": "Acciones principales",
+      "projects": "Ver proyectos",
+      "contact": "Contactar",
+      "download": "Descargar CV",
+      "downloadFile": "Manuel-Causil-CV"
+    },
+    "social": {
+      "aria": "Redes sociales"
+    },
+    "portraitAlt": "Foto de Manuel Causil",
+    "typed": [
+      "Desarrollador Full-Stack",
+      "React · Vue · Django · Laravel",
+      "Siempre aprendiendo 🚀"
+    ]
+  },
+  "about": {
+    "kicker": "Sobre mí",
+    "title": "Full-Stack Developer enfocado en producto, performance y UX",
+    "lead": "Diseñador y desarrollador de soluciones web y escritorio.",
+    "item_1": "Arquitecturas simples y mantenibles.",
+    "item_2": "Buenas prácticas: a11y, SEO técnico, performance.",
+    "item_3": "Entrega continua y documentación clara.",
+    "pill_years": "+5 años",
+    "pill_stack": "Full-Stack"
+  },
+  "skills": {
+    "title": "Mis <span>Habilidades</span>",
+    "tech": "Tecnologías",
+    "pro": "Profesionales",
+    "highlight_js": "JavaScript / TypeScript",
+    "highlight_py": "Python / Django",
+    "highlight_php": "PHP / Laravel",
+    "highlight_sql": "SQL y Optimización",
+    "gauge_aria": "Nivel {{percent}}%",
+    "tech_1": "JavaScript / TypeScript (Angular, Vue, React)",
+    "tech_2": "PHP (Laravel)",
+    "tech_3": "Python (Django, DRF)",
+    "tech_4": "HTML, CSS, Responsive",
+    "tech_5": "SQL (MySQL / PostgreSQL)",
+    "tech_tip_1": "JS/TS y ecosistema SPA",
+    "tech_tip_2": "Backend productivo",
+    "tech_tip_3": "APIs con DRF",
+    "tech_tip_4": "Semántica y responsive",
+    "tech_tip_5": "Consultas, índices, modelos",
+    "pro_1": "Diseño UI/UX",
+    "pro_2": "Desarrollo de Software",
+    "pro_3": "Testing",
+    "pro_4": "Comunicación y trabajo en equipo",
+    "pro_5": "Consultoría y digitalización",
+    "pro_tip_1": "Wireframes, prototipado, heurísticas",
+    "pro_tip_2": "Arquitectura y entrega",
+    "pro_tip_3": "Unitario / Integración / E2E",
+    "pro_tip_4": "Colaboración efectiva",
+    "pro_tip_5": "Descubrimiento y roadmap",
+    "db_title": "Bases de datos & Data",
+    "db_1": "Modelado relacional, normalización",
+    "db_2": "Índices, EXPLAIN, tuning de queries",
+    "db_3": "Migraciones y ORM (Eloquent, Django ORM)",
+    "db_4": "Backups, seeds y data fixtures",
+    "db_5": "Diseño de esquemas para reporting",
+    "methods_title": "Metodologías & Prácticas",
+    "methods_1": "Scrum / Kanban · GitFlow",
+    "methods_2": "Code Reviews y Pull Requests",
+    "methods_3": "CI/CD (GitHub Actions)",
+    "methods_4": "Patrones, SOLID, Clean Code",
+    "methods_5": "TDD / pruebas automatizadas",
+    "tools_title": "Herramientas & DevOps",
+    "tools_1": "Git, GitHub · Convenciones y branching",
+    "tools_2": "Docker · contenedores para dev/prod",
+    "tools_3": "Node.js · Vite · Astro",
+    "tools_4": "Nginx, Linux básico (deploy)",
+    "tools_5": "Monitoreo/logs básicos (debug)",
+    "logic_title": "Lógica & Resolución de Problemas",
+    "logic_1": "Descomposición y diseño incremental",
+    "logic_2": "Debugging sistemático",
+    "logic_3": "Optimización de performance",
+    "logic_4": "Diseño de APIs claras",
+    "logic_5": "Automatización de tareas repetitivas"
+  },
+  "portfolio": {
+    "title": "Últimos <span>Proyectos</span>",
+    "desc": "A continuación puede ver o visitar cualquiera de los proyectos realizados",
+    "view_project": "Ver proyecto",
+    "open_project": "Abrir {{title}}",
+    "demo": "Demo",
+    "code": "Código",
+    "demo_of": "Demo de {{title}}",
+    "code_of": "Repositorio de {{title}}"
+  },
+  "projects": {
+    "aquacontrol": {
+      "title": "AquaControl",
+      "description": "SPA de gestión de clientes y pedidos. Frontend Vue 3 + TS, backend Django REST. Empaquetada para Windows."
+    },
+    "casalup-services": {
+      "title": "Casalup Services",
+      "description": "Web corporativa para empresa de catering. Diseño limpio, enfoque en conversión y contacto."
+    },
+    "cea-dizcar": {
+      "title": "CEA Dizcar",
+      "description": "Web para centro de enseñanza automovilística, con info de cursos, requisitos e inscripción."
+    },
+    "gcltracs": {
+      "title": "GCLTracs",
+      "description": "Plataforma de rastreo satelital con gestión de clientes, control de pólizas y pagos, panel administrativo e integración con la app de monitoreo de vehículos."
+    },
+    "innova-energy": {
+      "title": "Innova Energy",
+      "description": "Diseño y desarrollo a medida de sitio web para empresa de servicios de ingeniería en Bogotá."
+    },
+    "innovamc": {
+      "title": "Innovamc",
+      "description": "Web corporativa para empresa de innovación y tecnología. Diseño limpio, carga rápida y buenas prácticas de accesibilidad."
+    },
+    "iqhome": {
+      "title": "IQHome",
+      "description": "Sitio web para empresa de domótica, con enfoque en innovación y portafolio de soluciones."
+    },
+    "nitt": {
+      "title": "Nitt",
+      "description": "Web corporativa para servicios de limpieza en Guatemala. Información de servicios y cotización."
+    },
+    "solon-soluciones": {
+      "title": "Solon Soluciones",
+      "description": "Sitio estático rápido con Astro para empresa del sector construcción. Contenido informativo y galería."
+    }
+  },
+  "contact": {
+    "title": "Contacta <span>Conmigo</span>",
+    "form": {
+      "name_label": "Nombre completo",
+      "name_ph": "Nombre",
+      "phone_label": "Celular",
+      "phone_ph": "313 409 6201",
+      "email_label": "Correo electrónico",
+      "email_ph": "example@gmail.com",
+      "mail_subject": "Nuevo mensaje desde el portafolio",
+      "autoresponse": "¡Hola! Gracias por escribirme. He recibido tu mensaje y te responderé pronto.",
+      "country_label": "País",
+      "country_ph": "Tu país",
+      "city_label": "Ciudad",
+      "city_ph": "Tu ciudad",
+      "subject_label": "Asunto",
+      "subject_ph": "Asunto",
+      "message_ph": "Tu mensaje (opcional)",
+      "submit": "Enviar",
+      "validation": {
+        "name_required": "Nombre es obligatorio.",
+        "name_letters": "Usa solo letras y espacios.",
+        "name_short": "Muy corto.",
+        "phone_required": "Teléfono es obligatorio.",
+        "phone_invalid": "Teléfono inválido (7-15 dígitos).",
+        "email_required": "Email es obligatorio.",
+        "email_invalid": "Email inválido.",
+        "country_required": "País es obligatorio.",
+        "country_letters": "Usa solo letras y espacios.",
+        "city_required": "Ciudad es obligatoria.",
+        "city_letters": "Usa solo letras y espacios.",
+        "subject_required": "Asunto es obligatorio.",
+        "subject_short": "Asunto muy corto.",
+        "message_max": "Máximo 1000 caracteres."
+      },
+      "toast": {
+        "review_fields": "⚠️ Revisa los campos marcados.",
+        "sent_ok": "✅ ¡Mensaje enviado correctamente!",
+        "send_error_generic": "No se pudo enviar. Inténtalo nuevamente.",
+        "send_error_network": "⚠️ Error de red. Revisa tu conexión."
+      },
+      "btn": {
+        "sending": "Enviando…",
+        "sent": "¡Enviado!",
+        "retry": "Reintentar"
+      }
+    }
+  },
+  "footer": {
+    "copy": "© {{year}} Manuel Causil | Todos los derechos reservados",
+    "to_top": "Volver arriba"
+  }
 }

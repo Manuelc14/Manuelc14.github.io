@@ -1,211 +1,154 @@
-<section id="contact" class="contact">
-    <h2 class="heading" data-i18n="contact.title" data-i18n-html></h2>
+---
+import Icon from "./Icon.astro";
 
-    <div class="container__form">
-        <form
-            id="contact-form"
-            action="https://formsubmit.co/b1db0bfe8125cc8c4b0d3be46bb2203a"
-            method="POST"
-            class="form form--pro"
-            novalidate
-            data-i18n-attr="aria-label:contact.title"
-        >
-        
-            <input
-                type="text"
-                name="_honey"
-                tabindex="-1"
-                autocomplete="off"
-                hidden
-            />
-            
-            <input
-                type="hidden"
-                name="_subject"
-                data-i18n-attr="value:contact.form.mail_subject"
-            />
-            
-            <input type="hidden" name="_template" value="table" />
-            <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_next" id="form-next" value="" />
+const fields: {
+  id: string;
+  icon: string;
+  label: string;
+  ph: string;
+  type: "text" | "tel" | "email";
+  ac: string;
+}[] = [
+  { id: "name", icon: "user", label: "Nombre completo", ph: "Nombre", type: "text", ac: "name" },
+  { id: "phone", icon: "phone", label: "Celular", ph: "313 409 6201", type: "tel", ac: "tel" },
+  {
+    id: "email",
+    icon: "mail",
+    label: "Correo electrónico",
+    ph: "example@gmail.com",
+    type: "email",
+    ac: "email",
+  },
+  { id: "country", icon: "globe", label: "País", ph: "Tu país", type: "text", ac: "country-name" },
+  {
+    id: "city",
+    icon: "pin",
+    label: "Ciudad",
+    ph: "Tu ciudad",
+    type: "text",
+    ac: "address-level2",
+  },
+  { id: "subject", icon: "tag", label: "Asunto", ph: "Asunto", type: "text", ac: "off" },
+];
+---
 
-            
-            <input
-                type="hidden"
-                name="_autoresponse"
-                data-i18n-attr="value:contact.form.autoresponse"
-            />
-
-            <div class="form-grid">
-                
-                <div class="input-box">
-                    <label for="name">
-                        <span class="label-ico" aria-hidden="true">👤</span>
-                        <span data-i18n="contact.form.name_label"></span>
-                    </label>
-                    <input
-                        id="name"
-                        name="name"
-                        type="text"
-                        data-i18n-attr="placeholder:contact.form.name_ph"
-                        autocomplete="name"
-                        required
-                        inputmode="text"
-                        aria-describedby="err-name"
-                        pattern="^[A-Za-zÀ-ÿ\u00f1\u00d1]+(?:[ '\-][A-Za-zÀ-ÿ\u00f1\u00d1]+)*$"
-                    />
-                    <p
-                        class="field-error"
-                        id="err-name"
-                        role="alert"
-                        aria-live="polite"
-                    >
-                    </p>
-                </div>
-                
-                <div class="input-box">
-                    <label for="phone">
-                        <span class="label-ico" aria-hidden="true">📞</span>
-                        <span data-i18n="contact.form.phone_label"></span>
-                    </label>
-                    <input
-                        id="phone"
-                        name="phone"
-                        type="tel"
-                        inputmode="tel"
-                        data-i18n-attr="placeholder:contact.form.phone_ph"
-                        autocomplete="tel"
-                        required
-                        aria-describedby="err-phone"
-                        pattern="^[+()\-.\s0-9]{7,20}$"
-                    />
-                    <p
-                        class="field-error"
-                        id="err-phone"
-                        role="alert"
-                        aria-live="polite"
-                    >
-                    </p>
-                </div>
-                
-                <div class="input-box">
-                    <label for="email">
-                        <span class="label-ico" aria-hidden="true">✉️</span>
-                        <span data-i18n="contact.form.email_label"></span>
-                    </label>
-                    <input
-                        id="email"
-                        name="email"
-                        type="email"
-                        data-i18n-attr="placeholder:contact.form.email_ph"
-                        autocomplete="email"
-                        required
-                        aria-describedby="err-email"
-                    />
-                    <p
-                        class="field-error"
-                        id="err-email"
-                        role="alert"
-                        aria-live="polite"
-                    >
-                    </p>
-                </div>
-                
-                <div class="input-box">
-                    <label for="country">
-                        <span class="label-ico" aria-hidden="true">📍</span>
-                        <span data-i18n="contact.form.country_label"></span>
-                    </label>
-                    <input
-                        id="country"
-                        name="country"
-                        type="text"
-                        data-i18n-attr="placeholder:contact.form.country_ph"
-                        autocomplete="country-name"
-                        required
-                        aria-describedby="err-country"
-                        pattern="^[A-Za-zÀ-ÿ\u00f1\u00d1]+(?:[ .,'-][A-Za-zÀ-ÿ\u00f1\u00d1]+)*$"
-                    />
-                    <p
-                        class="field-error"
-                        id="err-country"
-                        role="alert"
-                        aria-live="polite"
-                    >
-                    </p>
-                </div>
-                
-                <div class="input-box">
-                    <label for="city">
-                        <span class="label-ico" aria-hidden="true">📍</span>
-                        <span data-i18n="contact.form.city_label"></span>
-                    </label>
-                    <input
-                        id="city"
-                        name="city"
-                        type="text"
-                        data-i18n-attr="placeholder:contact.form.city_ph"
-                        autocomplete="address-level2"
-                        required
-                        aria-describedby="err-city"
-                        pattern="^[A-Za-zÀ-ÿ\u00f1\u00d1]+(?:[ .,'-][A-Za-zÀ-ÿ\u00f1\u00d1]+)*$"
-                    />
-                    <p
-                        class="field-error"
-                        id="err-city"
-                        role="alert"
-                        aria-live="polite"
-                    >
-                    </p>
-                </div>
-                
-                <div class="input-box">
-                    <label for="subject">
-                        <span class="label-ico" aria-hidden="true">✉️</span>
-                        <span data-i18n="contact.form.subject_label"></span>
-                    </label>
-                    <input
-                        id="subject"
-                        name="subject"
-                        type="text"
-                        data-i18n-attr="placeholder:contact.form.subject_ph"
-                        required
-                        aria-describedby="err-subject"
-                        minlength="3"
-                    />
-                    <p
-                        class="field-error"
-                        id="err-subject"
-                        role="alert"
-                        aria-live="polite"
-                    >
-                    </p>
-                </div>
-                
-                <div class="input-area">
-                    <textarea
-                        id="message"
-                        name="message"
-                        rows="5"
-                        data-i18n-attr="placeholder:contact.form.message_ph"
-                        aria-describedby="err-message"
-                        maxlength="1000"></textarea>
-                    <p
-                        class="field-error"
-                        id="err-message"
-                        role="alert"
-                        aria-live="polite"
-                    >
-                    </p>
-                </div>
-            </div>
-
-            <div id="form-status" aria-live="polite" style="min-height:24px;">
-            </div>
-
-            <button type="submit" class="btn-submit">
-                <span data-i18n="contact.form.submit"></span>
-            </button>
-        </form>
+<section id="contact" class="section">
+  <div class="container">
+    <div class="section__head section__head--center">
+      <p class="section__kicker">Contacto</p>
+      <h2 class="section__title" data-i18n="contact.title" data-i18n-html>
+        Contacta <span>Conmigo</span>
+      </h2>
     </div>
+
+    <div class="contact__grid">
+      <aside class="contact__aside reveal">
+        <a class="contact__method" href="mailto:ignas.manuel@gmail.com">
+          <span class="icon-badge"><Icon name="mail" /></span>
+          <div>
+            <strong>ignas.manuel@gmail.com</strong>
+            <span>Correo</span>
+          </div>
+        </a>
+        <a class="contact__method" href="tel:+573134096201">
+          <span class="icon-badge"><Icon name="phone" /></span>
+          <div>
+            <strong>+57 313 409 6201</strong>
+            <span>Teléfono</span>
+          </div>
+        </a>
+        <a
+          class="contact__method"
+          href="https://www.linkedin.com/in/manuel-causil-a48454267/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="icon-badge"><Icon name="linkedin" /></span>
+          <div>
+            <strong>Manuel Causil</strong>
+            <span>LinkedIn</span>
+          </div>
+        </a>
+        <div class="contact__method">
+          <span class="icon-badge icon-badge--gold"><Icon name="pin" /></span>
+          <div>
+            <strong>Yopal, Casanare · Colombia</strong>
+            <span>Ubicación</span>
+          </div>
+        </div>
+      </aside>
+
+      <form
+        id="contact-form"
+        class="form reveal"
+        style="--stagger:1"
+        action="https://formsubmit.co/b1db0bfe8125cc8c4b0d3be46bb2203a"
+        method="POST"
+        novalidate
+      >
+        <input type="text" name="_honey" tabindex="-1" autocomplete="off" hidden />
+        <input
+          type="hidden"
+          name="_subject"
+          value="Nuevo mensaje desde el portafolio"
+          data-i18n-attr="value:contact.form.mail_subject"
+        />
+        <input type="hidden" name="_template" value="table" />
+        <input
+          type="hidden"
+          name="_autoresponse"
+          value="¡Hola! Gracias por escribirme. He recibido tu mensaje y te responderé pronto."
+          data-i18n-attr="value:contact.form.autoresponse"
+        />
+
+        <div class="form__grid">
+          {
+            fields.map((f) => (
+              <div class="field">
+                <label for={f.id}>
+                  <Icon name={f.icon} />
+                  <span data-i18n={`contact.form.${f.id}_label`}>{f.label}</span>
+                </label>
+                <input
+                  id={f.id}
+                  name={f.id}
+                  type={f.type}
+                  placeholder={f.ph}
+                  autocomplete={f.ac}
+                  required
+                  aria-describedby={`err-${f.id}`}
+                  data-i18n-attr={`placeholder:contact.form.${f.id}_ph`}
+                />
+                <p class="field__error" id={`err-${f.id}`} role="alert" aria-live="polite" />
+              </div>
+            ))
+          }
+
+          <div class="field field--full">
+            <label for="message">
+              <Icon name="message" />
+              <span>Mensaje</span>
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              rows="5"
+              maxlength="1000"
+              placeholder="Tu mensaje (opcional)"
+              aria-describedby="err-message"
+              data-i18n-attr="placeholder:contact.form.message_ph"></textarea>
+            <p class="field__error" id="err-message" role="alert" aria-live="polite"></p>
+          </div>
+        </div>
+
+        <div class="form__foot">
+          <button type="submit" class="btn btn--primary">
+            <Icon name="send" />
+            <span data-i18n="contact.form.submit">Enviar</span>
+          </button>
+          <p class="form__status" id="form-status" aria-live="polite"></p>
+        </div>
+      </form>
+    </div>
+  </div>
 </section>

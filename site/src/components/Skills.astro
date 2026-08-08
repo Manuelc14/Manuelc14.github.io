@@ -1,153 +1,149 @@
-<section id="skills" class="skills">
-    <div class="container">
-        <h2 class="heading" data-i18n="skills.title" data-i18n-html></h2>
+---
+import Icon from "./Icon.astro";
 
+const meters = [
+  { key: "skills.highlight_js", label: "JavaScript / TypeScript", p: 85 },
+  { key: "skills.highlight_py", label: "Python / Django", p: 80 },
+  { key: "skills.highlight_php", label: "PHP / Laravel", p: 78 },
+  { key: "skills.highlight_sql", label: "SQL y Optimización", p: 82 },
+];
 
-        <!-- Destacados con medidor -->
-        <ul class="skills-highlight">
-            <li style="--p:85">
-                <span class="label" data-i18n="skills.highlight_js"></span>
-                <span
-                    class="gauge"
-                    data-i18n-attr="aria-label:skills.gauge_aria"
-                    data-i18n-params='{"percent":85}'></span>
-            </li>
-            <li style="--p:80">
-                <span class="label" data-i18n="skills.highlight_py"></span>
-                <span
-                    class="gauge"
-                    data-i18n-attr="aria-label:skills.gauge_aria"
-                    data-i18n-params='{"percent":80}'></span>
-            </li>
-            <li style="--p:78">
-                <span class="label" data-i18n="skills.highlight_php"></span>
-                <span
-                    class="gauge"
-                    data-i18n-attr="aria-label:skills.gauge_aria"
-                    data-i18n-params='{"percent":78}'></span>
-            </li>
-            <li style="--p:82">
-                <span class="label" data-i18n="skills.highlight_sql"></span>
-                <span
-                    class="gauge"
-                    data-i18n-attr="aria-label:skills.gauge_aria"
-                    data-i18n-params='{"percent":82}'></span>
-            </li>
-        </ul>
+const groups = [
+  {
+    icon: "code",
+    titleKey: "skills.tech",
+    title: "Tecnologías",
+    prefix: "skills.tech_",
+    items: [
+      "JavaScript / TypeScript (Angular, Vue, React)",
+      "PHP (Laravel)",
+      "Python (Django, DRF)",
+      "HTML, CSS, Responsive",
+      "SQL (MySQL / PostgreSQL)",
+    ],
+  },
+  {
+    icon: "users",
+    titleKey: "skills.pro",
+    title: "Profesionales",
+    prefix: "skills.pro_",
+    items: [
+      "Diseño UI/UX",
+      "Desarrollo de Software",
+      "Testing",
+      "Comunicación y trabajo en equipo",
+      "Consultoría y digitalización",
+    ],
+  },
+  {
+    icon: "database",
+    titleKey: "skills.db_title",
+    title: "Bases de datos & Data",
+    prefix: "skills.db_",
+    items: [
+      "Modelado relacional, normalización",
+      "Índices, EXPLAIN, tuning de queries",
+      "Migraciones y ORM (Eloquent, Django ORM)",
+      "Backups, seeds y data fixtures",
+      "Diseño de esquemas para reporting",
+    ],
+  },
+  {
+    icon: "workflow",
+    titleKey: "skills.methods_title",
+    title: "Metodologías & Prácticas",
+    prefix: "skills.methods_",
+    items: [
+      "Scrum / Kanban · GitFlow",
+      "Code Reviews y Pull Requests",
+      "CI/CD (GitHub Actions)",
+      "Patrones, SOLID, Clean Code",
+      "TDD / pruebas automatizadas",
+    ],
+  },
+  {
+    icon: "tools",
+    titleKey: "skills.tools_title",
+    title: "Herramientas & DevOps",
+    prefix: "skills.tools_",
+    items: [
+      "Git, GitHub · Convenciones y branching",
+      "Docker · contenedores para dev/prod",
+      "Node.js · Vite · Astro",
+      "Nginx, Linux básico (deploy)",
+      "Monitoreo/logs básicos (debug)",
+    ],
+  },
+  {
+    icon: "brain",
+    titleKey: "skills.logic_title",
+    title: "Lógica & Resolución de Problemas",
+    prefix: "skills.logic_",
+    items: [
+      "Descomposición y diseño incremental",
+      "Debugging sistemático",
+      "Optimización de performance",
+      "Diseño de APIs claras",
+      "Automatización de tareas repetitivas",
+    ],
+  },
+];
+---
 
-        <!-- Fila 1 -->
-        <div class="skills-row">
-            <div class="skills-column">
-                <h3 class="title" data-i18n="skills.tech"></h3>
-                <ul class="skills-box">
-                    <li
-                        data-i18n="skills.tech_1"
-                        data-i18n-attr="title:skills.tech_tip_1"
-                    >
-                    </li>
-                    <li
-                        data-i18n="skills.tech_2"
-                        data-i18n-attr="title:skills.tech_tip_2"
-                    >
-                    </li>
-                    <li
-                        data-i18n="skills.tech_3"
-                        data-i18n-attr="title:skills.tech_tip_3"
-                    >
-                    </li>
-                    <li
-                        data-i18n="skills.tech_4"
-                        data-i18n-attr="title:skills.tech_tip_4"
-                    >
-                    </li>
-                    <li
-                        data-i18n="skills.tech_5"
-                        data-i18n-attr="title:skills.tech_tip_5"
-                    >
-                    </li>
-                </ul>
-            </div>
-
-            <div class="skills-column">
-                <h3 class="title" data-i18n="skills.pro"></h3>
-                <ul class="skills-box">
-                    <li
-                        data-i18n="skills.pro_1"
-                        data-i18n-attr="title:skills.pro_tip_1"
-                    >
-                    </li>
-                    <li
-                        data-i18n="skills.pro_2"
-                        data-i18n-attr="title:skills.pro_tip_2"
-                    >
-                    </li>
-                    <li
-                        data-i18n="skills.pro_3"
-                        data-i18n-attr="title:skills.pro_tip_3"
-                    >
-                    </li>
-                    <li
-                        data-i18n="skills.pro_4"
-                        data-i18n-attr="title:skills.pro_tip_4"
-                    >
-                    </li>
-                    <li
-                        data-i18n="skills.pro_5"
-                        data-i18n-attr="title:skills.pro_tip_5"
-                    >
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Fila 2 -->
-        <div class="skills-row">
-            <div class="skills-column">
-                <h3 class="title" data-i18n="skills.db_title"></h3>
-                <ul class="skills-box">
-                    <li data-i18n="skills.db_1"></li>
-                    <li data-i18n="skills.db_2"></li>
-                    <li data-i18n="skills.db_3"></li>
-                    <li data-i18n="skills.db_4"></li>
-                    <li data-i18n="skills.db_5"></li>
-                </ul>
-            </div>
-
-            <div class="skills-column">
-                <h3 class="title" data-i18n="skills.methods_title"></h3>
-                <ul class="skills-box">
-                    <li data-i18n="skills.methods_1"></li>
-                    <li data-i18n="skills.methods_2"></li>
-                    <li data-i18n="skills.methods_3"></li>
-                    <li data-i18n="skills.methods_4"></li>
-                    <li data-i18n="skills.methods_5"></li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Fila 3 -->
-        <div class="skills-row">
-            <div class="skills-column">
-                <h3 class="title" data-i18n="skills.tools_title"></h3>
-                <ul class="skills-box">
-                    <li data-i18n="skills.tools_1"></li>
-                    <li data-i18n="skills.tools_2"></li>
-                    <li data-i18n="skills.tools_3"></li>
-                    <li data-i18n="skills.tools_4"></li>
-                    <li data-i18n="skills.tools_5"></li>
-                </ul>
-            </div>
-
-            <div class="skills-column">
-                <h3 class="title" data-i18n="skills.logic_title"></h3>
-                <ul class="skills-box">
-                    <li data-i18n="skills.logic_1"></li>
-                    <li data-i18n="skills.logic_2"></li>
-                    <li data-i18n="skills.logic_3"></li>
-                    <li data-i18n="skills.logic_4"></li>
-                    <li data-i18n="skills.logic_5"></li>
-                </ul>
-            </div>
-        </div>
+<section id="skills" class="section">
+  <div class="container">
+    <div class="section__head section__head--center">
+      <p class="section__kicker">Stack</p>
+      <h2 class="section__title" data-i18n="skills.title" data-i18n-html>
+        Mis <span>Habilidades</span>
+      </h2>
     </div>
+
+    <div class="skills__meters reveal">
+      {
+        meters.map((m) => (
+          <div class="meter">
+            <div class="meter__head">
+              <span class="meter__label" data-i18n={m.key}>
+                {m.label}
+              </span>
+              <span class="meter__value">{m.p}%</span>
+            </div>
+            <div
+              class="meter__track"
+              role="progressbar"
+              aria-valuenow={m.p}
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-label={m.label}
+            >
+              <div class="meter__fill" style={`--p:${m.p}`} />
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="skills__grid">
+      {
+        groups.map((g, gi) => (
+          <article class="card card--hover skill-card reveal" style={`--stagger:${gi}`}>
+            <div class="skill-card__head">
+              <span class="icon-badge">
+                <Icon name={g.icon} />
+              </span>
+              <h3 class="skill-card__title" data-i18n={g.titleKey}>
+                {g.title}
+              </h3>
+            </div>
+            <ul class="skill-card__list">
+              {g.items.map((it, i) => (
+                <li data-i18n={`${g.prefix}${i + 1}`}>{it}</li>
+              ))}
+            </ul>
+          </article>
+        ))
+      }
+    </div>
+  </div>
 </section>

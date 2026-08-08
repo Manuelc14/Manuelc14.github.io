@@ -1,0 +1,272 @@
+/* Primitivas compartidas: botones, chips, tarjetas, insignias de icono,
+   medidores. Todo lo que aparece en más de una sección vive aquí. */
+
+/* ============================ ICONOS ============================ */
+.icon {
+  width: 1em;
+  height: 1em;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Cuadro con icono: el elemento que más "app" hace ver al sitio. */
+.icon-badge {
+  --size: 4.4rem;
+  width: var(--size);
+  height: var(--size);
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius);
+  background: var(--accent-wash);
+  color: var(--accent-soft);
+  border: var(--border) solid color-mix(in srgb, var(--accent) 22%, transparent);
+  font-size: 2rem;
+}
+
+.icon-badge--sm {
+  --size: 3.4rem;
+  border-radius: var(--radius-sm);
+  font-size: 1.6rem;
+}
+
+.icon-badge--gold {
+  background: var(--gold-wash);
+  color: var(--gold);
+  border-color: color-mix(in srgb, var(--gold) 30%, transparent);
+}
+
+/* ============================ BOTONES ============================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 1.2rem 1.9rem;
+  border-radius: var(--radius-sm);
+  border: var(--border) solid transparent;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background var(--dur) var(--ease),
+    border-color var(--dur) var(--ease),
+    color var(--dur) var(--ease),
+    transform var(--dur-fast) var(--ease);
+}
+
+.btn .icon {
+  font-size: 1.7rem;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn--primary {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.btn--primary:hover {
+  background: var(--accent-hover);
+}
+
+/* El dorado es el único acento cálido: se reserva para UNA acción por
+   pantalla. Aquí, descargar el CV. */
+.btn--gold {
+  background: var(--gold);
+  color: var(--gold-ink);
+}
+
+.btn--gold:hover {
+  background: var(--gold-hover);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--text);
+  border-color: var(--line-strong);
+}
+
+.btn--ghost:hover {
+  background: var(--surface-2);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.btn--block {
+  width: 100%;
+}
+
+/* Botón cuadrado solo-icono (tema, idioma, flechas del carrusel). */
+.btn-icon {
+  width: 4rem;
+  height: 4rem;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-sm);
+  border: var(--border) solid var(--line);
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 1.9rem;
+  transition:
+    color var(--dur) var(--ease),
+    border-color var(--dur) var(--ease),
+    background var(--dur) var(--ease);
+}
+
+.btn-icon:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-wash);
+}
+
+/* ============================ CHIPS ============================ */
+/* Badge de stack. Mono + mayúsculas: es lo que da lectura técnica. */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  letter-spacing: 0.06em;
+  padding: 0.5rem 0.9rem;
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  border: var(--border) solid var(--line);
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+/* Píldora de estado con punto latiendo. */
+.pill-status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  border: var(--border) solid var(--line);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  color: var(--text-2);
+  box-shadow: var(--elev-sm);
+}
+
+.pill-status::before {
+  content: "";
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+  background: #12a150;
+  box-shadow: 0 0 0 0 color-mix(in srgb, #12a150 60%, transparent);
+  animation: pulse-dot 2.4s var(--ease) infinite;
+}
+
+@keyframes pulse-dot {
+  50% {
+    box-shadow: 0 0 0 0.6rem transparent;
+  }
+}
+
+/* ============================ TARJETAS ============================ */
+.card {
+  background: var(--card);
+  border: var(--border) solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  box-shadow: var(--elev-sm);
+  transition:
+    border-color var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease),
+    transform var(--dur) var(--ease);
+}
+
+.card--hover:hover {
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--line));
+  box-shadow: var(--elev-lg);
+  transform: translateY(-2px);
+}
+
+/* ============================ MEDIDOR ============================ */
+.meter {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.meter__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.meter__label {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--text);
+}
+
+.meter__value {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+}
+
+.meter__track {
+  height: 0.6rem;
+  border-radius: var(--radius-pill);
+  background: var(--surface-2);
+  border: var(--border) solid var(--line);
+  overflow: hidden;
+}
+
+.meter__fill {
+  height: 100%;
+  width: calc(var(--p, 0) * 1%);
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    var(--accent) 0%,
+    color-mix(in srgb, var(--accent) 65%, var(--gold)) 100%
+  );
+}
+
+/* ============================ LISTA CON ICONO ============================ */
+.list-check {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.list-check li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+  line-height: var(--lh-snug);
+}
+
+.list-check .icon {
+  font-size: 1.8rem;
+  color: var(--accent-soft);
+  margin-top: 0.1rem;
+}

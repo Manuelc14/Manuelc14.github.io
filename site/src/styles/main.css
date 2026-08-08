@@ -1,0 +1,30 @@
+/* =========================================================================
+   PUNTO DE ENTRADA ÚNICO DE ESTILOS
+   =========================================================================
+   El orden de las capas decide quién gana, no la especificidad del selector.
+   Por eso un componente nunca necesita `!important` para vencer a `base`.
+
+   Los tokens van FUERA de capa a propósito: solo definen variables, y así
+   están disponibles para todas las capas sin competir con ninguna.
+   ========================================================================= */
+
+@layer reset, base, layout, components, utilities;
+
+@import "./tokens.css";
+
+@import "./reset.css" layer(reset);
+@import "./base.css" layer(base);
+@import "./layout.css" layer(layout);
+
+@import "./components/ui.css" layer(components);
+@import "./components/header.css" layer(components);
+@import "./components/hero.css" layer(components);
+@import "./components/about.css" layer(components);
+@import "./components/skills.css" layer(components);
+@import "./components/projects.css" layer(components);
+@import "./components/timeline.css" layer(components);
+@import "./components/testimonials.css" layer(components);
+@import "./components/contact.css" layer(components);
+@import "./components/footer.css" layer(components);
+
+@import "./utilities.css" layer(utilities);

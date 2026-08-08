@@ -1,0 +1,212 @@
+/* Cabecera fija translúcida + cajón de navegación en móvil. */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: blur(12px) saturate(1.4);
+  border-bottom: var(--border) solid transparent;
+  transition:
+    border-color var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease);
+}
+
+.header.is-stuck {
+  border-bottom-color: var(--line);
+  box-shadow: var(--elev-sm);
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  height: 7rem;
+}
+
+/* --------------------------- marca --------------------------- */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tracking-tight);
+  color: var(--text);
+  font-size: var(--fs-sm);
+}
+
+.brand__mark {
+  width: 3.4rem;
+  height: 3.4rem;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-sm);
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-size: 1.8rem;
+}
+
+.brand__text small {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  font-weight: var(--fw-normal);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* --------------------------- navegación --------------------------- */
+.nav {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.nav__link {
+  padding: 0.8rem 1.3rem;
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--muted);
+  transition:
+    color var(--dur) var(--ease),
+    background var(--dur) var(--ease);
+}
+
+.nav__link:hover {
+  color: var(--text);
+  background: var(--surface-2);
+}
+
+.nav__link.is-active {
+  color: var(--accent);
+  background: var(--accent-wash);
+}
+
+/* --------------------------- controles --------------------------- */
+.header__tools {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-left: var(--space-3);
+}
+
+.lang-btn {
+  width: auto;
+  padding-inline: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.08em;
+  font-weight: var(--fw-semibold);
+}
+
+/* El icono visible depende del tema: uno se oculta siempre. */
+.theme-btn .icon-moon {
+  display: none;
+}
+.dark-mode .theme-btn .icon-sun {
+  display: none;
+}
+.dark-mode .theme-btn .icon-moon {
+  display: block;
+}
+
+.nav-toggle {
+  display: none;
+}
+
+/* --------------------------- móvil --------------------------- */
+@media (max-width: 1024px) {
+  .nav-toggle {
+    display: grid;
+    margin-left: auto;
+    order: 3;
+  }
+
+  .header__tools {
+    margin-left: auto;
+    order: 2;
+  }
+
+  .nav {
+    position: fixed;
+    inset: 0 0 0 auto;
+    width: min(32rem, 84vw);
+    margin: 0;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: var(--space-2);
+    padding: 9rem var(--space-5) var(--space-5);
+    background: var(--surface);
+    border-left: var(--border) solid var(--line);
+    box-shadow: var(--elev-lg);
+    transform: translateX(100%);
+    visibility: hidden;
+    transition:
+      transform var(--dur) var(--ease),
+      visibility var(--dur) var(--ease);
+  }
+
+  .nav.is-open {
+    transform: translateX(0);
+    visibility: visible;
+  }
+
+  .nav__link {
+    padding: var(--space-4);
+    font-size: var(--fs-md);
+    border: var(--border) solid transparent;
+  }
+
+  .nav__link.is-active {
+    border-color: color-mix(in srgb, var(--accent) 30%, transparent);
+  }
+
+  .nav__backdrop {
+    position: fixed;
+    inset: 0;
+    background: var(--scrim);
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity var(--dur) var(--ease),
+      visibility var(--dur) var(--ease);
+    z-index: 99;
+  }
+
+  .nav__backdrop.is-open {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+/* En 320px la cabecera no cabe: marca + tres botones suman más que el ancho
+   útil (288px). Se recorta la marca y se estrechan los controles. */
+@media (max-width: 480px) {
+  .header__inner {
+    height: 6.2rem;
+    gap: var(--space-2);
+  }
+
+  .brand__text strong {
+    font-size: var(--fs-xs);
+  }
+
+  .brand__text small {
+    display: none;
+  }
+
+  .header__tools {
+    margin-left: auto;
+    gap: var(--space-1);
+  }
+
+  .header__tools .btn-icon {
+    width: 3.6rem;
+    height: 3.6rem;
+    font-size: 1.7rem;
+  }
+}

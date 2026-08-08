@@ -1,0 +1,15 @@
+---
+// Un icono del sprite. Reemplaza a Boxicons (que venía por CDN).
+// El sprite se inyecta una sola vez en Base.astro; aquí solo se referencia.
+interface Props {
+  name: string;
+  class?: string;
+  [key: string]: unknown;
+}
+
+const { name, class: className = "", ...rest } = Astro.props;
+---
+
+<svg class={`icon ${className}`.trim()} aria-hidden="true" focusable="false" {...rest}>
+  <use href={`#i-${name}`}></use>
+</svg>
