@@ -7,6 +7,7 @@ image: "/images/Screenshot_Nitt.png"
 serviceUrl: "https://innovamc.com/servicios/webdevelopment"
 sector: "Servicios de limpieza"
 status: "Desarrollado"
+logo: "/images/logos/nitt.webp"
 description: "Web corporativa para servicios de limpieza en Guatemala. Información de servicios y cotización."
 highlights:
   - "Información de servicios"

@@ -12,6 +12,26 @@
   flex-direction: column;
   gap: var(--space-4);
   position: relative;
+  overflow: hidden;
+}
+
+/* Filo dorado que aparece arriba de la tarjeta al pasar el mouse: el
+   único toque "premium" que no depende de tener logo o no, así todas
+   las tarjetas (con o sin logo real) reciben el mismo trato al hover. */
+.project::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0;
+  transition: opacity var(--dur) var(--ease);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.project:hover::before {
+  opacity: 1;
 }
 
 .project__head {
@@ -37,6 +57,80 @@
   font-variant-numeric: tabular-nums;
 }
 
+/* Marca del proyecto: mismo tamaño exista o no un logo real, para que
+   ninguna tarjeta desalinee la fila con el nombre/año. */
+.project__mark {
+  --size: 5.2rem;
+  width: var(--size);
+  height: var(--size);
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius);
+  background: var(--accent-wash);
+  color: var(--accent-soft);
+  border: var(--border) solid color-mix(in srgb, var(--accent) 22%, transparent);
+  font-size: 2.1rem;
+  transition:
+    border-color var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease),
+    transform var(--dur) var(--ease);
+}
+
+/* Logo real de cliente: chip color crema fijo (no depende del tema claro/
+   oscuro) para que cualquier logo —incluso los que llevan trazos negros o
+   fondos propios— quede siempre legible, con un anillo dorado como marco. */
+.project__mark--logo {
+  padding: 0.9rem;
+  background: linear-gradient(155deg, #fdfbf4 0%, #f2e9d6 100%);
+  border-color: color-mix(in srgb, var(--gold) 45%, transparent);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    var(--elev-sm);
+}
+
+/* Bug real (no óptico): la grilla implícita de `.project__mark` no declara
+   `grid-template-rows`, así que el navegador calcula el alto de esa pista
+   según la relación de aspecto natural del logo (ignorando el `height:100%`
+   de la imagen) en vez de usar el tamaño real del chip. Con un logo más
+   ancho que alto casi no se nota, pero con uno muy vertical (AquaControl,
+   Casa Tsíntani) la celda queda más alta de lo que el chip permite y el
+   logo se ve "pegado" abajo con hueco arriba — no es un tema de estilos
+   sino de que el área donde `object-fit: contain` centra ya venía mal
+   calculada. Fijar ambas pistas a 100% la deja igual al tamaño del chip.
+   Solo se aplica a los logos marcados con LOGO_SCALE en Projects.astro. */
+.project__mark--tallfix {
+  grid-template-columns: 100%;
+  grid-template-rows: 100%;
+}
+
+.project__mark--logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  /* `object-fit: contain` siempre llena por completo el eje dominante de la
+     figura (el alto, en un logo más alto que ancho) contra un chip cuadrado
+     — así que un logo muy vertical se ve "pegado" arriba y abajo sin margen,
+     aunque el propio archivo ya venga recortado justo. `--logo-scale` (por
+     defecto 1, sin efecto) encoge la figura completa alrededor de su propio
+     centro para los pocos logos donde eso pasa — ver LOGO_SCALE en
+     Projects.astro. */
+  transform: scale(var(--logo-scale, 1));
+  /* Sombra sutil tipo "sticker": traza el borde del logo aunque su propio
+     relleno sea blanco o muy claro (ej. AquaControl se apagaba contra el
+     crema del chip sin esto) y de paso le da algo de profundidad al resto. */
+  filter: drop-shadow(0 1px 1px rgba(16, 25, 42, 0.22))
+    drop-shadow(0 3px 6px rgba(16, 25, 42, 0.14));
+}
+
+.project:hover .project__mark--logo {
+  border-color: var(--gold);
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    0 6px 16px color-mix(in srgb, var(--gold) 25%, transparent);
+}
+
 .project__link {
   margin-left: auto;
   width: 3.2rem;
@@ -53,10 +147,34 @@
     background var(--dur) var(--ease);
 }
 
+/* Al pasar el mouse por la tarjeta, el icono "abrir enlace" se pone
+   dorado y da un pequeño salto hacia la esquina — sugiere "esto abre
+   algo" sin depender del color de acento del resto del sitio. */
 .project:hover .project__link {
-  color: var(--accent);
-  border-color: var(--accent);
-  background: var(--accent-wash);
+  color: var(--gold);
+  border-color: var(--gold);
+  background: var(--gold-wash);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .project:hover .project__link .icon {
+    animation: project-link-nudge 0.5s var(--ease);
+  }
+}
+
+@keyframes project-link-nudge {
+  0% {
+    transform: translate(0, 0);
+  }
+  40% {
+    transform: translate(2px, -2px) scale(1.08);
+  }
+  70% {
+    transform: translate(-1px, 0.5px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
 }
 
 /* Alto fijo a 4 líneas: así todas las tarjetas quedan simétricas sin
@@ -89,7 +207,7 @@
 
 .project__fact .icon {
   font-size: 1.6rem;
-  color: var(--accent-soft);
+  color: var(--gold);
 }
 
 /* Enlace que cubre la tarjeta entera: toda la tarjeta es pulsable,
@@ -101,9 +219,13 @@
   z-index: 1;
 }
 
+/* Decorativo, no un link propio (aria-hidden en el markup): deja pasar el
+   clic al .project__cover de abajo para que abrir el proyecto funcione
+   igual haciendo clic en este icono o en cualquier otro punto de la card. */
 .project__link {
   position: relative;
   z-index: 2;
+  pointer-events: none;
 }
 
 /* "Ver servicio": link secundario, opcional. Encima del cover (z-index 2)

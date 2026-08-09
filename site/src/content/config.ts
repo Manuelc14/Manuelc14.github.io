@@ -20,6 +20,11 @@ const projects = defineCollection({
     status: z.string().optional(),
     highlights: z.array(z.string()).optional(),
     serviceUrl: z.string().url().optional(),
+    // Logo real del cliente/proyecto (PNG/WebP con transparencia), en
+    // /public/images/logos/. Si no existe, la tarjeta cae de vuelta al
+    // icono genérico (ver meta en Projects.astro) — ningún proyecto se
+    // rompe por no tener logo todavía.
+    logo: z.string().optional(),
   }),
 });
 

@@ -8,6 +8,7 @@ featured: true
 serviceUrl: "https://innovamc.com/servicios/webdevelopment"
 sector: "Construcción"
 status: "Desarrollado"
+logo: "/images/logos/solon-soluciones.webp"
 description: "Sitio estático rápido con Astro para empresa del sector construcción. Contenido informativo y galería."
 highlights:
   - "Sitio estático ultrarrápido con Astro"

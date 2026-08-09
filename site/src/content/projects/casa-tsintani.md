@@ -6,6 +6,7 @@ url: "https://casatsintani.com/"
 serviceUrl: "https://innovamc.com/servicios/webdevelopment"
 sector: "Salud · Marketing"
 status: "Activo"
+logo: "/images/logos/casa-tsintani.webp"
 description: "Sitio institucional para centro de rehabilitación integral, con chatbot de respuesta automática y automatización de leads para su estrategia comercial."
 highlights:
   - "Chatbot de respuesta automática"

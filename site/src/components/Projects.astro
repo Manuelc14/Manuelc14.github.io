@@ -24,6 +24,16 @@ const meta: Record<string, { icon: string; sector?: string }> = {
   "innovamc-panel": { icon: "workflow" },
 };
 
+// object-fit:contain llena por completo el eje más alto del logo dentro del
+// chip cuadrado, así que un logo más vertical que ancho queda pegado arriba
+// y abajo sin margen visible. Solo aquacontrol y casa-tsintani son así de
+// verticales — el resto ya se ve centrado con espacio de sobra. Reescala esa
+// figura (ver `--logo-scale` en projects.css) sin tocar nada más.
+const LOGO_SCALE: Record<string, number> = {
+  aquacontrol: 0.72,
+  "casa-tsintani": 0.72,
+};
+
 // Orden editorial: los proyectos con backend propio, roles/autenticación o
 // lógica de negocio real primero (los que mejor argumentan nivel técnico),
 // el resto queda detrás del botón "Ver más" — sin ocultarlos, solo un clic
@@ -76,9 +86,27 @@ const featuredCount = featured.length;
               style={`--stagger:${idx % 3}`}
             >
               <div class="project__head">
-                <span class="icon-badge">
-                  <Icon name={m.icon} />
-                </span>
+                {data.logo ? (
+                  <span
+                    class={`project__mark project__mark--logo${
+                      LOGO_SCALE[slug] ? " project__mark--tallfix" : ""
+                    }`}
+                  >
+                    <img
+                      src={data.logo}
+                      alt={`Logo de ${data.title}`}
+                      width="72"
+                      height="72"
+                      loading="lazy"
+                      decoding="async"
+                      style={LOGO_SCALE[slug] ? `--logo-scale:${LOGO_SCALE[slug]}` : undefined}
+                    />
+                  </span>
+                ) : (
+                  <span class="project__mark">
+                    <Icon name={m.icon} />
+                  </span>
+                )}
                 <div>
                   <h3 class="project__name" data-i18n={`projects.${slug}.title`}>
                     {data.title}

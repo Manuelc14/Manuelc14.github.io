@@ -7,6 +7,7 @@ image: "/images/Screenshot_Casalupservices.png"
 serviceUrl: "https://innovamc.com/servicios/webdevelopment"
 sector: "Catering · Eventos"
 status: "Desarrollado"
+logo: "/images/logos/casalup-services.webp"
 description: "Web corporativa para empresa de catering. Diseño limpio, enfoque en conversión y contacto."
 highlights:
   - "Diseño enfocado en conversión"

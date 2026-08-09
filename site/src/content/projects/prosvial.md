@@ -6,6 +6,7 @@ url: "https://prosvial.com.co/"
 serviceUrl: "https://innovamc.com/servicios/webdevelopment"
 sector: "Seguridad vial · PESV"
 status: "Activo"
+logo: "/images/logos/prosvial.webp"
 description: "Sitio web institucional para empresa especializada en formación, evaluación y reentrenamiento de conductores, con metodología alineada al Plan Estratégico de Seguridad Vial (PESV) y enfoque comercial por servicio."
 highlights:
   - "Selector rápido de soluciones por necesidad"

@@ -7,6 +7,7 @@ serviceUrl: "https://innovamc.com/servicios/software"
 image: "/images/Screenshot_GCLTracs.png"
 sector: "Rastreo · Admin"
 status: "Desarrollado"
+logo: "/images/logos/gcltracs.webp"
 description: "Plataforma de rastreo satelital: gestión de clientes, pólizas y pagos, panel administrativo e integración con monitoreo vehicular."
 highlights:
   - "Gestión de clientes"
