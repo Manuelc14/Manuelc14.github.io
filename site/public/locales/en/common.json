@@ -297,6 +297,7 @@
   },
   "contact": {
     "title": "Get <span>in Touch</span>",
+    "subtitle": "Got an idea, a project in mind, or just want to connect? Send me a message — I read every one.",
     "form": {
       "name_label": "Full name",
       "name_ph": "Name",

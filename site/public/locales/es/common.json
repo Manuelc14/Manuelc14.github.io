@@ -301,6 +301,7 @@
   },
   "contact": {
     "title": "Contacta <span>Conmigo</span>",
+    "subtitle": "¿Tienes una idea, un proyecto en mente o solo quieres conectar? Escríbeme, te leo con gusto.",
     "form": {
       "name_label": "Nombre completo",
       "name_ph": "Nombre",
