@@ -1,9 +1,18 @@
 {
-    "liveServer.settings.port": 5501,
     "window.titleBarStyle": "custom",
     "workbench.colorCustomizations": {
-        "window.activeBorder": "#18838f",
-        "window.inactiveBorder": "#198c84",
-        "activityBar.activeBorder": "#ffffff"
+        "activityBar.activeBorder": "#b266ff",
+        "editor.background": "#14001f",
+        "editor.foreground": "#f5eaff",
+        "editorCursor.foreground": "#c38bff",
+        "editorLineNumber.foreground": "#8550a8",
+        "editorLineNumber.activeForeground": "#ffffff",
+        "editor.selectionBackground": "#3d0a5b",
+        "editor.selectionHighlightBackground": "#b266ff33",
+        "terminal.background": "#14001f",
+        "terminal.foreground": "#e7ccff",
+        "terminalCursor.foreground": "#c38bff",
+        "terminal.ansiRed": "#d088ff",
+        "terminal.ansiBrightRed": "#e5b3ff"
     }
 }
