@@ -1,7 +1,5 @@
 ---
-import { Image } from "astro:assets";
 import Icon from "./Icon.astro";
-import portrait from "../assets/img/i.png";
 import { getCollection } from "astro:content";
 
 const projects = await getCollection("projects");
@@ -81,24 +79,106 @@ const social = [
       </div>
 
       <div class="hero__media">
-        <Image
-          class="portrait"
-          src={portrait}
-          widths={[360, 480, 720]}
-          sizes="(max-width: 768px) 1px, (max-width: 1024px) 60vw, 40vw"
-          format="webp"
-          quality={78}
-          loading="eager"
-          decoding="async"
-          fetchpriority="high"
-          alt="Foto de Manuel Causil"
-          data-i18n-attr="alt:hero.portraitAlt"
-        />
-        <div class="hero__badge">
-          <span class="icon-badge icon-badge--gold"><Icon name="briefcase" /></span>
-          <div>
-            <strong>{projectCount}</strong>
-            <span>Proyectos</span>
+        <div class="figure-stage" data-hero-figure aria-hidden="true">
+          <!-- Compacto y a propósito: un mockup de teléfono, no una ventana
+               de escritorio ocupando media columna. -->
+          <div class="phone" data-depth="6">
+            <span class="phone__notch"></span>
+
+            <div class="phone__screen">
+              <div class="phone__status">
+                <span class="phone__status-live"><i></i>Live</span>
+                <span class="phone__signal" aria-hidden="true">
+                  <i></i><i></i><i></i>
+                </span>
+              </div>
+
+              <div class="phone__stage">
+                <span class="phone__ring phone__ring--a"></span>
+                <span class="phone__ring phone__ring--b"></span>
+
+                <div class="phone__core">
+                  <span class="phone__core-pulse"></span>
+                  <Icon name="code" />
+                </div>
+              </div>
+
+              <p class="phone__code">
+                <span class="phone__code-kw">const</span> dev = <span class="phone__code-str"
+                  >"Manuel Causil"</span
+                ><span class="phone__cursor"></span>
+              </p>
+            </div>
+          </div>
+
+          <div class="figure-chip" style="--top:1%; --left:-8%;" data-depth="18">
+            <div class="figure-chip__inner" style="--delay:0s">
+              <span class="icon-badge icon-badge--sm"><Icon name="code" /></span>
+              <div>
+                <strong>Frontend</strong>
+                <span>React · Vue</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="figure-chip" style="--top:1%; --left:84%;" data-depth="14">
+            <div class="figure-chip__inner" style="--delay:.6s">
+              <span class="icon-badge icon-badge--sm"><Icon name="workflow" /></span>
+              <div>
+                <strong>Backend</strong>
+                <span>Laravel · Django</span>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="figure-chip figure-chip--secondary"
+            style="--top:44%; --left:-14%;"
+            data-depth="10"
+          >
+            <div class="figure-chip__inner" style="--delay:1.1s">
+              <span class="icon-badge icon-badge--sm"><Icon name="database" /></span>
+              <div>
+                <strong data-i18n="hero.figure.data">Bases de datos</strong>
+                <span>PostgreSQL</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="figure-chip" style="--top:44%; --left:90%;" data-depth="16">
+            <div class="figure-chip__inner" style="--delay:.3s">
+              <span class="icon-badge icon-badge--sm"><Icon name="bolt" /></span>
+              <div>
+                <strong data-i18n="hero.figure.automation">Automatización</strong>
+                <span>Power BI</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="figure-chip" style="--top:88%; --left:-19%;" data-depth="12">
+            <div class="figure-chip__inner" style="--delay:.9s">
+              <span class="icon-badge icon-badge--sm icon-badge--gold"
+                ><Icon name="briefcase" /></span
+              >
+              <div>
+                <strong class="stat-shine" data-counter={projectCount}>{projectCount}</strong>
+                <span data-i18n="hero.figure.live">Proyectos en producción</span>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="figure-chip figure-chip--secondary"
+            style="--top:88%; --left:84%;"
+            data-depth="20"
+          >
+            <div class="figure-chip__inner" style="--delay:1.4s">
+              <span class="icon-badge icon-badge--sm"><Icon name="check" /></span>
+              <div>
+                <strong>APIs REST</strong>
+                <span data-i18n="hero.figure.api_sub">Integraciones</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -106,20 +186,20 @@ const social = [
 
     <div class="hero__stats">
       <div class="hero__stat">
-        <strong>{projectCount}</strong>
-        <span>Proyectos entregados</span>
+        <strong class="stat-shine" data-counter={projectCount}>{projectCount}</strong>
+        <span data-i18n="hero.stats.delivered">Proyectos entregados</span>
       </div>
       <div class="hero__stat">
-        <strong>{liveCount}</strong>
-        <span>En producción</span>
+        <strong class="stat-shine" data-counter={liveCount}>{liveCount}</strong>
+        <span data-i18n="hero.stats.live">En producción</span>
       </div>
       <div class="hero__stat">
-        <strong>{yearSpan}</strong>
-        <span>Años entregando</span>
+        <strong class="stat-shine" data-counter={yearSpan}>{yearSpan}</strong>
+        <span data-i18n="hero.stats.years">Años entregando</span>
       </div>
       <div class="hero__stat">
-        <strong>2</strong>
-        <span>Idiomas del sitio</span>
+        <strong class="stat-shine" data-counter="2">2</strong>
+        <span data-i18n="hero.stats.languages">Idiomas del sitio</span>
       </div>
     </div>
   </div>

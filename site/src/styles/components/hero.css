@@ -111,7 +111,14 @@
   gap: var(--space-2);
 }
 
-/* --------------------------- retrato --------------------------- */
+/* --------------------------- figura de código --------------------------- */
+/* En vez de una foto: un mockup de teléfono hecho con HTML/CSS/SVG,
+   compacto a propósito (no una ventana ocupando media columna), que se
+   mueve con el mouse (parallax por capas, `initHeroFigure()` en app.js)
+   y tiene vida propia (anillos que giran, núcleo que respira, barras de
+   actividad, piezas que flotan alrededor). Nada de esto es una captura
+   de producto: es una pieza decorativa que argumenta "esto está
+   construido con código", no un mockup de una app ajena. */
 .hero__media {
   position: relative;
   justify-self: center;
@@ -119,46 +126,450 @@
   max-width: 42rem;
 }
 
-.portrait {
+.figure-stage {
+  position: relative;
   width: 100%;
-  height: auto;
-  aspect-ratio: 6 / 7;
-  object-fit: cover;
-  object-position: top center;
-  border-radius: var(--radius-lg);
+  aspect-ratio: 1 / 1;
+}
+
+/* -------- el teléfono -------- */
+.phone {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  width: min(46%, 19rem);
+  aspect-ratio: 9 / 18.5;
+  /* El centrado (-50%,-50%) vive aquí, no en el JS del parallax: así
+     `initHeroFigure()` solo empuja --px/--py sin pisar el transform
+     base. Si el JS escribiera `transform` directamente se perdería el
+     centrado en el primer mousemove y el teléfono "saltaría" hacia
+     abajo-derecha. */
+  transform: translate(-50%, -50%) translate3d(var(--px, 0px), var(--py, 0px), 0);
+  padding: 0.5rem;
+  border-radius: 3rem;
+  background: linear-gradient(165deg, var(--surface-2), var(--card) 60%);
+  border: var(--border) solid var(--line);
+  box-shadow: var(--elev-lg);
+  will-change: transform;
+}
+
+.phone__notch {
+  position: absolute;
+  top: 1rem;
+  left: 50%;
+  z-index: 2;
+  width: 34%;
+  height: 1.3rem;
+  transform: translateX(-50%);
+  border-radius: var(--radius-pill);
   background: var(--surface-2);
   border: var(--border) solid var(--line);
-  box-shadow: var(--elev-lg);
 }
 
-/* Tarjeta flotante de datos sobre el retrato. */
-.hero__badge {
-  position: absolute;
-  left: calc(var(--space-5) * -1);
-  bottom: var(--space-6);
+.phone__screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 1.1rem 1.6rem;
+  border-radius: 2.6rem;
+  overflow: hidden;
+  background: radial-gradient(
+    70% 55% at 50% 38%,
+    color-mix(in srgb, var(--accent) 12%, transparent),
+    transparent 70%
+  );
+}
+
+.phone__status {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
-  padding: var(--space-3) var(--space-4);
-  background: var(--card);
-  border: var(--border) solid var(--line);
-  border-radius: var(--radius);
-  box-shadow: var(--elev-lg);
+  justify-content: space-between;
+  width: 100%;
 }
 
-.hero__badge strong {
-  display: block;
-  font-size: var(--fs-mdl);
-  line-height: 1.1;
-  font-variant-numeric: tabular-nums;
-}
-
-.hero__badge span {
+.phone__status-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   font-family: var(--font-mono);
-  font-size: var(--fs-2xs);
+  font-size: 0.9rem;
   letter-spacing: var(--tracking-label);
   text-transform: uppercase;
   color: var(--muted);
+}
+
+.phone__status-live i {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: #28c840;
+  box-shadow: 0 0 6px #28c840;
+  animation: figure-pulse-dot 1.8s ease-in-out infinite;
+}
+
+.phone__signal {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.2rem;
+  height: 0.9rem;
+}
+
+.phone__signal i {
+  width: 0.28rem;
+  border-radius: 1px;
+  background: var(--gold);
+  transform-origin: bottom;
+  animation: figure-signal 1.6s ease-in-out infinite;
+}
+
+.phone__signal i:nth-child(1) {
+  height: 40%;
+  animation-delay: 0s;
+}
+
+.phone__signal i:nth-child(2) {
+  height: 70%;
+  animation-delay: 0.2s;
+}
+
+.phone__signal i:nth-child(3) {
+  height: 100%;
+  animation-delay: 0.4s;
+}
+
+.phone__stage {
+  position: relative;
+  width: 78%;
+  aspect-ratio: 1 / 1;
+  display: grid;
+  place-items: center;
+}
+
+.phone__ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px dashed var(--line-strong);
+}
+
+.phone__ring--a {
+  width: 68%;
+  height: 68%;
+  animation: figure-spin 16s linear infinite;
+}
+
+.phone__ring--a::before {
+  content: "";
+  position: absolute;
+  top: -0.3rem;
+  left: 50%;
+  width: 0.6rem;
+  height: 0.6rem;
+  margin-left: -0.3rem;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--accent) 70%, transparent);
+}
+
+.phone__ring--b {
+  width: 96%;
+  height: 96%;
+  border-color: color-mix(in srgb, var(--gold) 45%, transparent);
+  animation: figure-spin-reverse 24s linear infinite;
+}
+
+.phone__ring--b::before {
+  content: "";
+  position: absolute;
+  bottom: -0.28rem;
+  left: 18%;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--gold) 70%, transparent);
+}
+
+.phone__core {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 4.4rem;
+  height: 4.4rem;
+  border-radius: 50%;
+  background: var(--accent-wash);
+  border: var(--border) solid color-mix(in srgb, var(--accent) 40%, transparent);
+  color: var(--accent-soft);
+  font-size: 1.8rem;
+  animation: figure-float 5s ease-in-out infinite;
+}
+
+.phone__core-pulse {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: var(--border) solid var(--accent);
+  animation: figure-pulse 2.4s ease-out infinite;
+}
+
+/* Una línea "escrita" de verdad: refuerza que la figura está hecha con
+   código, no es un mockup de producto. */
+.phone__code {
+  width: 100%;
+  padding: 0.5rem 0.7rem;
+  background: var(--surface-2);
+  border: var(--border) solid var(--line);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  color: var(--text-2);
+  line-height: 1.4;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.phone__code-kw {
+  color: var(--accent-soft);
+}
+
+.phone__code-str {
+  color: var(--gold);
+}
+
+.phone__cursor {
+  display: inline-block;
+  width: 0.14em;
+  height: 0.9em;
+  margin-left: 0.12em;
+  vertical-align: -0.08em;
+  background: currentColor;
+  animation: figure-blink 1s step-end infinite;
+}
+
+/* -------- piezas flotantes -------- */
+.figure-chip {
+  position: absolute;
+  top: var(--top, 50%);
+  left: var(--left, 50%);
+  z-index: 2;
+  transform: translate3d(var(--px, 0px), var(--py, 0px), 0);
+  will-change: transform;
+}
+
+.figure-chip__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  /* 17rem es el mínimo real para que la palabra suelta más larga
+     ("Automatización", "Integraciones") quepa en una sola línea al
+     tamaño de fuente legible — medido con canvas.measureText(), no a
+     ojo. Con menos ancho, `hyphens`/`break-word` la parte a la mitad. */
+  max-width: 17rem;
+  padding: var(--space-1) var(--space-2);
+  background: var(--card);
+  border: var(--border) solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--elev);
+  animation: figure-float 5s ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+/* Más compactas que el badge estándar --sm: aquí son adorno periférico,
+   no un punto de atención. */
+.figure-chip__inner .icon-badge {
+  --size: 2.6rem;
+  font-size: 1.15rem;
+}
+
+/* Sin esto el texto largo ("Automatización") no envuelve: un ítem flex
+   sin min-width:0 se niega a encogerse por debajo del ancho de su
+   contenido y se desborda fuera de la tarjeta en vez de ajustarse.
+   `hyphens: auto` evita que la palabra se parta en un punto cualquiera
+   (se ve como un corte crudo tipo "Automatiza/ción"): con guión
+   silábico real ("Automati-/zación") se lee mucho mejor en una tarjeta
+   angosta. `overflow-wrap` sigue de red de seguridad para palabras que
+   el diccionario de guionado no sepa partir. */
+.figure-chip__inner > div {
+  min-width: 0;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.figure-chip__inner strong {
+  display: block;
+  font-size: var(--fs-xs);
+  line-height: 1.25;
+  white-space: normal;
+}
+
+.figure-chip__inner span {
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  line-height: 1.2;
+  color: var(--muted);
+  white-space: normal;
+}
+
+@keyframes figure-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-0.6rem);
+  }
+}
+
+@keyframes figure-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes figure-spin-reverse {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes figure-pulse {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+@keyframes figure-pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@keyframes figure-signal {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scaleY(0.7);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+@keyframes figure-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* -------- números con efecto "metal reluciente" --------
+   Un barrido de luz cruza el número en diagonal en loop; el conteo desde
+   0 lo hace `initStatCounters()` en app.js. Con `@supports` porque si el
+   navegador no soporta `background-clip:text`, el fallback debe seguir
+   siendo texto legible, no texto transparente invisible. */
+.stat-shine {
+  color: var(--text);
+}
+
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+  .stat-shine {
+    background: linear-gradient(115deg, var(--text) 35%, var(--gold-hover) 50%, var(--text) 65%);
+    background-size: 220% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: metal-shine 3.2s linear infinite;
+  }
+}
+
+@keyframes metal-shine {
+  0% {
+    background-position: 160% 0;
+  }
+  100% {
+    background-position: -60% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .phone__ring,
+  .phone__core,
+  .phone__core-pulse,
+  .phone__cursor,
+  .phone__status-live i,
+  .phone__signal i,
+  .figure-chip__inner {
+    animation: none;
+  }
+
+  .stat-shine {
+    animation: none;
+    background: none;
+    -webkit-background-clip: initial;
+    background-clip: initial;
+    color: var(--text);
+  }
+}
+
+/* Debajo de 1366px el ancho de columna disponible ya no alcanza para
+   que las piezas de la derecha (con texto en una sola línea, ~17rem)
+   quepan sin que su borde se salga de la sección — medido con
+   getBoundingClientRect() en todo el rango: por debajo de ~1345px
+   "Automatización"/"APIs REST" empiezan a recortarse contra el borde
+   del viewport. Por debajo de 1024px además el hero pasa a una sola
+   columna, con el stage cambiando de proporciones en más de un punto
+   de quiebre. Calibrar 6 piezas flotantes para cada ancho posible es
+   frágil y no vale la pena para un adorno: más simple y más robusto
+   es mostrar el teléfono solo, sin piezas alrededor, en todo ese rango
+   angosto. */
+@media (max-width: 1366px) {
+  .figure-chip {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  /* Sin chips, mantener el `.figure-stage` cuadrado deja un cerco enorme
+     de espacio vacío alrededor del teléfono (el cuadrado se dimensiona
+     para acomodar piezas que ya no están). En móvil el stage se ajusta
+     a la altura real del teléfono en vez de forzar 1:1. */
+  .figure-stage {
+    aspect-ratio: auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  .phone {
+    position: relative;
+    inset: auto;
+    top: auto;
+    left: auto;
+    /* Sigue tomando --px/--py por si algún navegador móvil dispara
+       mousemove (trackpad conectado, etc.); sin la base -50%/-50% que
+       solo tenía sentido con el centrado absoluto de escritorio. */
+    transform: translate3d(var(--px, 0px), var(--py, 0px), 0);
+    width: min(52%, 15rem);
+  }
 }
 
 /* --------------------------- cifras --------------------------- */
@@ -207,19 +618,17 @@
     order: -1;
     max-width: 30rem;
   }
-
-  .hero__badge {
-    left: auto;
-    right: calc(var(--space-4) * -1);
-  }
 }
 
-/* En móvil el retrato no aporta: empuja el mensaje y las acciones por
-   debajo del pliegue. Fuera. El elemento LCP pasa a ser el titular, que
-   además es texto y pinta de inmediato. */
+/* En móvil la figura SÍ se muestra (ya no es una foto que pesa y compite
+   por el LCP: es CSS/SVG, prácticamente gratis) pero va después del
+   mensaje y los botones, no antes — el titular sigue siendo lo primero
+   que se pinta y lo primero que se lee. */
 @media (max-width: 768px) {
   .hero__media {
-    display: none;
+    order: 0;
+    max-width: 26rem;
+    margin-inline: auto;
   }
 
   .hero {

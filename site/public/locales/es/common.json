@@ -98,6 +98,18 @@
       "aria": "Redes sociales"
     },
     "portraitAlt": "Foto de Manuel Causil",
+    "figure": {
+      "data": "Bases de datos",
+      "automation": "Automatización",
+      "live": "Proyectos en producción",
+      "api_sub": "Integraciones"
+    },
+    "stats": {
+      "delivered": "Proyectos entregados",
+      "live": "En producción",
+      "years": "Años entregando",
+      "languages": "Idiomas del sitio"
+    },
     "typed": [
       "Desarrollador Full-Stack",
       "React · Vue · Django · Laravel",

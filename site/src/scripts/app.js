@@ -236,6 +236,121 @@ function initCarousel() {
   }
 }
 
+/* --------------------------------------------------- figura del hero */
+function initHeroFigure() {
+  const root = document.querySelector("[data-hero-figure]");
+  if (!root) return;
+
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reducedMotion) return;
+
+  const layers = [...root.querySelectorAll("[data-depth]")];
+  if (!layers.length) return;
+
+  let targetX = 0;
+  let targetY = 0;
+  let currentX = 0;
+  let currentY = 0;
+  let raf = null;
+
+  const render = () => {
+    currentX += (targetX - currentX) * 0.08;
+    currentY += (targetY - currentY) * 0.08;
+
+    layers.forEach((el) => {
+      const depth = parseFloat(el.dataset.depth || "0");
+      // Variables CSS, no `transform` directo: algunas capas (`.phone`)
+      // ya tienen su propio transform base (centrado -50%/-50%) en el
+      // CSS. Si aquí se sobreescribiera `style.transform` completo, ese
+      // centrado se perdería en el primer mousemove y la capa "saltaría"
+      // de posición en vez de solo desplazarse por el parallax.
+      el.style.setProperty("--px", `${(currentX * depth).toFixed(2)}px`);
+      el.style.setProperty("--py", `${(currentY * depth).toFixed(2)}px`);
+    });
+
+    if (Math.abs(targetX - currentX) > 0.001 || Math.abs(targetY - currentY) > 0.001) {
+      raf = requestAnimationFrame(render);
+    } else {
+      raf = null;
+    }
+  };
+
+  const wake = () => {
+    if (!raf) raf = requestAnimationFrame(render);
+  };
+
+  root.addEventListener(
+    "mousemove",
+    (event) => {
+      const rect = root.getBoundingClientRect();
+      targetX = (event.clientX - rect.left) / rect.width - 0.5;
+      targetY = (event.clientY - rect.top) / rect.height - 0.5;
+      wake();
+    },
+    { passive: true }
+  );
+
+  root.addEventListener(
+    "mouseleave",
+    () => {
+      targetX = 0;
+      targetY = 0;
+      wake();
+    },
+    { passive: true }
+  );
+}
+
+/* ---------------------------------------------- contador de cifras */
+function initStatCounters() {
+  const stats = [...document.querySelectorAll("[data-counter]")];
+  if (!stats.length) return;
+
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const animate = (el) => {
+    const target = parseInt(el.dataset.counter, 10);
+    if (Number.isNaN(target)) return;
+
+    if (reducedMotion) {
+      el.textContent = String(target);
+      return;
+    }
+
+    const duration = 1400;
+    let start = null;
+
+    const tick = (timestamp) => {
+      if (start === null) start = timestamp;
+      const progress = Math.min(1, (timestamp - start) / duration);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = String(Math.round(target * eased));
+      if (progress < 1) requestAnimationFrame(tick);
+      else el.textContent = String(target);
+    };
+
+    el.textContent = "0";
+    requestAnimationFrame(tick);
+  };
+
+  if (!("IntersectionObserver" in window)) {
+    stats.forEach((el) => animate(el));
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        animate(entry.target);
+        obs.unobserve(entry.target);
+      }
+    },
+    { threshold: 0.4 }
+  );
+  stats.forEach((el) => observer.observe(el));
+}
+
 /* ------------------------------------------------------- volver arriba */
 function initToTop() {
   const btn = document.querySelector("[data-to-top]");
@@ -428,6 +543,8 @@ function init() {
   initScrollState();
   initReveal();
   initCarousel();
+  initHeroFigure();
+  initStatCounters();
   initToTop();
   initProjectsToggle();
   initExperienceToggle();
