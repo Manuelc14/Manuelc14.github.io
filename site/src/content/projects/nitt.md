@@ -2,7 +2,7 @@
 title: "Nitt"
 year: 2021
 stack: ["HTML", "CSS", "JS", "PHP", "Optimización SEO"]
-url: "http://nitt.innovamc.com"
+url: "https://nitt.innovamc.com"
 image: "/images/Screenshot_Nitt.png"
 serviceUrl: "https://innovamc.com/servicios/webdevelopment"
 sector: "Servicios de limpieza"
