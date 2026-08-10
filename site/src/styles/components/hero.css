@@ -321,12 +321,17 @@
    código, no es un mockup de producto. */
 .phone__code {
   width: 100%;
-  padding: 0.5rem 0.7rem;
+  /* Tamaño y padding medidos, no al ojo: a 0.95rem la línea completa
+     (`const dev = "Manuel Causil"`) pedía 167px contra los 154px de hueco
+     del teléfono y el navegador la recortaba con elipsis. A 0.82rem entra
+     justa. La elipsis se queda de red de seguridad, no como el
+     comportamiento esperado. */
+  padding: 0.5rem;
   background: var(--surface-2);
   border: var(--border) solid var(--line);
   border-radius: var(--radius-sm);
   font-family: var(--font-mono);
-  font-size: 0.95rem;
+  font-size: 0.82rem;
   color: var(--text-2);
   line-height: 1.4;
   text-align: center;
@@ -372,6 +377,15 @@
      tamaño de fuente legible — medido con canvas.measureText(), no a
      ojo. Con menos ancho, `hyphens`/`break-word` la parte a la mitad. */
   max-width: 17rem;
+  /* Sin esto los chips de la derecha (`--left:84%`/`90%`) salían con el
+     texto partido letra a letra ("Au-to-ma-ti-za-ción"). `.figure-chip`
+     es absolute con `left` pero sin `right`, así que un ancho `auto` se
+     resuelve por shrink-to-fit contra el hueco que queda hasta el borde
+     de `.figure-stage` — ~60-90px ahí — y no contra el contenido. Los de
+     la izquierda no lo sufrían: un `left` negativo deja más hueco, no
+     menos. `max-content` saca el ancho de ese cálculo y lo devuelve al
+     contenido, con `max-width` de tope. */
+  width: max-content;
   padding: var(--space-1) var(--space-2);
   background: var(--card);
   border: var(--border) solid var(--line);
