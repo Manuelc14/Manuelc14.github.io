@@ -92,7 +92,8 @@
       "projects": "See projects",
       "contact": "Contact",
       "download": "Download CV",
-      "downloadFile": "Manuel-Causil-CV"
+      "downloadFile": "Manuel-Causil-CV-EN.pdf",
+      "downloadHref": "/cv-en.pdf"
     },
     "social": {
       "aria": "Social links"

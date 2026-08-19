@@ -92,7 +92,8 @@
       "projects": "Ver proyectos",
       "contact": "Contactar",
       "download": "Descargar CV",
-      "downloadFile": "Manuel-Causil-CV"
+      "downloadFile": "Manuel-Causil-CV-ES.pdf",
+      "downloadHref": "/cv-es.pdf"
     },
     "social": {
       "aria": "Redes sociales"

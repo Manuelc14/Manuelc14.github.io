@@ -536,6 +536,25 @@ function initForm() {
   });
 }
 
+/* --------------------------------------------------------------- CV bilingüe */
+/* El botón "Descargar CV" apunta al PDF del idioma activo. El HTML ya trae el
+   español (funciona sin JS); al cambiar a inglés, i18n avisa por el evento
+   `i18n:changed` y aquí se reescriben href y nombre de archivo. Las rutas
+   viven en los locales (`hero.cta.downloadHref/downloadFile`), no aquí, para
+   que agregar un idioma sea solo agregar su JSON y su PDF. */
+function initCvLink() {
+  const link = document.querySelector("[data-cv-link]");
+  if (!link) return;
+
+  const apply = () => {
+    link.setAttribute("href", t("hero.cta.downloadHref", "/cv-es.pdf"));
+    link.setAttribute("download", t("hero.cta.downloadFile", "Manuel-Causil-CV-ES.pdf"));
+  };
+
+  apply();
+  document.addEventListener("i18n:changed", apply);
+}
+
 /* ------------------------------------------------------------------ arranque */
 function init() {
   initTheme();
@@ -548,6 +567,7 @@ function init() {
   initToTop();
   initProjectsToggle();
   initExperienceToggle();
+  initCvLink();
   initForm();
 }
 
